@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://DriftersUserDefined/pancelor-debug/Leaf.gd" type="Script" id=1]
+[ext_resource path="res://DriftersUserDefined/pancelor-debug/leaf.png" type="Texture" id=2]
+
+[node name="Leaf" type="Node2D"]
+z_index = 2
+script = ExtResource( 1 )
+guts = 1
+type1 = 10
+type2 = 4
+evolve_wait_after = 30
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )

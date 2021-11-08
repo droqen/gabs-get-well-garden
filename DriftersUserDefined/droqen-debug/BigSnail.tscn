@@ -10,11 +10,10 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.20416 ), 0.0, 0.0, 0, 0
 position = Vector2( 0.125, 0.25 )
 z_index = 1
 script = ExtResource( 1 )
-guts = 8
+guts = 4
 type1 = 8
 type2 = 18
-evolve_percentage_chance = 5
-evolve_wait_after = 30
+evolve_wait_after = 240
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -2.625 )

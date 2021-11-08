@@ -5,7 +5,11 @@ class_name GardenWorld
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	add_drifter( load("res://DriftersUserDefined/droqen-debug/BigSnail.tscn").instance(), Vector2(0,0) )
+	# debug:
+	add_drifter( load("res://DriftersUserDefined/droqen-debug/BigSnail.tscn").instance(), Vector2(-2,-2) )
+	add_drifter( load("res://DriftersUserDefined/pancelor-debug/Tree.tscn").instance(), Vector2(2,2) )
+	add_drifter( load("res://DriftersUserDefined/pancelor-debug/Tree.tscn").instance(), Vector2(4,7) )
+	add_drifter( load("res://DriftersUserDefined/pancelor-debug/Tree.tscn").instance(), Vector2(6,1) )
 
 func reinitialize_drifters(drifters : Array):
 	for drifter in drifters:

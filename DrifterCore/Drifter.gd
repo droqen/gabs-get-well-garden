@@ -21,12 +21,12 @@ var intent_move: Vector2
 var intent_spawn_drifter: Drifter
 var intent_spawn_dir: Vector2
 
-export(Vector2)var cell = null
-export(int, 0, 10)var guts # should be enough variety?
+var cell:Vector2
+export(int, 0, 10)var guts = 5 # should be enough variety?
 export(Elemental.Type)var type1 = Elemental.Type.Normal
 export(Elemental.Type)var type2 = Elemental.Type.Normal
-export(int, 0, 100)var evolve_percentage_chance
-export(int, 0, 100)var evolve_wait_after
+export(int, 0, 100)var evolve_percentage_chance = 5
+export(int, 0, 1000)var evolve_wait_after = 0
 
 var evolve_wait_frames:int = 0
 
@@ -41,7 +41,7 @@ func set_cell(_cell):
 	self.cell = _cell
 
 func evolve(vibe:Vibe):
-	pass
+	self.tweak(vibe)
 
 func tweak(vibe:Vibe):
 	pass

@@ -1,13 +1,12 @@
 extends Drifter
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if randf()<0.02:
 		$Sprite.scale = Vector2(1.1, 0.9)
 	else:
 		$Sprite.scale = lerp($Sprite.scale, Vector2(0.9, 1.1),0.02)
 
-func evolve(vibe:Vibe):
+func evolve(_vibe:Vibe):
 	var dir = DirsOrthogonal[randi()%4]
 	$Sprite.scale = Vector2(1.2, 0.8)
 	if dir.x: $Sprite.flip_h = dir.x < 0
