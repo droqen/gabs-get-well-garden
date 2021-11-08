@@ -28,7 +28,7 @@ func initialize_drifter(drifter : Drifter):
 
 func _physics_process(_delta):
 	for drifter in $DRIFTERS.get_children():
-		if drifter.evolve_wait_frames <= 0 and randi() % 100 < drifter.evolve_percentage_chance:
+		if drifter.evolve_wait_frames <= 0 and randf()*drifter.evolve_skip_odds<1:
 			drifter.evolve_wait_frames = drifter.evolve_wait_after
 			drifter.evolve(null)
 	for drifter in $DRIFTERS.get_children():

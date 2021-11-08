@@ -25,8 +25,8 @@ var cell:Vector2
 export(int, 0, 10)var guts = 5 # should be enough variety?
 export(Elemental.Type)var type1 = Elemental.Type.Normal
 export(Elemental.Type)var type2 = Elemental.Type.Normal
-export(int, 0, 100)var evolve_percentage_chance = 5
-export(int, 0, 1000)var evolve_wait_after = 0
+export(int, 1, 1000000)var evolve_skip_odds = 20 # 1 = run evolve() every frame; higher = run less often (e.g. 1000 = run with probability 1/1000 every frame)
+export(int, 0, 3600)var evolve_wait_after = 0
 
 var evolve_wait_frames:int = 0
 
