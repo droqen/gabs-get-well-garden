@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://DriftersUserDefined/droqen-debug/PoisonousGround.gd" type="Script" id=1]
+[ext_resource path="res://navdi2/Node Scripts/NavdiSheetSprite.gd" type="Script" id=2]
+[ext_resource path="res://DriftersUserDefined/droqen-debug/poisonsheet.png" type="Texture" id=3]
+[ext_resource path="res://DriftersUserDefined/droqen-debug/poisonsheet.tres" type="Resource" id=4]
+
+[node name="PoisonousGround" type="Node2D"]
+script = ExtResource( 1 )
+guts = 3
+type1 = 8
+type2 = 18
+evolve_percentage_chance = 1
+
+[node name="NavdiSheetSprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+hframes = 8
+frame = 2
+script = ExtResource( 2 )
+_frames = [ 1, 2 ]
+_editor_sheet = ExtResource( 4 )

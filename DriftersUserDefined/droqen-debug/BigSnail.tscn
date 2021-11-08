@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://DriftersUserDefined/droqen-debug/BigSnail.gd" type="Script" id=1]
+[ext_resource path="res://DriftersUserDefined/droqen-debug/bigsnail.png" type="Texture" id=2]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.20416 ), 0.0, 0.0, 0, 0 ]
+
+[node name="BigSnail" type="Node2D"]
+position = Vector2( 0.125, 0.25 )
+z_index = 1
+script = ExtResource( 1 )
+guts = 8
+type1 = 8
+type2 = 18
+evolve_percentage_chance = 5
+evolve_wait_after = 30
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -2.625 )
+texture = ExtResource( 2 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color( 0.341176, 0.333333, 0.670588, 1 )
+z_index = 1
+lifetime_randomness = 0.45
+local_coords = false
+emission_shape = 2
+emission_rect_extents = Vector2( 5, 5 )
+direction = Vector2( 0, -1 )
+spread = 15.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 40.0
+damping = 50.0
+scale_amount = 2.0
+scale_amount_curve = SubResource( 1 )

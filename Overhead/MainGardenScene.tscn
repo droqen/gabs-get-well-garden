@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://navdi2/Node Scripts/NavdiSettings.gd" type="Script" id=1]
+[ext_resource path="res://World/GardenWorld.tscn" type="PackedScene" id=2]
+
+[node name="MainGardenScene" type="Node2D"]
+
+[node name="NavdiSettings" type="Node" parent="."]
+script = ExtResource( 1 )
+project_name = "Gabs_GetWell_Garden"
+UI_stretch_mode = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+rotating = true
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="GardenWorld" parent="." instance=ExtResource( 2 )]

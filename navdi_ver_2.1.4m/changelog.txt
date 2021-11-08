@@ -1,0 +1,17 @@
+navdi 2.1.4m - 2021 Sep 25, droqen
+* merge two different versions 2.1.3m
+
+navdi 2.1.3m - 2021 Sep 23, droqen
++ added 'clear_pins' function to NavdiPinQuickPlayer.gd
++ 'get_cellv_flag' function in NavdiBoardTileMap.gd now returns Flag.ILLEGALTile on '-1' cellvalue
+
+navdi 2.1.3m - 2021 Sep 7, droqen
+~ default _frame_period of NavdiSheetSprite has been changed to 10 (from 3)
+
+navdi 2.1.2m - 2021 Sep 5, droqen
+the 'm' stands for 'mrmotext'; note that mrmotext will have to be removed if this is ever publicly released :)
++ added changelog
++ added NavdiNamer, a musagi-style name generator
++ added settings to AllSeeingControl:
+	Random Colour Bg (default off; old behaviour was on, but i prefer a black bg)
+	Random Project Name (default on; uses NavdiNamer to make a random project name)
