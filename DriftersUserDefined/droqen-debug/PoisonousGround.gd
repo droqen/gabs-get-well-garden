@@ -12,6 +12,5 @@ extends Drifter
 #	$CPUParticles2D.restart()
 
 func evolve(vibe:Vibe):
-	if randf() < 0.01:
-		intent_spawn_drifter = "res://DriftersUserDefined/droqen-debug/BigSnail.tscn"
-		intent_spawn_dir = Vector2.ZERO
+	intent_spawn_drifter = "res://DriftersUserDefined/droqen-debug/BigSnail.tscn"
+	intent_spawn_dir = Vector2.ZERO

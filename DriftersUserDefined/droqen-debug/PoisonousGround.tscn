@@ -7,14 +7,15 @@
 
 [node name="PoisonousGround" type="Node2D"]
 script = ExtResource( 1 )
-guts = 3
+guts = 10
 type1 = 8
 type2 = 18
+evolve_skip_odds = 4000
 
 [node name="NavdiSheetSprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 hframes = 8
-frame = 2
+frame = 1
 script = ExtResource( 2 )
 _frames = [ 1, 2 ]
 _editor_sheet = ExtResource( 4 )

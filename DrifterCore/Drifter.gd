@@ -13,6 +13,7 @@ func get_world():
 
 var target_position: Vector2
 
+var _todays_guts: float # internal use
 var __registered: bool = false # dont touch this omg
 var dead: bool = false
 
@@ -33,7 +34,7 @@ var intent_spawn_drifter: String
 var intent_spawn_dir: Vector2
 
 var cell:Vector2
-export(int, 0, 10)var guts = 5 # should be enough variety?
+export(int, 0, 100)var guts = 40
 export(Elemental.Type)var type1 = Elemental.Type.Normal
 export(Elemental.Type)var type2 = Elemental.Type.Normal
 export(int, 1, 1000000)var evolve_skip_odds = 20 # 1 = run evolve() every frame; higher = run less often (e.g. 1000 = run with probability 1/1000 every frame)

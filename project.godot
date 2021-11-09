@@ -30,11 +30,6 @@ _global_script_classes=[ {
 "path": "res://navdi2/module for Tiled/EdTiledLoadToMap.gd"
 }, {
 "base": "Reference",
-"class": "Elemental",
-"language": "GDScript",
-"path": "res://World/Elemental.gd"
-}, {
-"base": "Reference",
 "class": "FlatLevelData",
 "language": "GDScript",
 "path": "res://navdi2/Utility Scripts/NavdiTILEDFlatLevelData.gd"
@@ -239,7 +234,6 @@ _global_script_class_icons={
 "ChoiceStack": "",
 "Drifter": "",
 "EdTiledLoadToMap": "",
-"Elemental": "",
 "FlatLevelData": "",
 "LumpyDictionary": "",
 "MarchingTextContainer": "",

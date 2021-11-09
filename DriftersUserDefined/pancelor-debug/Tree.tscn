@@ -6,7 +6,7 @@
 [node name="Tree" type="Node2D"]
 z_index = 1
 script = ExtResource( 1 )
-guts = 6
+guts = 60
 type1 = 4
 type2 = 9
 evolve_wait_after = 100
