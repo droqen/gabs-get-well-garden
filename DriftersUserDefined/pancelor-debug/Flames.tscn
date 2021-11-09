@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://DriftersUserDefined/pancelor-debug/Flames.gd" type="Script" id=1]
+[ext_resource path="res://DriftersUserDefined/pancelor-debug/flames.png" type="Texture" id=2]
+[ext_resource path="res://navdi2/Node Scripts/NavdiBitsySprite.gd" type="Script" id=3]
+
+[node name="Flames" type="Node2D"]
+script = ExtResource( 1 )
+guts = 10
+major_element = 1
+minor_element = 5
+evolve_skip_odds = 1000
+
+[node name="NavdiBitsySprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+hframes = 8
+frame = 1
+script = ExtResource( 3 )
+_frames = [ 1, 2 ]

@@ -1,9 +1,9 @@
 extends Node2D
 
 const spawnables = [
-#	"res://DriftersUserDefined/droqen-debug/BigSnail.tscn",
-#	"res://DriftersUserDefined/pancelor-debug/Sapling.tscn",
-	"res://DriftersUserDefined/pancelor-debug/DeadTree.tscn",
+	"res://DriftersUserDefined/droqen-debug/BigSnail.tscn",
+	"res://DriftersUserDefined/pancelor-debug/Sapling.tscn",
+	"res://DriftersUserDefined/pancelor-debug/Flames.tscn",
 ]
 
 var drifter_dictionary:Dictionary = {}
@@ -35,16 +35,17 @@ func _get_drifter_at_cell(cell : Vector2):
 func _ready():
 	randomize()
 	# debug:
-#	add_drifter( "res://DriftersUserDefined/droqen-debug/BigSnail.tscn", Vector2(-2,-2) )
-#	add_drifter( "res://DriftersUserDefined/pancelor-debug/Tree.tscn", Vector2(2,2) )
-#	add_drifter( "res://DriftersUserDefined/pancelor-debug/Tree.tscn", Vector2(4,7) )
-#	add_drifter( "res://DriftersUserDefined/pancelor-debug/Tree.tscn", Vector2(6,1) )
+	add_drifter( "res://DriftersUserDefined/droqen-debug/BigSnail.tscn", Vector2(-2,-2) )
+	add_drifter( "res://DriftersUserDefined/pancelor-debug/Tree.tscn", Vector2(2,2) )
+	add_drifter( "res://DriftersUserDefined/pancelor-debug/Tree.tscn", Vector2(4,7) )
+	add_drifter( "res://DriftersUserDefined/pancelor-debug/Tree.tscn", Vector2(6,1) )
 
 	$cell_cursor.connect("clicked_cell", self, "_on_clicked_cell")
 
 func _on_clicked_cell(cell : Vector2):
 	_clicked = true
 	_clicked_cell = cell
+	print(vibe_nearby(cell).to_string())
 
 func reinitialize_drifters(drifters : Array):
 	for drifter in drifters:
@@ -96,8 +97,7 @@ func _physics_process(_delta):
 		_clicked = false
 		
 	for drifter in _to_kill:
-		_begin_drifter_death(drifter)
-		print("kill",drifter._my_own_path)
+		_free_after_20_frames(drifter)
 	
 	assert(len(_to_spawn)==len(_to_spawn_where),"_to_spawn desync")
 	for i in range(len(_to_spawn)):
@@ -113,28 +113,28 @@ func _physics_process(_delta):
 	for key in drifter_dictionary:
 		var overlapping_drifters = drifter_dictionary[key]
 		if len(overlapping_drifters) > 1:
-			print("Overlapping at ",key)
+#			print("Overlapping at ",key)
 			for drifter in overlapping_drifters:
-				assert(drifter.get_parent() == $DRIFTERS)
-				assert(not drifter.dead)
+#				assert(drifter.get_parent() == $DRIFTERS)
+#				assert(not drifter.dead)
 				var percent = drifter.guts/100.0
 				drifter._todays_guts = randf()*percent*percent
-				print(" guts: ",drifter.guts," ",percent," today: ",drifter._todays_guts," (",drifter._my_own_path,")")
+#				print(" guts: ",drifter.guts," ",percent," today: ",drifter._todays_guts," (",drifter._my_own_path,")")
 			var gutsiest_drifter = null
 			var gutsiest_guts: float = 0
 			for drifter in overlapping_drifters:
 				if drifter._todays_guts > gutsiest_guts:
 					gutsiest_guts = drifter._todays_guts
 					gutsiest_drifter = drifter
-					print("  new best: ",gutsiest_guts," ",gutsiest_drifter._my_own_path)
-				else:
-					print("  not enough: ",drifter._todays_guts," ",drifter._my_own_path)
-			print(" winner: ",gutsiest_drifter._my_own_path)
+#					print("  new best: ",gutsiest_guts," ",gutsiest_drifter._my_own_path)
+#				else:
+#					print("  not enough: ",drifter._todays_guts," ",drifter._my_own_path)
+#			print(" winner: ",gutsiest_drifter._my_own_path)
 			for drifter in overlapping_drifters:
 				if drifter != gutsiest_drifter:
-					_begin_drifter_death(drifter)
+					_free_after_20_frames(drifter)
 
-func _begin_drifter_death(drifter):
+func _free_after_20_frames(drifter):
 	yield(get_tree(),"idle_frame")
 	if drifter.get_parent() == $DRIFTERS:
 		$DRIFTERS.remove_child(drifter)
@@ -151,20 +151,23 @@ func vibe_nearby(cell:Vector2):
 	var result = Vibe.new()
 	for dcell in [Vector2.LEFT, Vector2.RIGHT, Vector2.DOWN, Vector2.UP]:
 		var drifter = _get_drifter_at_cell(cell+dcell)
-		result.add_element(drifter.major_element,3)
-		result.add_element(drifter.minor_element,1)
-		result.add_guts(drifter.guts)
+		if drifter:
+			result.add_element(drifter.major_element,3)
+			result.add_element(drifter.minor_element,1)
+			result.add_guts(drifter.guts)
 	for dcell in [Vector2(1,1), Vector2(-1,-1), Vector2(1,-1), Vector2(-1,1)]:
 		var drifter = _get_drifter_at_cell(cell+dcell)
-		result.add_element(drifter.major_element,1)
+		if drifter:
+			result.add_element(drifter.major_element,1)
 	return result
 
 func vibe_at(cell:Vector2):
 	var result = Vibe.new()
 	var drifter = _get_drifter_at_cell(cell)
-	result.add_element(drifter.major_element,3)
-	result.add_element(drifter.minor_element,1)
-	result.add_guts(drifter.guts)
+	if drifter:
+		result.add_element(drifter.major_element,3)
+		result.add_element(drifter.minor_element,1)
+		result.add_guts(drifter.guts)
 	return result
 
 func intend_kill(drifter:Drifter):
@@ -175,3 +178,7 @@ func intend_spawn_at(path:String, cell:Vector2):
 func intend_move_to(drifter:Drifter, cell:Vector2):
 	_to_move.append(drifter)
 	_to_move_where.append(cell)
+	
+func log(msg:String):
+	print("log: ",msg)
+	pass

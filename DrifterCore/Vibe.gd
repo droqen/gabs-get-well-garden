@@ -17,10 +17,11 @@ var elements:Array = [0,
 
 func add_guts(value:int):
 	elements[0] += value
-
 func add_element(typeid:int, value:int):
 	elements[typeid] += value
 
+func get_guts() -> int:
+	return elements[0]
 func get_element(typeid:int) -> int:
 	return elements[typeid]
 
@@ -52,3 +53,12 @@ func add_dictionary(dict:Dictionary) -> Vibe:
 		result.elements[key] += dict[key]
 	return result
 	
+func to_string():
+	var result = "vibe{"
+	result += "guts:" + str(elements[0]) + ", "
+#	var names = Element.keys()
+#	for key in Element:
+#		var amount = elements[key]
+#		result += names[key] + ":" + str(amount) + ", "
+	result += "}"
+	return result

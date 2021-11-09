@@ -53,7 +53,7 @@ func _physics_process(_delta):
 func lerp_position():
 	position = lerp(position, target_position, 0.1)
 
-func intend_kill():
+func intend_die():
 	world.intend_kill(self)
 func intend_spawn(path:String, dir:Vector2):
 	world.intend_spawn_at(path, cell+dir)

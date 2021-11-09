@@ -9,7 +9,11 @@ func _process(_delta):
 		$Sprite.rotation_degrees = lerp($Sprite.rotation_degrees, 0, 0.05)
 		
 func evolve():
-	if randf()<0.02:
+	var vibe:Vibe = world.vibe_nearby(cell)
+	if vibe.get_element(Vibe.Element.Fire) > 1:
+		world.log("a wandering leaf bursts into flames")
+		intend_transmute("res://DriftersUserDefined/pancelor-debug/Flames.tscn")
+	elif randf()<1/50:
 		# settle
 		tweak()
 	else:

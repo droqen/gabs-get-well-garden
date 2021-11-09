@@ -1,5 +1,5 @@
 extends Drifter
 
 func tweak():
-	print("sap tweak")
+	world.log("new life grows")
 	intend_transmute("res://DriftersUserDefined/pancelor-debug/Tree.tscn")
