@@ -14,6 +14,6 @@ evolve_skip_odds = 1000
 [node name="NavdiBitsySprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 8
-frame = 1
+frame = 2
 script = ExtResource( 3 )
 _frames = [ 1, 2 ]

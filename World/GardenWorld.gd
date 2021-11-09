@@ -1,9 +1,9 @@
 extends Node2D
 
-const spawnables = [
-	"res://DriftersUserDefined/droqen-debug/BigSnail.tscn",
-	"res://DriftersUserDefined/pancelor-debug/Sapling.tscn",
-	"res://DriftersUserDefined/pancelor-debug/Flames.tscn",
+export(Array, PackedScene)var spawnables = [
+	preload("res://DriftersUserDefined/droqen-debug/PoisonousGround.tscn"),
+	preload("res://DriftersUserDefined/pancelor-debug/Leaf.tscn"),
+	preload("res://DriftersUserDefined/pancelor-debug/Flames.tscn"),
 ]
 
 var drifter_dictionary:Dictionary = {}
@@ -35,10 +35,12 @@ func _get_drifter_at_cell(cell : Vector2):
 func _ready():
 	randomize()
 	# debug:
-	add_drifter( "res://DriftersUserDefined/droqen-debug/BigSnail.tscn", Vector2(-2,-2) )
-	add_drifter( "res://DriftersUserDefined/pancelor-debug/Tree.tscn", Vector2(2,2) )
-	add_drifter( "res://DriftersUserDefined/pancelor-debug/Tree.tscn", Vector2(4,7) )
-	add_drifter( "res://DriftersUserDefined/pancelor-debug/Tree.tscn", Vector2(6,1) )
+	for packed_drifter in spawnables:
+		add_drifter( packed_drifter.resource_path, Vector2(int(rand_range(-6,6+1)), int(rand_range(-4,4+1))) )
+#	add_drifter( "res://DriftersUserDefined/droqen-debug/BigSnail.tscn", Vector2(-2,-2) )
+#	add_drifter( "res://DriftersUserDefined/pancelor-debug/Tree.tscn", Vector2(2,2) )
+#	add_drifter( "res://DriftersUserDefined/pancelor-debug/Tree.tscn", Vector2(4,7) )
+#	add_drifter( "res://DriftersUserDefined/pancelor-debug/Tree.tscn", Vector2(6,1) )
 
 	$cell_cursor.connect("clicked_cell", self, "_on_clicked_cell")
 
@@ -92,7 +94,7 @@ func _physics_process(_delta):
 			drifter.tweak()
 		else:
 			# add a completely random thingy.
-			var path = spawnables[randi() % spawnables.size()]
+			var path = spawnables[randi() % spawnables.size()].resource_path
 			intend_spawn_at(path, _clicked_cell)
 		_clicked = false
 		
@@ -117,8 +119,11 @@ func _physics_process(_delta):
 			for drifter in overlapping_drifters:
 #				assert(drifter.get_parent() == $DRIFTERS)
 #				assert(not drifter.dead)
-				var percent = drifter.guts/100.0
-				drifter._todays_guts = randf()*percent*percent
+				if drifter.dead:
+					drifter._todays_guts = -1
+				else:
+					var percent = drifter.guts/100.0
+					drifter._todays_guts = randf()*percent*percent
 #				print(" guts: ",drifter.guts," ",percent," today: ",drifter._todays_guts," (",drifter._my_own_path,")")
 			var gutsiest_drifter = null
 			var gutsiest_guts: float = 0
@@ -135,13 +140,14 @@ func _physics_process(_delta):
 					_free_after_20_frames(drifter)
 
 func _free_after_20_frames(drifter):
-	yield(get_tree(),"idle_frame")
-	if drifter.get_parent() == $DRIFTERS:
-		$DRIFTERS.remove_child(drifter)
+	if not drifter.dead:
 		drifter.dead = true
-		$DEAD_DRIFTERS.add_child(drifter)
-		yield(get_tree().create_timer(0.2),"timeout")
-		drifter.queue_free()
+		yield(get_tree(),"idle_frame")
+		if drifter.get_parent() == $DRIFTERS:
+			$DRIFTERS.remove_child(drifter)
+			$DEAD_DRIFTERS.add_child(drifter)
+			yield(get_tree().create_timer(0.2),"timeout")
+			drifter.queue_free()
 
 #
 # useful things drifters can call:
