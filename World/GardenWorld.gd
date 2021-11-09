@@ -170,6 +170,16 @@ func vibe_at(cell:Vector2):
 		result.add_guts(drifter.guts)
 	return result
 
+func cell_with_most(element, cells:Array):
+	var result = null
+	var amount_result = 0
+	for c in cells:
+		var amt = vibe_at(c).get_element(element)
+		if amt > amount_result:
+			result = c
+			amount_result = amt
+	return result
+	
 func intend_kill(drifter:Drifter):
 	_to_kill.append(drifter)
 func intend_spawn_at(path:String, cell:Vector2):

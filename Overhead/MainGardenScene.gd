@@ -1,6 +1,7 @@
 extends Node2D
 
 var last_mouse_viewport_position:Vector2 # used to pan camera
+var camera_speed:Vector2
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -18,5 +19,15 @@ func _process(_delta):
 		mouse_delta.x *= $Camera2D.zoom.x
 		mouse_delta.y *= $Camera2D.zoom.y
 		$Camera2D.position += mouse_delta
-	
 	last_mouse_viewport_position = mouse_position
+
+	if Input.is_action_pressed("ui_right"):
+		camera_speed += 0.3*Vector2.RIGHT
+	if Input.is_action_pressed("ui_left"):
+		camera_speed += 0.3*Vector2.LEFT
+	if Input.is_action_pressed("ui_up"):
+		camera_speed += 0.3*Vector2.UP
+	if Input.is_action_pressed("ui_down"):
+		camera_speed += 0.3*Vector2.DOWN
+	camera_speed *= 0.9
+	$Camera2D.position += camera_speed
