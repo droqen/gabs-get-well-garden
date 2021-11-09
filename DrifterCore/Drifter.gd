@@ -35,8 +35,8 @@ var intent_spawn_dir: Vector2
 
 var cell:Vector2
 export(int, 0, 100)var guts = 40
-export(Elemental.Type)var type1 = Elemental.Type.Normal
-export(Elemental.Type)var type2 = Elemental.Type.Normal
+export(Vibe.Element)var major_element = Vibe.Element.Earth
+export(Vibe.Element)var minor_element = Vibe.Element.Water
 export(int, 1, 1000000)var evolve_skip_odds = 20 # 1 = run evolve() every frame; higher = run less often (e.g. 1000 = run with probability 1/1000 every frame)
 export(int, 0, 3600)var evolve_wait_after = 0
 
@@ -56,10 +56,10 @@ func set_cell(_cell):
 	self.cell = _cell
 	if is_inside_tree() and not dead: get_world().register(self)
 
-func evolve(vibe:Vibe):
-	self.tweak(vibe)
+func evolve():
+	self.tweak()
 
-func tweak(vibe:Vibe):
+func tweak():
 	# default behaviour: NO EFFECT
 	pass
 	# default behaviour: CLONE

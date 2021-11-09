@@ -11,8 +11,8 @@ position = Vector2( 0.125, 0.25 )
 z_index = 1
 script = ExtResource( 1 )
 guts = 60
-type1 = 8
-type2 = 18
+major_element = 7
+minor_element = 5
 evolve_wait_after = 240
 
 [node name="Sprite" type="Sprite" parent="."]

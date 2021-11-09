@@ -1,12 +1,11 @@
 extends Drifter
 
-func evolve(vibe:Vibe):
+func evolve(): #todo
 	if randf()<0.02:
 		# grow
-		tweak(vibe)
+		tweak()
 
-func tweak(_vibe:Vibe):
+func tweak():
 	intent_spawn_drifter = "res://DriftersUserDefined/pancelor-debug/Tree.tscn"
 	intent_spawn_dir = Vector2.ZERO
 	guts = 0
-	

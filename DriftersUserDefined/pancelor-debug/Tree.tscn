@@ -7,8 +7,8 @@
 z_index = 1
 script = ExtResource( 1 )
 guts = 60
-type1 = 4
-type2 = 9
+major_element = 4
+minor_element = 3
 evolve_wait_after = 100
 
 [node name="Sprite" type="Sprite" parent="."]

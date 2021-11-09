@@ -11,6 +11,10 @@ extends Drifter
 #	$CPUParticles2D.preprocess = randf()
 #	$CPUParticles2D.restart()
 
-func evolve(vibe:Vibe):
+func evolve():
 	intent_spawn_drifter = "res://DriftersUserDefined/droqen-debug/BigSnail.tscn"
 	intent_spawn_dir = Vector2.ZERO
+
+func tweak():
+	queue_free()
+	

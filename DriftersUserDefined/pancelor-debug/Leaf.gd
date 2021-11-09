@@ -8,10 +8,10 @@ func _process(_delta):
 		$Sprite.scale = lerp($Sprite.scale, Vector2(0.9, 1.1), 0.02)
 		$Sprite.rotation_degrees = lerp($Sprite.rotation_degrees, 0, 0.05)
 		
-func evolve(vibe:Vibe):
+func evolve():
 	if randf()<0.02:
 		# settle
-		tweak(vibe)
+		tweak()
 	else:
 		var dir = DirsOrthogonal[randi()%4]
 		$Sprite.scale = Vector2(1.2, 0.8)
@@ -19,7 +19,7 @@ func evolve(vibe:Vibe):
 		
 		intent_move = dir
 
-func tweak(_vibe:Vibe):
+func tweak():
 	intent_spawn_drifter = "res://DriftersUserDefined/pancelor-debug/Sapling.tscn"
 	intent_spawn_dir = Vector2.ZERO
 	guts = 0

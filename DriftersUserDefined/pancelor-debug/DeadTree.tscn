@@ -5,8 +5,7 @@
 
 [node name="DeadTree" type="Node2D"]
 script = ExtResource( 1 )
-type1 = 14
-type2 = 4
+major_element = 8
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -2.625 )

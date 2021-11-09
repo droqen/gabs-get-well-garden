@@ -1,33 +1,54 @@
 class_name Vibe
 
-enum Aspect {
-	Guts=0, # special
-	Normal=1,
-	Fire=2,
-	Water=3,
-	Grass=4,
-	Electric=5,
-	Ice=6,
-	Fighting=7,
-	Poison=8,
-	Ground=9,
-	Flying=10,
-	Psychic=11,
-	Bug=12,
-	Rock=13,
-	Ghost=14,
-	Dark=15,
-	Dragon=16,
-	Steel=17,
-	Fairy=18,
+enum Element {
+				# alternate interpretations: (feel free to make up your own interpretations too!)
+	Fire = 1,   #  red, energy, passion
+	Water = 2,  #  blue, wisdom, adaptability
+	Earth = 3,  #  brown, stability, calm
+	Grass = 4,  #  green, life, progress
+	Wind = 5,   #  white, change, restlessness
+	Sand = 6,   #  yellow, volatility, intelligence
+	Gem = 7,    #  purple, magic, uniqueness
+	Coal = 8,   #  black, death, decay
 }
 
 var elements:Array = [0,
-0,0,0,0,0, 0,0,0,0,0,
-0,0,0,0,0, 0,0,0, ] # index '0' + '18' elemental type indices
+0,0,0,0, 0,0,0,0, ] # index '0' (guts) + '8' element slots
 
-func _add_element(typeid:int, value:int):
+func add_guts(value:int):
+	elements[0] += value
+
+func add_element(typeid:int, value:int):
 	elements[typeid] += value
 
 func get_element(typeid:int) -> int:
 	return elements[typeid]
+
+func scale(value:int) -> Vibe:
+	var result = get_script().new()
+	for key in Element:
+		result.elements[key] = elements[key]*value
+	return result
+
+func sum(other:Vibe) -> Vibe:
+	var result = get_script().new()
+	for key in Element:
+		result.elements[key] = elements[key] + other.elements[key]
+	return result
+
+func weight_by(weights:Vibe) -> Vibe:
+	var result = get_script().new()
+	for key in Element:
+		result.elements[key] = elements[key] * weights.elements[key]
+	return result
+
+# e.g.:
+#   var local_vibe = world.vibe_nearby(cell)
+#   var weights = Vibe.new().add_dictionary({Vibe.Fire: 1, Vibe.Water: -2})
+#   var score = local_vibe.weight_by(weights)
+func add_dictionary(dict:Dictionary) -> Vibe:
+	var result = get_script().new()
+	for key in dict:
+		result.elements[key] += dict[key]
+	return result
+	

@@ -6,6 +6,7 @@
 [node name="Sapling" type="Node2D"]
 script = ExtResource( 1 )
 guts = 50
+major_element = 4
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
