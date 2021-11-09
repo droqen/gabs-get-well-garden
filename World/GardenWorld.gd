@@ -2,7 +2,8 @@ extends Node2D
 
 const spawnables = [
 #	"res://DriftersUserDefined/droqen-debug/BigSnail.tscn",
-	"res://DriftersUserDefined/pancelor-debug/Sapling.tscn",
+#	"res://DriftersUserDefined/pancelor-debug/Sapling.tscn",
+	"res://DriftersUserDefined/pancelor-debug/DeadTree.tscn",
 ]
 
 var drifter_dictionary:Dictionary = {}
@@ -42,13 +43,8 @@ func _ready():
 	$cell_cursor.connect("clicked_cell", self, "_on_clicked_cell")
 
 func _on_clicked_cell(cell : Vector2):
-	var drifter = _get_drifter_at_cell(cell)
-	if drifter:
-		drifter.tweak()
-	else:
-		# add a completely random thingy.
-		var path = spawnables[randi() % spawnables.size()]
-		add_drifter(path, cell)
+	_clicked = true
+	_clicked_cell = cell
 
 func reinitialize_drifters(drifters : Array):
 	for drifter in drifters:
@@ -75,6 +71,8 @@ var _to_spawn:Array # [String]
 var _to_spawn_where:Array # [Vector2]
 var _to_move:Array # [Drifter]
 var _to_move_where:Array # [Vector2]
+var _clicked:bool
+var _clicked_cell:Vector2
 
 func _physics_process(_delta):
 	_to_kill.clear()
@@ -87,7 +85,16 @@ func _physics_process(_delta):
 		if drifter.evolve_wait_frames <= 0 and randf()*drifter.evolve_skip_odds<1:
 			drifter.evolve_wait_frames = drifter.evolve_wait_after
 			drifter.evolve()
-	
+	if _clicked:
+		var drifter = _get_drifter_at_cell(_clicked_cell)
+		if drifter:
+			drifter.tweak()
+		else:
+			# add a completely random thingy.
+			var path = spawnables[randi() % spawnables.size()]
+			intend_spawn_at(path, _clicked_cell)
+		_clicked = false
+		
 	for drifter in _to_kill:
 		_begin_drifter_death(drifter)
 		print("kill",drifter._my_own_path)
@@ -95,7 +102,7 @@ func _physics_process(_delta):
 	assert(len(_to_spawn)==len(_to_spawn_where),"_to_spawn desync")
 	for i in range(len(_to_spawn)):
 		add_drifter(_to_spawn[i],_to_spawn_where[i])
-
+		
 	assert(len(_to_move)==len(_to_move_where), "_to_move desync")
 	for i in range(len(_to_move)):
 		var drifter = _to_move[i]

@@ -42,7 +42,7 @@ func tweak():
 	# default behaviour: NO EFFECT
 	pass
 	# default behaviour: CLONE
-	# intend_spawn_dir(_my_own_path,DirsOrthogonal[randi()%4])
+	# intend_spawn(_my_own_path,DirsOrthogonal[randi()%4])
 	# default behaviour: DESTROY
 #	queue_free()
 
