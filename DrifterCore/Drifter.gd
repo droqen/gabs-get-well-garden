@@ -59,12 +59,13 @@ func evolve(vibe:Vibe):
 	self.tweak(vibe)
 
 func tweak(vibe:Vibe):
-	# default behaviour? clone me?
-	# ok it cause terrible problem lol i cancel
+	# default behaviour: NO EFFECT
+	pass
+	# default behaviour: CLONE
 #	intent_spawn_drifter = _my_own_path
 #	intent_spawn_dir = DirsOrthogonal[randi()%4]
-	# default behaviour destroy
-	queue_free()
+	# default behaviour: DESTROY
+#	queue_free()
 
 func _physics_process(_delta):
 	lerp_position()
