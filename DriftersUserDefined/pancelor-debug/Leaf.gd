@@ -20,7 +20,7 @@ func evolve(vibe:Vibe):
 		intent_move = dir
 
 func tweak(_vibe:Vibe):
-	intent_spawn_drifter = load("res://DriftersUserDefined/pancelor-debug/Sapling.tscn").instance()
+	intent_spawn_drifter = "res://DriftersUserDefined/pancelor-debug/Sapling.tscn"
 	intent_spawn_dir = Vector2.ZERO
 	guts = 0
 	

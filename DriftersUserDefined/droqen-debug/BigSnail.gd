@@ -12,5 +12,5 @@ func evolve(_vibe:Vibe):
 	if dir.x: $Sprite.flip_h = dir.x < 0
 	
 	intent_move = dir
-	intent_spawn_drifter = load("res://DriftersUserDefined/droqen-debug/PoisonousGround.tscn").instance()
+	intent_spawn_drifter = "res://DriftersUserDefined/droqen-debug/PoisonousGround.tscn"
 	intent_spawn_dir = -dir # leave behind

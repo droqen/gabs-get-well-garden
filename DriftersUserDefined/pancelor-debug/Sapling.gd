@@ -6,7 +6,7 @@ func evolve(vibe:Vibe):
 		tweak(vibe)
 
 func tweak(_vibe:Vibe):
-	intent_spawn_drifter = load("res://DriftersUserDefined/pancelor-debug/Tree.tscn").instance()
+	intent_spawn_drifter = "res://DriftersUserDefined/pancelor-debug/Tree.tscn"
 	intent_spawn_dir = Vector2.ZERO
 	guts = 0
 	
