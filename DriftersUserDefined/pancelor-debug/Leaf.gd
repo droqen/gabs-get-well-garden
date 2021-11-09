@@ -17,10 +17,7 @@ func evolve():
 		$Sprite.scale = Vector2(1.2, 0.8)
 		if dir.x: $Sprite.flip_h = dir.x < 0
 		
-		intent_move = dir
+		intend_move(dir)
 
 func tweak():
-	intent_spawn_drifter = "res://DriftersUserDefined/pancelor-debug/Sapling.tscn"
-	intent_spawn_dir = Vector2.ZERO
-	guts = 0
-	
+	intend_transmute("res://DriftersUserDefined/pancelor-debug/Sapling.tscn")

@@ -17,22 +17,6 @@ var _todays_guts: float # internal use
 var __registered: bool = false # dont touch this omg
 var dead: bool = false
 
-func has_intent() -> bool:
-	return (
-		intent_move != Vector2.ZERO
-		or
-		intent_spawn_drifter
-	)
-
-func clear_intent():
-	intent_move = Vector2.ZERO
-	intent_spawn_drifter = ""
-	intent_spawn_dir = Vector2.ZERO
-
-var intent_move: Vector2
-var intent_spawn_drifter: String
-var intent_spawn_dir: Vector2
-
 var cell:Vector2
 export(int, 0, 100)var guts = 40
 export(Vibe.Element)var major_element = Vibe.Element.Earth
@@ -51,11 +35,6 @@ func _enter_tree():
 func _exit_tree():
 	get_world().unregister(self)
 
-func set_cell(_cell):
-	if is_inside_tree(): get_world().unregister(self)
-	self.cell = _cell
-	if is_inside_tree() and not dead: get_world().register(self)
-
 func evolve():
 	self.tweak()
 
@@ -63,8 +42,7 @@ func tweak():
 	# default behaviour: NO EFFECT
 	pass
 	# default behaviour: CLONE
-#	intent_spawn_drifter = _my_own_path
-#	intent_spawn_dir = DirsOrthogonal[randi()%4]
+	# intend_spawn_dir(_my_own_path,DirsOrthogonal[randi()%4])
 	# default behaviour: DESTROY
 #	queue_free()
 
@@ -74,3 +52,18 @@ func _physics_process(_delta):
 
 func lerp_position():
 	position = lerp(position, target_position, 0.1)
+
+func intend_kill():
+	world.intend_kill(self)
+func intend_spawn(path:String, dir:Vector2):
+	world.intend_spawn_at(path, cell+dir)
+func intend_move(dir:Vector2):
+	world.intend_move_to(self, cell+dir)
+# convenient variations:
+func intend_transmute(path:String):
+	world.intend_kill(self)
+	world.intend_spawn_at(path, cell)
+func intend_spawn_at(path:String, newcell:Vector2):
+	world.intend_spawn_at(path, newcell)
+func intend_move_to(newcell:Vector2):
+	world.intend_move_to(self, newcell)

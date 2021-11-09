@@ -6,7 +6,7 @@
 [node name="Leaf" type="Node2D"]
 z_index = 2
 script = ExtResource( 1 )
-guts = 20
+guts = 5
 major_element = 5
 minor_element = 4
 evolve_wait_after = 30
