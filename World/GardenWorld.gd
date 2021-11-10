@@ -206,5 +206,5 @@ func intend_move_to(drifter:Drifter, cell:Vector2):
 	_to_move_where.append(cell)
 
 func log(msg:String):
-	if print_log_messages_to_terminal:
-		print("log: ",msg)
+	$LogHandler.add_log(msg)
+#	print("log: ",msg)
