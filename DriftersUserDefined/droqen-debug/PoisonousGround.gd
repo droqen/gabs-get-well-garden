@@ -5,10 +5,10 @@ extends Drifter
 #	$CPUParticles2D.restart()
 
 func evolve():
-	if randf()<1/1000:
+	if randf()*10<1:
 		intend_die()
 	else:
-		world.log("a hideous snail emerges")
+		world.log("a noxious snail emerges")
 		intend_transmute("res://DriftersUserDefined/droqen-debug/BigSnail.tscn")
 
 func tweak():

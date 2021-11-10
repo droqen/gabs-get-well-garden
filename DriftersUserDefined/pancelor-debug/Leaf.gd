@@ -1,7 +1,7 @@
 extends Drifter
 
 func _process(_delta):
-	if randf()<0.02:
+	if randf()*50<1:
 		$Sprite.scale = Vector2(1.1, 0.9)
 		$Sprite.rotation_degrees = rand_range(-20,20)
 	else:
@@ -13,7 +13,7 @@ func evolve():
 	if vibe.get_fire() > 1:
 		world.log("a wandering leaf bursts into flames")
 		intend_transmute("res://DriftersUserDefined/pancelor-debug/Flames.tscn")
-	elif randf()<1/50:
+	elif randf()*50<1:
 		# settle
 		tweak()
 	else:
