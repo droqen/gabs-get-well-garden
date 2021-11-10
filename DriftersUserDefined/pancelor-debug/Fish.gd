@@ -12,6 +12,9 @@ onready var mating_weights = Vibe.new({
 	"Coal":-5,
 })
 
+func _ready():
+	world.log("a fish is born")
+
 func _process(_delta):
 	if randf()*50<1:
 		scale = Vector2(1.2,0.8)
@@ -29,7 +32,6 @@ func tweak():
 		world.log("a fish takes its rest")
 		intend_transmute("res://DriftersUserDefined/pancelor-debug/River.tscn")
 	elif world.vibe_nearby(cell).weight_by(mating_weights)>10 and randf()*5<1:
-		world.log("fish are born")
 		intend_spawn("res://DriftersUserDefined/pancelor-debug/Fish.tscn", vibiest_dir(DirsOrthogonal,{"Guts":-0.01}))
 	else:
 		var weights = {"Guts":-1}

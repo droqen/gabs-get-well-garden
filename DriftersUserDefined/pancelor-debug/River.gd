@@ -2,4 +2,7 @@ extends Drifter
 
 # when the player clicks
 func tweak():
-	intend_clone(DirsOrthogonal[randi()%4])
+	if randf()*20<1:
+		intend_transmute("res://DriftersUserDefined/pancelor-debug/Fish.tscn")
+	else:
+		intend_clone(DirsOrthogonal[randi()%4])
