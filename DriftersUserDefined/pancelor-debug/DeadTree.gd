@@ -8,3 +8,4 @@ func evolve():
 	
 func tweak():
 	intend_spawn(_my_own_path,DirsOrthogonal[randi()%4])
+	print(world.vibe_nearby(cell))

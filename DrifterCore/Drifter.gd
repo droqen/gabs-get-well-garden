@@ -21,7 +21,7 @@ var cell:Vector2
 export(int, 0, 100)var guts = 40
 export(Vibe.Element)var major_element = Vibe.Element.Earth
 export(Vibe.Element)var minor_element = Vibe.Element.Water
-export(int, 1, 1000000)var evolve_skip_odds = 20 # 1 = run evolve() every frame; higher = run less often (e.g. 1000 = run with probability 1/1000 every frame)
+export(int, 1, 1000000)var evolve_skip_odds = 400 # 1 = run evolve() every frame; higher = run less often (e.g. 1000 = run with probability 1/1000 every frame)
 export(int, 0, 3600)var evolve_wait_after = 0
 
 var evolve_wait_frames:int = 0
@@ -36,7 +36,10 @@ func _exit_tree():
 	get_world().unregister(self)
 
 func evolve():
-	self.tweak()
+	# default behaviour: NO EFFECT
+	pass
+	# default behaviour: TWEAK
+	# tweak()
 
 func tweak():
 	# default behaviour: NO EFFECT
@@ -53,6 +56,10 @@ func _physics_process(_delta):
 func lerp_position():
 	position = lerp(position, target_position, 0.1)
 
+########
+# useful things drifters can call:
+########
+	
 func intend_die():
 	world.intend_kill(self)
 func intend_spawn(path:String, dir:Vector2):
@@ -67,3 +74,6 @@ func intend_spawn_at(path:String, newcell:Vector2):
 	world.intend_spawn_at(path, newcell)
 func intend_move_to(newcell:Vector2):
 	world.intend_move_to(self, newcell)
+
+func vibiest_dir(dirs:Array,weights) -> Vector2:
+	return world.max_weighted_relative(cell,dirs,weights)

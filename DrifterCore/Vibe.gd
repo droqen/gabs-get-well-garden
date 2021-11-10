@@ -1,6 +1,7 @@
 class_name Vibe
 
 enum Element {
+	Guts = 0,   # "Guts" is special! don't use it as your major_element/minor_element
 				# alternate interpretations: (feel free to make up your own interpretations too!)
 	Fire = 1,   #  red, energy, passion
 	Water = 2,  #  blue, wisdom, adaptability
@@ -15,6 +16,15 @@ enum Element {
 var elements:Array = [0,
 0,0,0,0, 0,0,0,0, ] # index '0' (guts) + '8' element slots
 
+# e.g.
+#   var weights:Vibe = Vibe.new({"Fire":1,"Water":-2})
+# capitalization matters!
+func _init(dict:Dictionary):
+	for strkey in dict:
+		var id = Element.get(strkey)
+		assert(id != null,"bad vibe key \""+strkey+"\"")
+		elements[id] += dict[strkey]
+	
 func add_guts(value:int):
 	elements[0] += value
 func add_element(typeid:int, value:int):
@@ -22,43 +32,33 @@ func add_element(typeid:int, value:int):
 
 func get_guts() -> int:
 	return elements[0]
-func get_element(typeid:int) -> int:
+func get_element(typeid) -> int:
+	if typeid is String:
+		typeid = Element.get(typeid)
 	return elements[typeid]
 
 func scale(value:int) -> Vibe:
-	var result = get_script().new()
-	for key in Element:
-		result.elements[key] = elements[key]*value
+	var result = get_script().new({})
+	for id in range(len(elements)):
+		result.elements[id] = elements[id]*value
 	return result
 
 func sum(other:Vibe) -> Vibe:
-	var result = get_script().new()
-	for key in Element:
-		result.elements[key] = elements[key] + other.elements[key]
+	var result = get_script().new({})
+	for id in range(len(elements)):
+		result.elements[id] = elements[id] + other.elements[id]
 	return result
 
-func weight_by(weights:Vibe) -> Vibe:
-	var result = get_script().new()
-	for key in Element:
-		result.elements[key] = elements[key] * weights.elements[key]
+func weight_by(weights:Vibe) -> float:
+	var result = 0.0
+	for id in range(len(elements)):
+		result += elements[id] * weights.elements[id]
 	return result
-
-# e.g.:
-#   var local_vibe = world.vibe_nearby(cell)
-#   var weights = Vibe.new().add_dictionary({Vibe.Fire: 1, Vibe.Water: -2})
-#   var score = local_vibe.weight_by(weights)
-func add_dictionary(dict:Dictionary) -> Vibe:
-	var result = get_script().new()
-	for key in dict:
-		result.elements[key] += dict[key]
-	return result
-	
+		
 func to_string():
 	var result = "vibe{"
-	result += "guts:" + str(elements[0]) + ", "
-#	var names = Element.keys()
-#	for key in Element:
-#		var amount = elements[key]
-#		result += names[key] + ":" + str(amount) + ", "
+	var names = Element.keys()
+	for id in range(len(elements)):
+		result += names[id] + ":" + str(elements[id]) + ", "
 	result += "}"
 	return result

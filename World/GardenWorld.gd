@@ -1,11 +1,8 @@
 extends Node2D
 
-export(Array, PackedScene)var spawnables = [
-	preload("res://DriftersUserDefined/droqen-debug/PoisonousGround.tscn"),
-	preload("res://DriftersUserDefined/pancelor-debug/Leaf.tscn"),
-	preload("res://DriftersUserDefined/pancelor-debug/Flames.tscn"),
-]
+export(Array, PackedScene)var spawnables:Array
 
+var print_log_messages_to_terminal:bool = false
 var drifter_dictionary:Dictionary = {}
 
 func cellkey(cell:Vector2):
@@ -47,14 +44,15 @@ func _ready():
 func _on_clicked_cell(cell : Vector2):
 	_clicked = true
 	_clicked_cell = cell
-	print(vibe_nearby(cell).to_string())
 
 func reinitialize_drifters(drifters : Array):
 	for drifter in drifters:
 		_initialize_drifter(drifter)
 
 func add_drifter(drifter_path : String, cell : Vector2):
-	var drifter = load(drifter_path).instance()
+	var drifter:Drifter = load(drifter_path).instance()
+	assert(drifter.major_element != 0, "minor element can't be 0 (guts)")
+	assert(drifter.minor_element != 0, "minor element can't be 0 (guts)")
 	drifter._my_own_path = drifter_path
 	_add_drifter_node(drifter, cell)
 func _add_drifter_node(drifter : Drifter, cell : Vector2):
@@ -149,12 +147,35 @@ func _free_after_20_frames(drifter):
 			yield(get_tree().create_timer(0.2),"timeout")
 			drifter.queue_free()
 
-#
-# useful things drifters can call:
-#
+func max_weighted_absolute(cells:Array,weights) -> Vector2:
+	return max_weighted_relative(Vector2.ZERO,cells,weights)
+func max_weighted_relative(cellcenter:Vector2, celldiffs:Array,weights) -> Vector2:
+	if weights is Dictionary:
+		weights = Vibe.new(weights)
+	assert(weights is Vibe, "weights must be a Vibe object")
 
+	var result = null
+	var best_score = 0
+	for dcell in celldiffs:
+		var candidate = 
+		var score = vibe_at(cellcenter+dcell).weight_by(weights)
+		if not result or score > best_score:
+			result = dcell # return the best diff, not the best absolute cell
+			best_score = score
+	return result
+
+########
+# useful things drifters can call:
+########
+
+# a weighted sum of the vibes of the 8 nearby tiles
+# weights are specifically like this; (a,b), where a scales the major element and b scales the minor element:
+#   (1,0) (3,1) (1,0)
+#   (3,1) (0,0) (3,1)
+#   (1,0) (3,1) (1,0)
+# (the (0,0) weight in the center there represents the center cell)
 func vibe_nearby(cell:Vector2):
-	var result = Vibe.new()
+	var result = Vibe.new({})
 	for dcell in [Vector2.LEFT, Vector2.RIGHT, Vector2.DOWN, Vector2.UP]:
 		var drifter = _get_drifter_at_cell(cell+dcell)
 		if drifter:
@@ -168,7 +189,7 @@ func vibe_nearby(cell:Vector2):
 	return result
 
 func vibe_at(cell:Vector2):
-	var result = Vibe.new()
+	var result = Vibe.new({})
 	var drifter = _get_drifter_at_cell(cell)
 	if drifter:
 		result.add_element(drifter.major_element,3)
@@ -176,16 +197,6 @@ func vibe_at(cell:Vector2):
 		result.add_guts(drifter.guts)
 	return result
 
-func cell_with_most(element, cells:Array):
-	var result = null
-	var amount_result = 0
-	for c in cells:
-		var amt = vibe_at(c).get_element(element)
-		if amt > amount_result:
-			result = c
-			amount_result = amt
-	return result
-	
 func intend_kill(drifter:Drifter):
 	_to_kill.append(drifter)
 func intend_spawn_at(path:String, cell:Vector2):
@@ -194,7 +205,7 @@ func intend_spawn_at(path:String, cell:Vector2):
 func intend_move_to(drifter:Drifter, cell:Vector2):
 	_to_move.append(drifter)
 	_to_move_where.append(cell)
-	
+
 func log(msg:String):
-	print("log: ",msg)
-	pass
+	if print_log_messages_to_terminal:
+		print("log: ",msg)

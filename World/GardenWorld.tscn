@@ -1,11 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://World/GardenWorld.gd" type="Script" id=1]
 [ext_resource path="res://navdi2/Resources/fff.png" type="Texture" id=2]
 [ext_resource path="res://World/cell_cursor.gd" type="Script" id=3]
+[ext_resource path="res://DriftersUserDefined/pancelor-debug/Flames.tscn" type="PackedScene" id=4]
+[ext_resource path="res://DriftersUserDefined/droqen-debug/BigSnail.tscn" type="PackedScene" id=5]
+[ext_resource path="res://DriftersUserDefined/pancelor-debug/Sapling.tscn" type="PackedScene" id=6]
+[ext_resource path="res://DriftersUserDefined/pancelor-debug/Tree.tscn" type="PackedScene" id=7]
 
 [node name="GardenWorld" type="Node2D"]
 script = ExtResource( 1 )
+spawnables = [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ) ]
 
 [node name="DEAD_DRIFTERS" type="Node2D" parent="."]
 
