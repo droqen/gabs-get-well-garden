@@ -1,5 +1,12 @@
 extends Drifter
 
+var anim = 0.0
+
+func _process(_delta):
+	anim += _delta
+	$Sprite.scale = Vector2(1, 1+(sin((anim)*4*PI)/10))
+	$Sprite.rotation_degrees = (sin(anim*2*PI))*10
+
 func evolve():
 	var dir = DirsOrthogonal[randi()%4]
 	var vibe = world.vibe_nearby(cell+dir)

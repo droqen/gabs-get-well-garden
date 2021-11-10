@@ -25,4 +25,5 @@ func evolve():
 		intend_move(dir)
 
 func tweak():
+	world.log("a leaf settles down")
 	intend_transmute("res://DriftersUserDefined/pancelor-debug/Sapling.tscn")
