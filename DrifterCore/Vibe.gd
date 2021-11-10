@@ -30,13 +30,6 @@ func add_guts(value:int):
 func add_element(typeid:int, value:int):
 	elements[typeid] += value
 
-func get_guts() -> int:
-	return elements[0]
-func get_element(typeid) -> int:
-	if typeid is String:
-		typeid = Element.get(typeid)
-	return elements[typeid]
-
 func scale(value:int) -> Vibe:
 	var result = get_script().new({})
 	for id in range(len(elements)):
@@ -49,12 +42,6 @@ func sum(other:Vibe) -> Vibe:
 		result.elements[id] = elements[id] + other.elements[id]
 	return result
 
-func weight_by(weights:Vibe) -> float:
-	var result = 0.0
-	for id in range(len(elements)):
-		result += elements[id] * weights.elements[id]
-	return result
-		
 func to_string():
 	var result = "vibe{"
 	var names = Element.keys()
@@ -62,3 +49,35 @@ func to_string():
 		result += names[id] + ":" + str(elements[id]) + ", "
 	result += "}"
 	return result
+
+#############
+# useful for drifter authors:
+#############
+
+func get_element(typeid:int) -> int:
+	return elements[typeid]
+func get_guts() -> int:
+	return elements[Element.Guts]
+func get_fire() -> int:
+  return elements[Element.Fire]
+func get_water() -> int:
+  return elements[Element.Water]
+func get_earth() -> int:
+  return elements[Element.Earth]
+func get_grass() -> int:
+  return elements[Element.Grass]
+func get_wind() -> int:
+  return elements[Element.Wind]
+func get_sand() -> int:
+  return elements[Element.Sand]
+func get_gem() -> int:
+  return elements[Element.Gem]
+func get_coal() -> int:
+  return elements[Element.Coal]
+
+func weight_by(weights:Vibe) -> float:
+	var result = 0.0
+	for id in range(len(elements)):
+		result += elements[id] * weights.elements[id]
+	return result
+		

@@ -157,7 +157,6 @@ func max_weighted_relative(cellcenter:Vector2, celldiffs:Array,weights) -> Vecto
 	var result = null
 	var best_score = 0
 	for dcell in celldiffs:
-		var candidate = 
 		var score = vibe_at(cellcenter+dcell).weight_by(weights)
 		if not result or score > best_score:
 			result = dcell # return the best diff, not the best absolute cell

@@ -10,7 +10,7 @@ func _process(_delta):
 		
 func evolve():
 	var vibe:Vibe = world.vibe_nearby(cell)
-	if vibe.get_element(Vibe.Element.Fire) > 1:
+	if vibe.get_fire() > 1:
 		world.log("a wandering leaf bursts into flames")
 		intend_transmute("res://DriftersUserDefined/pancelor-debug/Flames.tscn")
 	elif randf()<1/50:
