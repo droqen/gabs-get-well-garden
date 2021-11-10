@@ -1,16 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://World/GardenWorld.gd" type="Script" id=1]
 [ext_resource path="res://navdi2/Resources/fff.png" type="Texture" id=2]
 [ext_resource path="res://World/cell_cursor.gd" type="Script" id=3]
-[ext_resource path="res://DriftersUserDefined/pancelor-debug/Flames.tscn" type="PackedScene" id=4]
-[ext_resource path="res://DriftersUserDefined/droqen-debug/BigSnail.tscn" type="PackedScene" id=5]
-[ext_resource path="res://DriftersUserDefined/pancelor-debug/Sapling.tscn" type="PackedScene" id=6]
-[ext_resource path="res://DriftersUserDefined/pancelor-debug/Tree.tscn" type="PackedScene" id=7]
+[ext_resource path="res://World/LogEntry/LogHandler.gd" type="Script" id=4]
+[ext_resource path="res://World/LogEntry/Entry.tscn" type="PackedScene" id=5]
 
 [node name="GardenWorld" type="Node2D"]
 script = ExtResource( 1 )
-spawnables = [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ) ]
 
 [node name="DEAD_DRIFTERS" type="Node2D" parent="."]
 
@@ -36,3 +33,8 @@ modulate = Color( 1, 1, 1, 0.156863 )
 position = Vector2( 5, 5 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
+
+[node name="LogHandler" type="Node2D" parent="."]
+z_index = 5
+script = ExtResource( 4 )
+LogEntry = ExtResource( 5 )
