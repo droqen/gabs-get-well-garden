@@ -6,14 +6,13 @@
 
 [node name="Flames" type="Node2D"]
 script = ExtResource( 1 )
-guts = 10
+guts = 20
 major_element = 1
 minor_element = 5
-evolve_skip_odds = 1000
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 8
-frame = 2
+frame = 1
 script = ExtResource( 3 )
 _frames = [ 1, 2 ]

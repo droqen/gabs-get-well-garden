@@ -7,5 +7,4 @@ func evolve():
 		intend_transmute("res://DriftersUserDefined/pancelor-debug/Flames.tscn")
 	
 func tweak():
-	intend_spawn(_my_own_path,DirsOrthogonal[randi()%4])
-	print(world.vibe_nearby(cell))
+	intend_clone(DirsOrthogonal[randi()%4])

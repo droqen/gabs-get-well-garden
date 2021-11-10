@@ -45,7 +45,7 @@ func tweak():
 	# default behaviour: NO EFFECT
 	pass
 	# default behaviour: CLONE
-	# intend_spawn(_my_own_path,DirsOrthogonal[randi()%4])
+	# intend_clone(DirsOrthogonal[randi()%4])
 	# default behaviour: DESTROY
 #	queue_free()
 
@@ -62,18 +62,29 @@ func lerp_position():
 	
 func intend_die():
 	world.intend_kill(self)
+func intend_kill(dir:Vector2):
+	world.intend_kill_at(cell+dir)
 func intend_spawn(path:String, dir:Vector2):
 	world.intend_spawn_at(path, cell+dir)
 func intend_move(dir:Vector2):
 	world.intend_move_to(self, cell+dir)
-# convenient variations:
+func intend_clone(dir:Vector2):
+	world.intend_spawn_at(_my_own_path, cell+dir)
 func intend_transmute(path:String):
 	world.intend_kill(self)
 	world.intend_spawn_at(path, cell)
+
+func vibiest_dir(dirs:Array,weights) -> Vector2:
+	return world.max_weighted_relative(cell,dirs,weights)
+
+#
+# not recomended, but they're available if you like:
+# let's keep interactions mostly local!
+#
+
 func intend_spawn_at(path:String, newcell:Vector2):
 	world.intend_spawn_at(path, newcell)
 func intend_move_to(newcell:Vector2):
 	world.intend_move_to(self, newcell)
-
-func vibiest_dir(dirs:Array,weights) -> Vector2:
-	return world.max_weighted_relative(cell,dirs,weights)
+func intend_clone_at(newcell:Vector2):
+	world.intend_spawn_at(_my_own_path, newcell)

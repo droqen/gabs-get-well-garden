@@ -12,18 +12,18 @@ what sort of things do you have access to, as a drifter? (this documentation may
     * `dead:bool` - is the drifter dead
   * methods:
     * note that you don't directly do anything, you just register intents with the game system, which will resolve everyone's intents after everyone has a chance to `evolve`
-    * `drifter.intend_die()`
-    * `drifter.intend_spawn(respath:String, dir:Vector2)`
-    * `drifter.intend_move(dir:Vector2)`
-    * `drifter.intend_transmute(respath:String)`
-    * `drifter.intend_spawn_at(respath:String, newcell:Vector2)`
-    * `drifter.intend_move_to(newcell:Vector2)`
+    * `drifter.intend_die()` - die
+    * `drifter.intend_kill(dir:Vector2)` - kill whatever is in the given direction
+    * `drifter.intend_spawn(respath:String, dir:Vector2)` - spawn a drifter in a direction
+    * `drifter.intend_move(dir:Vector2)` - move in a direction
+    * `drifter.intend_transmute(respath:String)` - kill the drifter and replace it with another
+    * `drifter.intend_clone(dir:Vector2)` - make a copy of the drifter in the given direction
     * `drifter.vibiest_dir(dirs:Array,weights:Dictionary) -> Vector2` - find the [vibiest direction](#vibiest_dir), weighted by the given elemental weights
 * World
   * methods:
     * `world.vibe_nearby(cell:Vector2)` - a [weighted sum](#vibe_nearby) of the vibes of the 8 nearby tiles
     * `world.vibe_at(cell:Vector2)` - the vibe at a single cell in particular
-    * `world.intend_kill(drifter:Drifter)`
+    * `world.intend_kill_at(cell:Vector2)`
     * `world.intend_spawn_at(respath:String, cell:Vector2)` - path is a resource path
     * `world.intend_move_to(drifter:Drifter, cell:Vector2)`
     * `world.log(msg:String)` - print a log of a thing that just happened to the player

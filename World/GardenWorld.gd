@@ -197,13 +197,16 @@ func vibe_at(cell:Vector2):
 	return result
 
 func intend_kill(drifter:Drifter):
-	_to_kill.append(drifter)
-func intend_spawn_at(path:String, cell:Vector2):
+	if drifter:
+		_to_kill.append(drifter)
+func intend_kill_at(newcell:Vector2):
+	intend_kill(_get_drifter_at_cell(newcell))
+func intend_spawn_at(path:String, newcell:Vector2):
 	_to_spawn.append(path)
-	_to_spawn_where.append(cell)
-func intend_move_to(drifter:Drifter, cell:Vector2):
+	_to_spawn_where.append(newcell)
+func intend_move_to(drifter:Drifter, newcell:Vector2):
 	_to_move.append(drifter)
-	_to_move_where.append(cell)
+	_to_move_where.append(newcell)
 
 func log(msg:String):
 	$LogHandler.add_log(msg)

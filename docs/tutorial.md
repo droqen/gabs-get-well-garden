@@ -18,8 +18,9 @@
 
   # when the player clicks
   func tweak():
-    intend_spawn(_my_own_path, DirsOrthogonal[randi()%4])
+    intend_clone(DirsOrthogonal[randi()%4])
   ```
+  (you may need to reindent the code)
   4. attach a `Sprite` node to your root node and "quick load" a 10x10 png that you've saved in your folder
     * if you want an animated sprite, attach a `NavdiBitsySprite` instead
   5. Add `CoolFrog.tscn` to the list of `spawnables` in `GardenWorld.tscn`
