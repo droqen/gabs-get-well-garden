@@ -3,7 +3,8 @@ extends Drifter
 var leaves_left:int
 
 func _init():
-	leaves_left = rand_range(2,4)
+	leaves_left = rand_range(2,4+1)
+	scale = Vector2(1,rand_range(0.8,1.3))
 
 func evolve():
 	var vibe:Vibe = world.vibe_nearby(cell)

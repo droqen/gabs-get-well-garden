@@ -66,7 +66,11 @@ func intend_kill(dir:Vector2):
 	world.intend_kill_at(cell+dir)
 func intend_spawn(path:String, dir:Vector2):
 	world.intend_spawn_at(path, cell+dir)
+# swap by deafult; if you want to move and overwrite use world.intend_move_to
 func intend_move(dir:Vector2):
+	world.intend_swap(cell, cell+dir)
+func intend_move_and_leave(dir:Vector2, path:String):
+	world.intend_spawn_at(path, cell)
 	world.intend_move_to(self, cell+dir)
 func intend_clone(dir:Vector2):
 	world.intend_spawn_at(_my_own_path, cell+dir)
@@ -74,8 +78,8 @@ func intend_transmute(path:String):
 	world.intend_kill(self)
 	world.intend_spawn_at(path, cell)
 
-func vibiest_dir(dirs:Array,weights) -> Vector2:
-	return world.max_weighted_relative(cell,dirs,weights)
+func vibiest_dir(dirs:Array, weights) -> Vector2:
+	return world.max_weighted_relative(cell,dirs,weights,1.0)
 
 #
 # not recomended, but they're available if you like:
@@ -85,6 +89,6 @@ func vibiest_dir(dirs:Array,weights) -> Vector2:
 func intend_spawn_at(path:String, newcell:Vector2):
 	world.intend_spawn_at(path, newcell)
 func intend_move_to(newcell:Vector2):
-	world.intend_move_to(self, newcell)
+	world.intend_swap(cell, newcell)
 func intend_clone_at(newcell:Vector2):
 	world.intend_spawn_at(_my_own_path, newcell)

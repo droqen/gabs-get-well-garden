@@ -15,7 +15,8 @@ what sort of things do you have access to, as a drifter? (this documentation may
     * `drifter.intend_die()` - die
     * `drifter.intend_kill(dir:Vector2)` - kill whatever is in the given direction
     * `drifter.intend_spawn(respath:String, dir:Vector2)` - spawn a drifter in a direction
-    * `drifter.intend_move(dir:Vector2)` - move in a direction
+    * `drifter.intend_move(dir:Vector2)` - move in a direction (swapping with whatever you run into)
+    * `drifter.intend_move_and_leave(dir:Vector2, respath:String)` - move in a direction and leave the given drifter behind
     * `drifter.intend_transmute(respath:String)` - kill the drifter and replace it with another
     * `drifter.intend_clone(dir:Vector2)` - make a copy of the drifter in the given direction
     * `drifter.vibiest_dir(dirs:Array,weights:Dictionary) -> Vector2` - find the [vibiest direction](#vibiest_dir), weighted by the given elemental weights

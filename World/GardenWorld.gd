@@ -2,7 +2,6 @@ extends Node2D
 
 export(Array, PackedScene)var spawnables:Array
 
-var print_log_messages_to_terminal:bool = false
 var drifter_dictionary:Dictionary = {}
 
 func cellkey(cell:Vector2):
@@ -31,15 +30,11 @@ func _get_drifter_at_cell(cell : Vector2):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
+	$cell_cursor.connect("clicked_cell", self, "_on_clicked_cell")
+
 	# debug:
 	for packed_drifter in spawnables:
 		add_drifter( packed_drifter.resource_path, Vector2(int(rand_range(-6,6+1)), int(rand_range(-4,4+1))) )
-#	add_drifter( "res://DriftersUserDefined/droqen-debug/BigSnail.tscn", Vector2(-2,-2) )
-#	add_drifter( "res://DriftersUserDefined/pancelor-debug/Tree.tscn", Vector2(2,2) )
-#	add_drifter( "res://DriftersUserDefined/pancelor-debug/Tree.tscn", Vector2(4,7) )
-#	add_drifter( "res://DriftersUserDefined/pancelor-debug/Tree.tscn", Vector2(6,1) )
-
-	$cell_cursor.connect("clicked_cell", self, "_on_clicked_cell")
 
 func _on_clicked_cell(cell : Vector2):
 	_clicked = true
@@ -95,14 +90,17 @@ func _physics_process(_delta):
 			var path = spawnables[randi() % spawnables.size()].resource_path
 			intend_spawn_at(path, _clicked_cell)
 		_clicked = false
-		
+	
+	# process _to_kill
 	for drifter in _to_kill:
 		_free_after_20_frames(drifter)
 	
+	# process _to_spawn
 	assert(len(_to_spawn)==len(_to_spawn_where),"_to_spawn desync")
 	for i in range(len(_to_spawn)):
 		add_drifter(_to_spawn[i],_to_spawn_where[i])
 		
+	# process _to_move
 	assert(len(_to_move)==len(_to_move_where), "_to_move desync")
 	for i in range(len(_to_move)):
 		var drifter = _to_move[i]
@@ -122,7 +120,7 @@ func _physics_process(_delta):
 				else:
 					var percent = drifter.guts/100.0
 					drifter._todays_guts = randf()*percent*percent
-#				print(" guts: ",drifter.guts," ",percent," today: ",drifter._todays_guts," (",drifter._my_own_path,")")
+#					print(" guts: ",drifter.guts," ",percent," today: ",drifter._todays_guts," (",drifter._my_own_path,")")
 			var gutsiest_drifter = null
 			var gutsiest_guts: float = 0
 			for drifter in overlapping_drifters:
@@ -147,17 +145,13 @@ func _free_after_20_frames(drifter):
 			yield(get_tree().create_timer(0.2),"timeout")
 			drifter.queue_free()
 
-func max_weighted_absolute(cells:Array,weights) -> Vector2:
-	return max_weighted_relative(Vector2.ZERO,cells,weights)
-func max_weighted_relative(cellcenter:Vector2, celldiffs:Array,weights) -> Vector2:
-	if weights is Dictionary:
-		weights = Vibe.new(weights)
-	assert(weights is Vibe, "weights must be a Vibe object")
-
+func max_weighted_absolute(cells:Array, weights, noise:float) -> Vector2:
+	return max_weighted_relative(Vector2.ZERO,cells,weights,noise)
+func max_weighted_relative(cellcenter:Vector2, celldiffs:Array, weights, noise:float) -> Vector2:
 	var result = null
 	var best_score = 0
 	for dcell in celldiffs:
-		var score = vibe_at(cellcenter+dcell).weight_by(weights)
+		var score = vibe_at(cellcenter+dcell).weight_by(weights) + noise*randf()
 		if not result or score > best_score:
 			result = dcell # return the best diff, not the best absolute cell
 			best_score = score
@@ -207,6 +201,11 @@ func intend_spawn_at(path:String, newcell:Vector2):
 func intend_move_to(drifter:Drifter, newcell:Vector2):
 	_to_move.append(drifter)
 	_to_move_where.append(newcell)
+func intend_swap(cell1:Vector2, cell2:Vector2):
+	var d1 = _get_drifter_at_cell(cell1)
+	var d2 = _get_drifter_at_cell(cell2)
+	if d1: intend_move_to(d1,cell2)
+	if d2: intend_move_to(d2,cell1)
 
 func log(msg:String):
 	$LogHandler.add_log(msg)

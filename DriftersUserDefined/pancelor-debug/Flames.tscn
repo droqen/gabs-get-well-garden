@@ -5,6 +5,7 @@
 [ext_resource path="res://navdi2/Node Scripts/NavdiBitsySprite.gd" type="Script" id=3]
 
 [node name="Flames" type="Node2D"]
+z_index = 2
 script = ExtResource( 1 )
 guts = 20
 major_element = 1
@@ -13,6 +14,6 @@ minor_element = 5
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 8
-frame = 1
+frame = 2
 script = ExtResource( 3 )
 _frames = [ 1, 2 ]

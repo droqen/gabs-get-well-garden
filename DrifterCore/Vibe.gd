@@ -75,7 +75,10 @@ func get_gem() -> int:
 func get_coal() -> int:
   return elements[Element.Coal]
 
-func weight_by(weights:Vibe) -> float:
+func weight_by(weights) -> float:
+	if weights is Dictionary:
+		weights = get_script().new(weights)
+	
 	var result = 0.0
 	for id in range(len(elements)):
 		result += elements[id] * weights.elements[id]

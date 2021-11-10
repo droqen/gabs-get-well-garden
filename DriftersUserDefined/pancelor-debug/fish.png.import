@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/_palette.png-c0dae224517052bfb5fbc132f565c4ea.stex"
+path="res://.import/fish.png-21864ea89763d2a2aed83a3212e3d207.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://DriftersUserDefined/pancelor-debug/_palette.png"
-dest_files=[ "res://.import/_palette.png-c0dae224517052bfb5fbc132f565c4ea.stex" ]
+source_file="res://DriftersUserDefined/pancelor-debug/fish.png"
+dest_files=[ "res://.import/fish.png-21864ea89763d2a2aed83a3212e3d207.stex" ]
 
 [params]
 
