@@ -99,7 +99,7 @@ func evolve():
     tweak()
   else:
     # move towards wind but away from guts:
-    var dir = vibiest_dir(DirsAdjacent,{"Wind":1, "Guts":-2})
+    var dir = vibiest_dir(DirsAdjacent,{"Wind":1, "Guts":-0.02})
 
     intend_move(dir)
 

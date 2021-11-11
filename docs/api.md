@@ -23,12 +23,12 @@ what sort of things do you have access to, as a drifter? (this documentation may
         * `drifter.vibiest_dir(dirs:Array,weights:Dictionary) -> Vector2` - find the [vibiest direction](#vibiest_dir), weighted by the given elemental weights
 * World
     * methods:
+        * `world.vibe_at(cell:Vector2)` - the [vibe at](#vibe_at) a single cell in particular
         * `world.vibe_nearby(cell:Vector2)` - a [weighted sum](#vibe_nearby) of the vibes of the 8 nearby tiles
-        * `world.vibe_at(cell:Vector2)` - the vibe at a single cell in particular
         * `world.intend_kill_at(cell:Vector2)`
         * `world.intend_spawn_at(respath:String, cell:Vector2)` - path is a resource path
         * `world.intend_move_to(drifter:Drifter, cell:Vector2)`
-        * `world.log(msg:String)` - print a log of a thing that just happened to the player
+        * `world.log(msg:String)` - print a message for the player about what just happened
 * Vibe
     * methods:
         * `vibe.get_guts() -> int`
@@ -42,6 +42,15 @@ what sort of things do you have access to, as a drifter? (this documentation may
         * `vibe.get_coal() -> int`
         * `vibe.get_element(typeid:Element) -> int` - use one of the above instead, probably
 
+## vibe_at
+
+for example, if the `othercell` contains a drifter with major/minor elements Fire/Gem and guts 50, `var vibe = world.vibe_at(othercell)` will have:
+* `vibe.get_fire() == 3` (3 points from major element)
+* `vibe.get_gem() == 1` (1 point from minor element)
+* `vibe.get_guts() == 50`
+
+it's a little strange that guts are returned as part of the vibe object, but that can be useful; see (vibiest_dir)[#vibiest_dir]
+
 ## vibe_nearby
 
 the weights are specifically like this; `(a,b)`, where `a` scales the major element and `b` scales the minor element:
@@ -52,14 +61,36 @@ the weights are specifically like this; `(a,b)`, where `a` scales the major elem
 ```
 (the (0,0) weight in the center there represents the center cell)
 
-for instance, a drifter right above me with major/minor elements Fire/Gem will contribute 3 vibe points of Fire to the return value of vibe_nearby, and 1 point of Gem.
+here's an example:
+```
+.AB
+.@.
+...
+```
+
+this is a 2D map where `@` represents your drifter, `A` represents a drifter with major/minor elements Fire/Gem and guts 50, and `B` represents a drifter with major/minor elements `Fire/Coal` and guts 10. Then, if the current drifter (`@`) calls `var vibe = world.vibe_nearby(cell)`, the returned vibe will have:
+* `vibe.get_fire() == 4` (3 points from `A` and 1 point from `B`)
+* `vibe.get_gem() == 1` (1 point from `A`)
+* `vibe.get_guts() == 60`
 
 ## vibiest_dir
 
 gets the vibe in each given direction, and then evaluates each vibe according to the weights you give it. then, returns the direction with the highest vibe score.
 
-for example, to find a direction with high Wind but low Coal (and additionally avoid existing things via Guts), use this:
+for example, to find a direction with high Fire and low Grass (and additionally avoid existing things via Guts), use this:
 
+```python
+var dir:Vector2 = vibiest_dir(DirsAdjacent,{"Fire":1, "Grass":-1, "Guts":-0.01})
 ```
-vibiest_dir(DirsAdjacent,{"Wind":1, "Coal":-1, "Guts":-2})
-```
+
+given the same example as above (with `@`, `A` and `B`), the algorithm works like this:
+* for each of the 8 `dir`s in `DirsAdjacent`:
+  * evaluate `var vibe = world.vibe_at(dir)` . For example:
+    * in the direction of `A`, `vibe` will have `Fire: 3, Gem: 1, Guts: 50` (0 for other elements)
+    * in the direction of `B`, `vibe` will have `Fire: 3, Coal: 1, Guts: 10` (0 for other elements)
+    * in the empty directions, `vibe` will have 0 for all elements.
+  * mulitply this vibe pairwise with the given weights to get a `score`. For example:
+    * in the direction of `A`, `score` will equal `3*1 (fire) + 1*0 (gem) + 0*-1 (grass) + 50*-0.01 (guts)` which is `3+0+0-0.5 == 2.5`
+    * in the direction of `B`, `score` will equal `3*1 (fire) + 1*0 (coal) + 0*-1 (grass) + 10*-0.01 (guts)` which is `3+0+0-0.1 == 2.9`
+    * in the empty directions, `score` will be `0`.
+  * each score gets randomly shifted by a value between 0.0 and 1.0. then, the maximum score is found and the direction is returned. In this example, that will likely be the direction of `B`, but will sometimes be the direction of `A` depending on how the random shifting goes
