@@ -3,43 +3,44 @@
 what sort of things do you have access to, as a drifter? (this documentation may be out of date, but is hopefully useful anyway)
 
 * Drifter
-  * variables:
-    * `DirsOrthogonal` - a constant list of `Vector2`s for the 4 orthogonal directions
-    * `DirsAdjacent` - a constant list of `Vector2`s for the 8 adjacent directions
-    * `cell:Vector2` - where is the drifter on the grid
-    * `world:World` - the garden world
-    * `guts:int` - how [gutsy](./tutorial.md#guts) is the drifter
-    * `dead:bool` - is the drifter dead
-  * methods:
-    * note that you don't directly do anything, you just register intents with the game system, which will resolve everyone's intents after everyone has a chance to `evolve`
-    * `drifter.intend_die()` - die
-    * `drifter.intend_kill(dir:Vector2)` - kill whatever is in the given direction
-    * `drifter.intend_spawn(respath:String, dir:Vector2)` - spawn a drifter in a direction
-    * `drifter.intend_move(dir:Vector2)` - move in a direction (swapping with whatever you run into)
-    * `drifter.intend_move_and_leave(dir:Vector2, respath:String)` - move in a direction and leave the given drifter behind
-    * `drifter.intend_transmute(respath:String)` - kill the drifter and replace it with another
-    * `drifter.intend_clone(dir:Vector2)` - make a copy of the drifter in the given direction
-    * `drifter.vibiest_dir(dirs:Array,weights:Dictionary) -> Vector2` - find the [vibiest direction](#vibiest_dir), weighted by the given elemental weights
+    * variables:
+        * `DirsOrthogonal` - a constant list of `Vector2`s for the 4 orthogonal directions
+        * `DirsAdjacent` - a constant list of `Vector2`s for the 8 adjacent directions
+        * `cell:Vector2` - where is the drifter on the grid
+        * `world:World` - the garden world
+        * `guts:int` (0-100) - how [gutsy](./tutorial.md#guts) is the drifter
+        * `dead:bool` - is the drifter dead
+    * methods:
+        * note that you don't directly do anything, you just register intents with the game system, which will resolve everyone's intents after everyone has a chance to `evolve`
+        * `drifter.intend_die()` - die
+        * `drifter.intend_kill(dir:Vector2)` - kill whatever is in the given direction
+        * `drifter.intend_spawn(respath:String, dir:Vector2)` - spawn a drifter in a direction
+        * `drifter.intend_move(dir:Vector2)` - move in a direction (swapping with whatever you run into)
+        * `drifter.intend_move_noswap(dir:Vector2)` - move in a direction (using guts to determine who lives if you run into another drifter)
+        * `drifter.intend_move_and_leave(dir:Vector2, respath:String)` - move in a direction and leave the given drifter behind
+        * `drifter.intend_transmute(respath:String)` - kill the drifter and replace it with another
+        * `drifter.intend_clone(dir:Vector2)` - make a copy of the drifter in the given direction
+        * `drifter.vibiest_dir(dirs:Array,weights:Dictionary) -> Vector2` - find the [vibiest direction](#vibiest_dir), weighted by the given elemental weights
 * World
-  * methods:
-    * `world.vibe_nearby(cell:Vector2)` - a [weighted sum](#vibe_nearby) of the vibes of the 8 nearby tiles
-    * `world.vibe_at(cell:Vector2)` - the vibe at a single cell in particular
-    * `world.intend_kill_at(cell:Vector2)`
-    * `world.intend_spawn_at(respath:String, cell:Vector2)` - path is a resource path
-    * `world.intend_move_to(drifter:Drifter, cell:Vector2)`
-    * `world.log(msg:String)` - print a log of a thing that just happened to the player
+    * methods:
+        * `world.vibe_nearby(cell:Vector2)` - a [weighted sum](#vibe_nearby) of the vibes of the 8 nearby tiles
+        * `world.vibe_at(cell:Vector2)` - the vibe at a single cell in particular
+        * `world.intend_kill_at(cell:Vector2)`
+        * `world.intend_spawn_at(respath:String, cell:Vector2)` - path is a resource path
+        * `world.intend_move_to(drifter:Drifter, cell:Vector2)`
+        * `world.log(msg:String)` - print a log of a thing that just happened to the player
 * Vibe
-  * methods:
-    * `vibe.get_guts() -> int`
-    * `vibe.get_fire() -> int`
-    * `vibe.get_water() -> int`
-    * `vibe.get_earth() -> int`
-    * `vibe.get_grass() -> int`
-    * `vibe.get_wind() -> int`
-    * `vibe.get_sand() -> int`
-    * `vibe.get_gem() -> int`
-    * `vibe.get_coal() -> int`
-    * `vibe.get_element(typeid:Element) -> int` - use one of the above instead, probably
+    * methods:
+        * `vibe.get_guts() -> int`
+        * `vibe.get_fire() -> int`
+        * `vibe.get_water() -> int`
+        * `vibe.get_earth() -> int`
+        * `vibe.get_grass() -> int`
+        * `vibe.get_wind() -> int`
+        * `vibe.get_sand() -> int`
+        * `vibe.get_gem() -> int`
+        * `vibe.get_coal() -> int`
+        * `vibe.get_element(typeid:Element) -> int` - use one of the above instead, probably
 
 ## vibe_nearby
 

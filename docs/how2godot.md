@@ -13,5 +13,5 @@ umm everything is a "node"; you can attach nodes to other nodes (e.g. attach a s
 you don't need to click on any of this to contribute to this garden project, but here's some links if you're interested:
 
 * [godot official tutorial](https://docs.godotengine.org/en/stable/getting_started/step_by_step/index.html)
-  * [example game](https://docs.godotengine.org/en/stable/getting_started/step_by_step/your_first_game.html)
+    * [example game](https://docs.godotengine.org/en/stable/getting_started/step_by_step/your_first_game.html)
 * [gdscript official docs](https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_basics.html)
