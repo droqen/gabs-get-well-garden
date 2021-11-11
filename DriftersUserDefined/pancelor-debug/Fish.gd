@@ -17,11 +17,11 @@ func _ready():
 
 func _process(_delta):
 	if randf()*50<1:
-		scale = Vector2(1.2,0.8)
-		rotation_degrees = rand_range(-10,10)
+		$Sprite.scale = Vector2(1.2,0.8)
+		$Sprite.rotation_degrees = rand_range(-10,10)
 	else:
-		scale = lerp(scale,Vector2(1.0,1.0),0.02)
-		rotation_degrees = lerp(rotation_degrees,0,0.02)
+		$Sprite.scale = lerp($Sprite.scale,Vector2(1.0,1.0),0.02)
+		$Sprite.rotation_degrees = lerp($Sprite.rotation_degrees,0,0.02)
 
 func evolve():
 	tweak()
@@ -40,6 +40,7 @@ func tweak():
 			weights = {"Water":3, "Wind":2, "Guts":-0.01}
 
 		var dir = vibiest_dir(DirsOrthogonal,weights)
-		scale = Vector2(1,1) + dir*0.3
-		rotation_degrees = rand_range(-20,20)
+		if dir.x: $Sprite.flip_h = dir.x<0
+		$Sprite.scale = Vector2(1,1) + dir*0.3
+		$Sprite.rotation_degrees = rand_range(-20,20)
 		intend_move_and_leave(dir,"res://DriftersUserDefined/pancelor-debug/River.tscn")

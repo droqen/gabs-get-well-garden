@@ -18,7 +18,11 @@ func evolve():
 		tweak()
 	else:
 		# move towards wind but away from guts:
-		var dir = vibiest_dir(DirsAdjacent,{"Wind":2, "Guts":-0.01})
+		var dir
+		if randf()*2<1:
+			dir = vibiest_dir(DirsAdjacent,{"Wind":1})
+		else:
+			dir = vibiest_dir(DirsAdjacent,{"Guts":-1})
 		scale = Vector2(1.2, 0.8)
 		if dir.x: $Sprite.flip_h = dir.x<0
 		

@@ -79,8 +79,8 @@ func _physics_process(_delta):
 	
 	for drifter in $DRIFTERS.get_children():
 		if drifter.evolve_wait_frames <= 0 and randf()*drifter.evolve_skip_odds<1:
-			drifter.evolve_wait_frames = drifter.evolve_wait_after
 			drifter.evolve()
+			drifter.evolve_wait_frames = drifter.evolve_wait_after
 	if _clicked:
 		var drifter = _get_drifter_at_cell(_clicked_cell)
 		if drifter:
@@ -167,6 +167,7 @@ func max_weighted_relative(cellcenter:Vector2, celldiffs:Array, weights, noise:f
 #   (3,1) (0,0) (3,1)
 #   (1,0) (3,1) (1,0)
 # (the (0,0) weight in the center there represents the center cell)
+# the total guts nearby is also returned as part of the vibe
 func vibe_nearby(cell:Vector2):
 	var result = Vibe.new({})
 	for dcell in [Vector2.LEFT, Vector2.RIGHT, Vector2.DOWN, Vector2.UP]:
@@ -179,6 +180,7 @@ func vibe_nearby(cell:Vector2):
 		var drifter = _get_drifter_at_cell(cell+dcell)
 		if drifter:
 			result.add_element(drifter.major_element,1)
+			result.add_guts(drifter.guts)
 	return result
 
 func vibe_at(cell:Vector2):

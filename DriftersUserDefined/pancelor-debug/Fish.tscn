@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://DriftersUserDefined/pancelor-debug/fish.png" type="Texture" id=1]
 [ext_resource path="res://DriftersUserDefined/pancelor-debug/Fish.gd" type="Script" id=2]
+[ext_resource path="res://DriftersUserDefined/pancelor-debug/river.png" type="Texture" id=3]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.0390244, 0.961364 ), 0.0, 0.0, 0, 0, Vector2( 0.556098, 0.834091 ), -0.769763, -0.769763, 0, 0, Vector2( 0.990244, 0.0613636 ), 0.0, 0.0, 0, 0 ]
@@ -11,6 +12,10 @@ z_index = 1
 script = ExtResource( 2 )
 major_element = 2
 minor_element = 6
+
+[node name="bkg" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+hframes = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

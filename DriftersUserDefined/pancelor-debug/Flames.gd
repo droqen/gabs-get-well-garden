@@ -6,7 +6,10 @@ onready var flicker:float = rand_range(1.5,3)
 
 func _process(_delta):
 	anim += _delta*2*PI
-	scale = Vector2(1, 1 + sin(anim*flicker)/10)
+	if dead:
+		scale = lerp(scale,Vector2.ZERO,0.08)
+	else:
+		scale = Vector2(1, 1 + sin(anim*flicker)/10)
 	rotation_degrees = sin(anim)*10
 
 func evolve():
@@ -29,4 +32,4 @@ func tweak():
 		intend_transmute("res://DriftersUserDefined/pancelor-debug/Sapling.tscn")
 	else:
 		world.log("the flames extinguish")
-		queue_free()
+		intend_die()
