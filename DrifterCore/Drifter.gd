@@ -66,9 +66,12 @@ func intend_kill(dir:Vector2):
 	world.intend_kill_at(cell+dir)
 func intend_spawn(path:String, dir:Vector2):
 	world.intend_spawn_at(path, cell+dir)
-# swap by deafult; if you want to move and overwrite use world.intend_move_to
+# swap by default
 func intend_move(dir:Vector2):
 	world.intend_swap(cell, cell+dir)
+# move, and use guts to determine who gets to stay in the cell (if there are contenders)
+func intend_move_noswap(dir:Vector2):
+	world.intend_move_to(self, cell+dir)
 func intend_move_and_leave(dir:Vector2, path:String):
 	world.intend_spawn_at(path, cell)
 	world.intend_move_to(self, cell+dir)

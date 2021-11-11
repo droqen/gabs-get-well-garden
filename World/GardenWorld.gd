@@ -46,12 +46,12 @@ func reinitialize_drifters(drifters : Array):
 
 func add_drifter(drifter_path : String, cell : Vector2):
 	var drifter:Drifter = load(drifter_path).instance()
-	assert(drifter.major_element != 0, "minor element can't be 0 (guts)")
+	assert(drifter.major_element != 0, "major element can't be 0 (guts)")
 	assert(drifter.minor_element != 0, "minor element can't be 0 (guts)")
 	drifter._my_own_path = drifter_path
 	_add_drifter_node(drifter, cell)
 func _add_drifter_node(drifter : Drifter, cell : Vector2):
-	# order of the next two lines matters:
+	# !! the order of the next two lines matters !!
 	$DRIFTERS.add_child(drifter)
 	reregister(drifter,cell)
 	
