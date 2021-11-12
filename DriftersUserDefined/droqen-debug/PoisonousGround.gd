@@ -5,7 +5,7 @@ extends Drifter
 #	$CPUParticles2D.restart()
 
 func evolve():
-	if randf()*10<1:
+	if randf()<0.8:
 		intend_die()
 	else:
 		world.log("a noxious snail emerges")
