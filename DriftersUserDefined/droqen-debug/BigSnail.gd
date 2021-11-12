@@ -1,15 +1,20 @@
 extends Drifter
 
-var ttl:int
+onready var ttl = rand_range(5,10+1)
 
-func _init():
-	ttl = rand_range(5,10+1)
+func _ready():
+	scale = Vector2(1,0)
+	target_scale = Vector2(0.9, 1.1)
 
-func _process(_delta):
+func _physics_process(_delta):
+	position = lerp(position, target_position, 0.05)
+	if dead: scale = lerp(scale, Vector2.ZERO, 0.02)
+	else:    scale = lerp(scale, target_scale, 0.02)
+
 	if randf()*50<1:
-		$Sprite.scale = Vector2(1.1, 0.9)
-	else:
-		$Sprite.scale = lerp($Sprite.scale, Vector2(0.9, 1.1),0.02)
+		scale = Vector2(1.1,0.9)
+
+	if evolve_wait_frames > 0: evolve_wait_frames -= 1
 
 func evolve():
 	tweak()
@@ -23,7 +28,7 @@ func tweak():
 		# move, leaving posion behind
 		
 		var dir = DirsOrthogonal[randi()%4]
-		$Sprite.scale = Vector2(1.2, 0.8)
-		if dir.x: $Sprite.flip_h = dir.x < 0
+		scale = Vector2(1.2, 0.8)
+		if dir.x: $Sprite.flip_h = dir.x<0
 
 		intend_move_and_leave(dir,"res://DriftersUserDefined/droqen-debug/PoisonousGround.tscn")

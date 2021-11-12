@@ -9,6 +9,7 @@ script = ExtResource( 1 )
 guts = 5
 major_element = 5
 minor_element = 4
+evolve_skip_odds = 200
 evolve_wait_after = 30
 
 [node name="Sprite" type="Sprite" parent="."]

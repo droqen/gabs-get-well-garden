@@ -10,10 +10,10 @@ guts = 5
 major_element = 2
 minor_element = 5
 evolve_skip_odds = 2000
+immovable = true
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 2
-frame = 1
 script = ExtResource( 3 )
 _frames = [ 0, 0, 1, 1, 0, 1 ]

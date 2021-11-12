@@ -10,6 +10,7 @@ guts = 60
 major_element = 4
 minor_element = 3
 evolve_wait_after = 100
+immovable = true
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -2.625 )

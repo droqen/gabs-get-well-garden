@@ -8,6 +8,7 @@ script = ExtResource( 1 )
 guts = 50
 major_element = 4
 evolve_skip_odds = 4000
+immovable = true
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )

@@ -32,6 +32,7 @@
 * `minor_element`: a [vibe](#vibes); choose anything except "guts"
 * `evolve_skip_odds`: higher = your drifter's `evolve` method will get called less often
 * `evolve_wait_after`: number of frames of cooldown to wait before calling `evolve` again on your drifter. set it to, idk, 30 to prevent your drifter from suddenly moving a whole lot at once. up to you
+* `immovable`: normally, objects that move into each other will swap places. however, if your drifter is marked immovable, it will not move.
 4. Run the game with F5; you should see your drifter spawn! click on it to duplicate it.
 
 ## so what are `evolve` and `tweak`?
@@ -44,7 +45,7 @@ if you don't really know why you would want a separate `evolve` and `tweak` for 
 
 ## guts
 
-only one drifter can be in a grid cell at a time; if two drifters both want to be in the same cell, the drifter with the higher "guts" is more likely to win.
+only one drifter can be in a grid cell at a time; if two drifters both want to be in the same cell, the drifter with the higher "guts" is more likely to win. (this is especially relevant for `immovable` drifters that don't swap places when another drifter wants to take their place)
 
 (the calculation is basically `drifter1.guts*sqrt(randf()) < drifter2.guts*sqrt(randf())`, rather than the more deterministic `drifter1.guts < drifter2.guts`)
 

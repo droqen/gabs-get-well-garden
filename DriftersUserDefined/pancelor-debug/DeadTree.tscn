@@ -7,6 +7,7 @@
 z_index = 1
 script = ExtResource( 1 )
 major_element = 8
+immovable = true
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -2.625 )

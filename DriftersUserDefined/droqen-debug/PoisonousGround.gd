@@ -12,4 +12,4 @@ func evolve():
 		intend_transmute("res://DriftersUserDefined/droqen-debug/BigSnail.tscn")
 
 func tweak():
-	queue_free()
+	intend_die()

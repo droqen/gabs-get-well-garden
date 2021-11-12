@@ -7,7 +7,7 @@ var drifter_dictionary:Dictionary = {}
 func cellkey(cell:Vector2):
 	return cell.x+10000*cell.y
 func register(d:Drifter):
-	if d.__registered: return
+	if d.__registered or d.get_parent() != $DRIFTERS: return
 	if not drifter_dictionary.has(cellkey(d.cell)):
 		drifter_dictionary[cellkey(d.cell)] = [d]
 	else:
@@ -19,8 +19,8 @@ func unregister(d:Drifter):
 	d.__registered = false
 func reregister(d:Drifter,newcell:Vector2):
 	unregister(d)
-	d.cell = newcell
-	if d.get_parent() == $DRIFTERS: register(d)
+	d._rawset_cell(newcell)
+	register(d)
 func _get_drifter_at_cell(cell : Vector2):
 	if drifter_dictionary.has(cellkey(cell)):
 		if drifter_dictionary[cellkey(cell)]:
@@ -34,7 +34,7 @@ func _ready():
 
 	# debug:
 	for packed_drifter in spawnables:
-		add_drifter( packed_drifter.resource_path, Vector2(int(rand_range(-6,6+1)), int(rand_range(-4,4+1))) )
+		_add_drifter( packed_drifter.resource_path, Vector2(int(rand_range(-6,6+1)), int(rand_range(-4,4+1))) )
 
 func _on_clicked_cell(cell : Vector2):
 	_clicked = true
@@ -44,7 +44,7 @@ func reinitialize_drifters(drifters : Array):
 	for drifter in drifters:
 		_initialize_drifter(drifter)
 
-func add_drifter(drifter_path : String, cell : Vector2):
+func _add_drifter(drifter_path : String, cell : Vector2):
 	var drifter:Drifter = load(drifter_path).instance()
 	assert(drifter.major_element != 0, "major element can't be 0 (guts)")
 	assert(drifter.minor_element != 0, "minor element can't be 0 (guts)")
@@ -98,7 +98,7 @@ func _physics_process(_delta):
 	# process _to_spawn
 	assert(len(_to_spawn)==len(_to_spawn_where),"_to_spawn desync")
 	for i in range(len(_to_spawn)):
-		add_drifter(_to_spawn[i],_to_spawn_where[i])
+		_add_drifter(_to_spawn[i],_to_spawn_where[i])
 		
 	# process _to_move
 	assert(len(_to_move)==len(_to_move_where), "_to_move desync")
@@ -135,15 +135,16 @@ func _physics_process(_delta):
 				if drifter != gutsiest_drifter:
 					_free_after_20_frames(drifter)
 
+# 20 frames ish; the exact number doesn't matter
 func _free_after_20_frames(drifter):
 	if not drifter.dead:
 		drifter.dead = true
 		yield(get_tree(),"idle_frame")
-		if drifter.get_parent() == $DRIFTERS:
-			$DRIFTERS.remove_child(drifter)
-			$DEAD_DRIFTERS.add_child(drifter)
-			yield(get_tree().create_timer(0.2),"timeout")
-			drifter.queue_free()
+		assert(drifter.get_parent() == $DRIFTERS,"bad drifter parent/.dead state")
+		$DRIFTERS.remove_child(drifter)
+		$DEAD_DRIFTERS.add_child(drifter)
+		yield(get_tree().create_timer(0.2),"timeout")
+		drifter.queue_free()
 
 func max_weighted_absolute(cells:Array, weights, noise:float) -> Vector2:
 	return max_weighted_relative(Vector2.ZERO,cells,weights,noise)
@@ -201,8 +202,12 @@ func intend_spawn_at(path:String, newcell:Vector2):
 	_to_spawn.append(path)
 	_to_spawn_where.append(newcell)
 func intend_move_to(drifter:Drifter, newcell:Vector2):
-	_to_move.append(drifter)
-	_to_move_where.append(newcell)
+	if not drifter.immovable:
+		_to_move.append(drifter)
+		_to_move_where.append(newcell)
+func intend_move_from_to(cell1:Vector2, cell2:Vector2):
+	var d1 = _get_drifter_at_cell(cell1)
+	if d1: intend_move_to(d1,cell2)
 func intend_swap(cell1:Vector2, cell2:Vector2):
 	var d1 = _get_drifter_at_cell(cell1)
 	var d2 = _get_drifter_at_cell(cell2)

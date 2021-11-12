@@ -16,7 +16,6 @@ what sort of things do you have access to, as a drifter? (this documentation may
         * `drifter.intend_kill(dir:Vector2)` - kill whatever is in the given direction
         * `drifter.intend_spawn(respath:String, dir:Vector2)` - spawn a drifter in a direction
         * `drifter.intend_move(dir:Vector2)` - move in a direction (swapping with whatever you run into)
-        * `drifter.intend_move_noswap(dir:Vector2)` - move in a direction (using guts to determine who lives if you run into another drifter)
         * `drifter.intend_move_and_leave(dir:Vector2, respath:String)` - move in a direction and leave the given drifter behind
         * `drifter.intend_transmute(respath:String)` - kill the drifter and replace it with another
         * `drifter.intend_clone(dir:Vector2)` - make a copy of the drifter in the given direction
@@ -26,8 +25,9 @@ what sort of things do you have access to, as a drifter? (this documentation may
         * `world.vibe_at(cell:Vector2)` - the [vibe at](#vibe_at) a single cell in particular
         * `world.vibe_nearby(cell:Vector2)` - a [weighted sum](#vibe_nearby) of the vibes of the 8 nearby tiles
         * `world.intend_kill_at(cell:Vector2)`
-        * `world.intend_spawn_at(respath:String, cell:Vector2)` - path is a resource path
+        * `world.intend_spawn_at(respath:String, cell:Vector2)`
         * `world.intend_move_to(drifter:Drifter, cell:Vector2)`
+        * `world.intend_move_from_to(cell1:Vector2, cell2:Vector2)` - move whatever is at `cell1` to `cell2`
         * `world.log(msg:String)` - print a message for the player about what just happened
 * Vibe
     * methods:

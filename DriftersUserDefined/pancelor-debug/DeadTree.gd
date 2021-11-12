@@ -1,11 +1,8 @@
 extends Drifter
 
 func _ready():
-	scale = Vector2(1,rand_range(0.8,1.3))
-
-func _process(_delta):
-	if dead:
-		rotation_degrees = lerp(rotation_degrees,90,0.05)
+	target_scale = Vector2(1,rand_range(0.8,1.3))
+	# also, don't set scale to 0
 
 func evolve():
 	var vibe:Vibe = world.vibe_nearby(cell)
@@ -18,4 +15,5 @@ func tweak():
 		world.log("an unlucky spark starts a fire")
 		intend_transmute("res://DriftersUserDefined/pancelor-debug/Flames.tscn")
 	else:
+		target_rotation_degrees = 90
 		intend_die()
