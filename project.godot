@@ -297,6 +297,12 @@ window/size/test_height=432
 
 use_oversampling=false
 
+[importer_defaults]
+
+texture={
+"flags/filter": false
+}
+
 [network]
 
 limits/debugger_stdout/max_errors_per_frame=100
