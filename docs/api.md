@@ -49,7 +49,9 @@ for example, if the `othercell` contains a drifter with major/minor elements Fir
 * `vibe.get_gem() == 1` (1 point from minor element)
 * `vibe.get_guts() == 50`
 
-it's a little strange that guts are returned as part of the vibe object, but that can be useful; see (vibiest_dir)[#vibiest_dir]
+it's a little strange that guts are returned as part of the vibe object, but that can be useful; see [vibiest_dir](#vibiest_dir)
+
+right-click in-game to see `vibe_at` the mouse cursor
 
 ## vibe_nearby
 
@@ -73,6 +75,8 @@ this is a 2D map where `@` represents your drifter, `A` represents a drifter wit
 * `vibe.get_gem() == 1` (1 point from `A`)
 * `vibe.get_guts() == 60`
 
+right-click in-game to see `vibe_nearby` the mouse cursor
+
 ## vibiest_dir
 
 gets the vibe in each given direction, and then evaluates each vibe according to the weights you give it. then, returns the direction with the highest vibe score.
@@ -85,12 +89,12 @@ var dir:Vector2 = vibiest_dir(DirsAdjacent,{"Fire":1, "Grass":-1, "Guts":-0.01})
 
 given the same example as above (with `@`, `A` and `B`), the algorithm works like this:
 * for each of the 8 `dir`s in `DirsAdjacent`:
-  * evaluate `var vibe = world.vibe_at(dir)` . For example:
-    * in the direction of `A`, `vibe` will have `Fire: 3, Gem: 1, Guts: 50` (0 for other elements)
-    * in the direction of `B`, `vibe` will have `Fire: 3, Coal: 1, Guts: 10` (0 for other elements)
-    * in the empty directions, `vibe` will have 0 for all elements.
-  * mulitply this vibe pairwise with the given weights to get a `score`. For example:
-    * in the direction of `A`, `score` will equal `3*1 (fire) + 1*0 (gem) + 0*-1 (grass) + 50*-0.01 (guts)` which is `3+0+0-0.5 == 2.5`
-    * in the direction of `B`, `score` will equal `3*1 (fire) + 1*0 (coal) + 0*-1 (grass) + 10*-0.01 (guts)` which is `3+0+0-0.1 == 2.9`
-    * in the empty directions, `score` will be `0`.
-  * each score gets randomly shifted by a value between 0.0 and 1.0. then, the maximum score is found and the direction is returned. In this example, that will likely be the direction of `B`, but will sometimes be the direction of `A` depending on how the random shifting goes
+    * evaluate `var vibe = world.vibe_at(dir)` . For example:
+        * in the direction of `A`, `vibe` will have `Fire: 3, Gem: 1, Guts: 50` (0 for other elements)
+        * in the direction of `B`, `vibe` will have `Fire: 3, Coal: 1, Guts: 10` (0 for other elements)
+        * in the empty directions, `vibe` will have 0 for all elements.
+    * mulitply this vibe pairwise with the given weights to get a `score`. For example:
+        * in the direction of `A`, `score` will equal `3*1 (fire) + 1*0 (gem) + 0*-1 (grass) + 50*-0.01 (guts)` which is `3+0+0-0.5 == 2.5`
+        * in the direction of `B`, `score` will equal `3*1 (fire) + 1*0 (coal) + 0*-1 (grass) + 10*-0.01 (guts)` which is `3+0+0-0.1 == 2.9`
+        * in the empty directions, `score` will be `0`.
+    * each score gets randomly shifted by a value between 0.0 and 1.0. then, the maximum score is found and the direction is returned. In this example, that will likely be the direction of `B`, but will sometimes be the direction of `A` depending on how the random shifting goes

@@ -20,7 +20,6 @@ simple example: bob creates River, Fish, and Crocodile drifters. these are high 
 hi! you're probably reading this because you want to make some tiles ("drifters") for the game, yeah? there's some docs here:
 
 * [tutorial](./docs/tutorial.md)
-* [examples](./docs/examples.md)
 * [api](./docs/api.md)
 * [how to use git/github](./docs/how2git.md)
 * [how to use godot](./docs/how2godot.md)
