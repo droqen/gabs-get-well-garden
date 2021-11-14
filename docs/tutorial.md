@@ -109,3 +109,7 @@ func tweak():
 ```
 
 see the [api](./api.md) for descriptions of `world.vibe_nearby`, `vibiest_dir`, etc
+
+### debug
+
+at any time in-game, right click to see the `vibe_at` and `vibe_nearby` your mouse location. (these values will be printed to the godot output console)

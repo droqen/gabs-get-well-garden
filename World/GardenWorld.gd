@@ -36,9 +36,15 @@ func _ready():
 	for packed_drifter in spawnables:
 		_add_drifter( packed_drifter.resource_path, Vector2(int(rand_range(-6,6+1)), int(rand_range(-4,4+1))) )
 
-func _on_clicked_cell(cell : Vector2):
-	_clicked = true
-	_clicked_cell = cell
+func _on_clicked_cell(cell : Vector2, button : int):
+	if button == BUTTON_LEFT:
+		_clicked = true
+		_clicked_cell = cell
+	elif button == BUTTON_RIGHT:
+		# debug: print out vibe
+		print("")
+		print("vibe_at",cell,"=\n\t",vibe_at(cell).to_string())
+		print("vibe_nearby",cell,"=\n\t",vibe_nearby(cell).to_string())
 
 func reinitialize_drifters(drifters : Array):
 	for drifter in drifters:

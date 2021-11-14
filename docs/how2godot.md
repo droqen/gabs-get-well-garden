@@ -8,6 +8,14 @@ the [tutorial vid](./video.md) I'm putting up later (not available yet) should a
 
 umm everything is a "node"; you can attach nodes to other nodes (e.g. attach a sprite node to your drifter node, or attach a particle system node). you can also attach scripted behavior to nodes, like what to do when the player clicks on it. this is written in a custom python-like language called gdscript.
 
+sometimes you wrap up a little tree of nodes into a "scene" which makes that node-tree easy to create all at once in-game.
+
+## how to download
+
+get godot here: https://godotengine.org/download
+
+I personally downloaded godot through the [itch desktop app](https://itch.io/app) so godot auto-updates to the latest version, which is probably(?) a good thing. https://godotengine.itch.io/godot
+
 ## further reading
 
 you don't need to click on any of this to contribute to this garden project, but here's some links if you're interested:

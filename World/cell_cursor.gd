@@ -1,17 +1,24 @@
 extends Node2D
 
-signal clicked_cell(cell)
+signal clicked_cell(cell,button)
 
 var breath: float
-
 var target_position: Vector2
-
-var clicked: bool = false
-
 var cell: Vector2
 
 onready var tilemap = $"../TileMap"
 
+var _btn_was_down:Array = [false,false,false]
+func mbtnp(button : int) -> bool:
+	assert(button == BUTTON_LEFT or button == BUTTON_RIGHT or button == BUTTON_MIDDLE)
+	if Input.is_mouse_button_pressed(button):
+		if not _btn_was_down[button]:
+			_btn_was_down[button] = true
+			return true
+	else:
+		_btn_was_down[button] = false
+	return false
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	$fff2.rotation += delta # spin! spin! spin!
@@ -22,15 +29,13 @@ func _physics_process(delta):
 	modulate.a = lerp(modulate.a, 1, 0.05)
 	$fff.scale = lerp($fff.scale, target_scale, 0.2)
 	
-	if Input.is_mouse_button_pressed(1):
-		if not clicked:
-			clicked = true
-			$fff.scale = Vector2(2,2)
-			modulate.a = 2
-			target_scale *= 1.5
-			emit_signal("clicked_cell", cell)
-	else:
-		clicked = false
+	if mbtnp(BUTTON_LEFT):
+		$fff.scale = Vector2(2,2)
+		modulate.a = 2
+		target_scale *= 1.5
+		emit_signal("clicked_cell", cell, BUTTON_LEFT)
+	elif mbtnp(BUTTON_RIGHT):
+		emit_signal("clicked_cell", cell, BUTTON_RIGHT)
 		
 	breath += lerp(-9.22, 4.22, 2-modulate.a) * delta
 		
