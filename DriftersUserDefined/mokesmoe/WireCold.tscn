@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://DriftersUserDefined/mokesmoe/WireCold.gd" type="Script" id=1]
+[ext_resource path="res://DriftersUserDefined/mokesmoe/WireCold.png" type="Texture" id=2]
+
+[node name="WireCold" type="Node2D"]
+script = ExtResource( 1 )
+major_element = 8
+minor_element = 3
+evolve_skip_odds = 1
+evolve_wait_after = 60
+immovable = true
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
