@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://navdi2/Node Scripts/NavdiSettings.gd" type="Script" id=1]
 [ext_resource path="res://World/GardenWorld.tscn" type="PackedScene" id=2]
@@ -9,7 +9,8 @@
 [ext_resource path="res://DriftersUserDefined/pancelor-debug/Tree.tscn" type="PackedScene" id=7]
 [ext_resource path="res://DriftersUserDefined/pancelor-debug/Flames.tscn" type="PackedScene" id=8]
 [ext_resource path="res://World/grass.png" type="Texture" id=9]
-[ext_resource path="res://DriftersUserDefined/jack/tetrahedron.tscn" type="PackedScene" id=10]
+[ext_resource path="res://DriftersUserDefined/mokesmoe/Wire.tscn" type="PackedScene" id=10]
+[ext_resource path="res://DriftersUserDefined/jack/tetrahedron.tscn" type="PackedScene" id=11]
 
 [node name="MainGardenScene" type="Node2D"]
 script = ExtResource( 3 )
@@ -36,7 +37,7 @@ current = true
 zoom = Vector2( 0.33, 0.33 )
 
 [node name="GardenWorld" parent="." instance=ExtResource( 2 )]
-spawnables = [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 10 ) ]
+spawnables = [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 10 ) ]
 
 [node name="fff" type="Sprite" parent="."]
 visible = false

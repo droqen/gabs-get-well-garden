@@ -18,9 +18,9 @@ func evolve():
 		# settle
 		tweak()
 	else:
-		if not repeat_dir:
-			repeat_dir = true
+		if repeat_dir:
 			dir = vibiest_dir(DirsAdjacent,{"Wind":1})
+		repeat_dir = not repeat_dir
 
 		scale = Vector2(1.2, 0.8)
 		if dir.x: $Sprite.flip_h = dir.x<0
