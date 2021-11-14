@@ -6,6 +6,7 @@
 [ext_resource path="res://DriftersUserDefined/droqen-debug/poisonsheet.tres" type="Resource" id=4]
 
 [node name="PoisonousGround" type="Node2D"]
+z_index = -1
 script = ExtResource( 1 )
 guts = 10
 major_element = 8

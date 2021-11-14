@@ -8,7 +8,6 @@
 _data = [ Vector2( 0.0390244, 0.961364 ), 0.0, 0.0, 0, 0, Vector2( 0.556098, 0.834091 ), -0.769763, -0.769763, 0, 0, Vector2( 0.990244, 0.0613636 ), 0.0, 0.0, 0, 0 ]
 
 [node name="Fish" type="Node2D"]
-z_index = 1
 script = ExtResource( 2 )
 major_element = 2
 minor_element = 6

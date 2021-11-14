@@ -4,7 +4,6 @@
 [ext_resource path="res://DriftersUserDefined/pancelor-debug/leaf.png" type="Texture" id=2]
 
 [node name="Leaf" type="Node2D"]
-z_index = 2
 script = ExtResource( 1 )
 guts = 5
 major_element = 5

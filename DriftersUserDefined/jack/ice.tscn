@@ -4,6 +4,7 @@
 [ext_resource path="res://DriftersUserDefined/jack/ice.gd" type="Script" id=2]
 
 [node name="Node2D" type="Node2D"]
+z_index = -1
 script = ExtResource( 2 )
 guts = 3
 major_element = 2

@@ -4,6 +4,7 @@
 [ext_resource path="res://DriftersUserDefined/mokesmoe/WireCold.png" type="Texture" id=2]
 
 [node name="WireCold" type="Node2D"]
+z_index = -1
 script = ExtResource( 1 )
 major_element = 8
 minor_element = 3

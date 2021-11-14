@@ -6,7 +6,7 @@
 
 1. if this is your first drifter, make a new folder in `DriftersUserDefined/` with a good name. maybe just your username? e.g. `DriftersUserDefined/pancelor`
 2. add a new scene, e.g. `CoolFrog.tscn`
-    1. Make the root node of type `Node2D`
+    1. make the root node of type `Node2D`
     2. attach a new script to the root node with the same-ish name as the scene; e.g. `CoolFrog.gd`
     3. delete everything and replace it with this:
     ```python
@@ -23,7 +23,8 @@
     (you may need to reindent the code)
     4. attach a `Sprite` node to your root node and "quick load" a 10x10 png that you've saved in your folder
     * if you want an animated sprite, attach a `NavdiBitsySprite` instead
-    5. Add `CoolFrog.tscn` to the list of `spawnables` in `GardenWorld.tscn`. (under "script variables")
+    5. if your drifter is conceptually a "floor tile", set the scene's Z index to -1. (see `River.tscn` for an example) This will make it draw underneath other drifters
+    6. add `CoolFrog.tscn` to the list of `spawnables` in the `GardenWorld` node of `MainGardenScene.tscn`. (under "script variables")
     * this auto-spawns one on game start
     * it also lets you spawn it by clicking in empty grid cells
 3. set the script variables for your drifter

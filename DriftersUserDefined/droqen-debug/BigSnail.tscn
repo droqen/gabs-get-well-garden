@@ -8,7 +8,6 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.20416 ), 0.0, 0.0, 0, 0
 
 [node name="BigSnail" type="Node2D"]
 position = Vector2( 0.125, 0.25 )
-z_index = 1
 script = ExtResource( 1 )
 guts = 60
 major_element = 7
