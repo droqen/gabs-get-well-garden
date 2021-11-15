@@ -91,7 +91,12 @@ func intend_transmute(path:String):
 	world.intend_spawn_at(path, cell)
 
 func vibiest_dir(dirs:Array, weights) -> Vector2:
-	return world.max_weighted_relative(cell,dirs,weights,1.0)
+	return max_vibe_at_dir(dirs,weights)
+
+func max_vibe_at_dir(dirs:Array, weights) -> Vector2:
+	return world.max_vibe_at_dir(cell,dirs,weights,1.0)
+func max_vibe_nearby_dir(dirs:Array, weights) -> Vector2:
+	return world.max_vibe_nearby_dir(cell,dirs,weights,1.0)
 
 #
 # not recomended, but they're available if you like:

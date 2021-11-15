@@ -152,18 +152,26 @@ func _free_after_20_frames(drifter):
 		yield(get_tree().create_timer(0.2),"timeout")
 		drifter.queue_free()
 
-func max_weighted_absolute(cells:Array, weights, noise:float) -> Vector2:
-	return max_weighted_relative(Vector2.ZERO,cells,weights,noise)
-func max_weighted_relative(cellcenter:Vector2, celldiffs:Array, weights, noise:float) -> Vector2:
+func max_vibe_at_dir(cellcenter:Vector2, celldiffs:Array, weights, noise:float) -> Vector2:
 	var result = null
 	var best_score = 0
 	for dcell in celldiffs:
 		var score = vibe_at(cellcenter+dcell).weight_by(weights) + noise*randf()
 		if not result or score > best_score:
-			result = dcell # return the best diff, not the best absolute cell
+			result = dcell # return value is relative to cellcenter (it's not the absolute position)
 			best_score = score
 	return result
 
+func max_vibe_nearby_dir(cellcenter:Vector2, celldiffs:Array, weights, noise:float) -> Vector2:
+	var result = null
+	var best_score = 0
+	for dcell in celldiffs:
+		var score = vibe_nearby(cellcenter+dcell).weight_by(weights) + noise*randf()
+		if not result or score > best_score:
+			result = dcell # return value is relative to cellcenter (it's not the absolute position)
+			best_score = score
+	return result
+	
 ########
 # useful things drifters can call:
 ########

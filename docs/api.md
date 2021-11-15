@@ -20,6 +20,9 @@ what sort of things do you have access to, as a drifter? (this documentation may
         * `drifter.intend_transmute(respath:String)` - kill the drifter and replace it with another
         * `drifter.intend_clone(dir:Vector2)` - make a copy of the drifter in the given direction
         * `drifter.vibiest_dir(dirs:Array,weights:Dictionary) -> Vector2` - find the [vibiest direction](#vibiest_dir), weighted by the given elemental weights
+        * `drifter.max_vibe_at_dir(dirs:Array,weights:Dictionary) -> Vector2` - an alias for `vibiest_dir`
+        * `drifter.max_vibe_nearby_dir(dirs:Array,weights:Dictionary) -> Vector2` - kind of like `vibiest_dir`/`max_vibe_at_dir`, except uses `vibe_nearby` to score each dir instead of `vibe_at`. basically, it's [a bit more complicated](#max_vibe_nearby_dir)
+
 * World
     * methods:
         * `world.vibe_at(cell:Vector2)` - the [vibe at](#vibe_at) a single cell in particular
@@ -98,3 +101,9 @@ given the same example as above (with `@`, `A` and `B`), the algorithm works lik
         * in the direction of `B`, `score` will equal `3*1 (fire) + 1*0 (coal) + 0*-1 (grass) + 10*-0.01 (guts)` which is `3+0+0-0.1 == 2.9`
         * in the empty directions, `score` will be `0`.
     * each score gets randomly shifted by a value between 0.0 and 1.0. then, the maximum score is found and the direction is returned. In this example, that will likely be the direction of `B`, but will sometimes be the direction of `A` depending on how the random shifting goes
+
+## max_vibe_nearby_dir
+
+this is exactly the same as `vibiest_dir` (aka `max_vibe_nearby_dir`), except it evaluates `var vibe = world.vibe_nearby(dir)` instead of `var vibe = world.vibe_at(dir)`
+
+basically, this function looks for the direction where the drifter will enjoy their surroundings most, (by taking into account the surroundings tiles of the tile in that direction) rather than just looking at a single tile's vibe in each direction.

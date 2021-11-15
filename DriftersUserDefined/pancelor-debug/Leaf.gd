@@ -19,7 +19,7 @@ func evolve():
 		tweak()
 	else:
 		if repeat_dir:
-			dir = vibiest_dir(DirsAdjacent,{"Wind":1})
+			dir = vibiest_dir(DirsAdjacent,{"Wind":1,"Earth":-1})
 		repeat_dir = not repeat_dir
 
 		scale = Vector2(1.2, 0.8)
