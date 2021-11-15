@@ -1,6 +1,6 @@
 extends Drifter
 
-onready var ttl:int = rand_range(5,15)
+onready var ttl:int = rand_range(5,12+1)
 onready var mating_weights = Vibe.new({
 	"Fire":2,
 	"Water":2,

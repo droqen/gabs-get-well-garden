@@ -7,7 +7,7 @@
 [node name="River" type="Node2D"]
 z_index = -1
 script = ExtResource( 1 )
-guts = 5
+guts = 10
 major_element = 2
 minor_element = 5
 evolve_skip_odds = 4000

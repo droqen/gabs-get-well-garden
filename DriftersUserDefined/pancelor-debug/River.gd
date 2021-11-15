@@ -8,6 +8,8 @@ func evolve():
 func tweak():
 	if randf()*20<1:
 		intend_transmute("res://DriftersUserDefined/pancelor-debug/Fish.tscn")
-	else:
-		world.log("the river carves a new path")
+	elif randf()*20<1:
 		intend_clone(DirsOrthogonal[randi()%4])
+	elif randf()*20<1:
+		intend_die()
+		

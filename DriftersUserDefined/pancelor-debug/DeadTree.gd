@@ -9,7 +9,10 @@ func evolve():
 	if vibe.get_fire() > 2:
 		world.log("a dead tree bursts into flames")
 		intend_transmute("res://DriftersUserDefined/pancelor-debug/Flames.tscn")
-	
+	elif randf()*100 < 1:
+		tweak()
+
+# die
 func tweak():
 	if randf()*100<1:
 		world.log("an unlucky spark starts a fire")
