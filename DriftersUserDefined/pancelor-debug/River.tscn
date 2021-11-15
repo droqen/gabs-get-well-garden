@@ -10,7 +10,7 @@ script = ExtResource( 1 )
 guts = 5
 major_element = 2
 minor_element = 5
-evolve_skip_odds = 2000
+evolve_skip_odds = 4000
 immovable = true
 
 [node name="Sprite" type="Sprite" parent="."]

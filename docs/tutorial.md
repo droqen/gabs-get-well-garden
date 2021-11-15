@@ -34,7 +34,8 @@
     * `evolve_skip_odds`: higher = your drifter's `evolve` method will get called less often.
         * e.g `evolve_skip_odds=1000` means `evolve` will run on roughly 1 out of every 1000 frames
         * `evolve_skip_odds=1` means `evolve` will get called on every frame
-    * `evolve_wait_after`: number of frames of cooldown to wait before calling `evolve` again on your drifter. set it to, idk, 30 to prevent your drifter from suddenly moving a whole lot at once. up to you
+        * check out [this interactive graph](https://www.desmos.com/calculator/zuytpcsbha) to see how `evolve_skip_odds` affects how long it takes for `evolve()` to happen
+    * `evolve_wait_after`: number of frames of cooldown to wait before calling `evolve()` again on your drifter. set it to, e.g., 60 to force your drifter to `evolve()` at most once per second.
     * `immovable`: normally, objects that move into each other will swap places. however, if your drifter is marked immovable, it will not move.
 4. run the game with F5; you should see your drifter spawn! click on it to duplicate it.
 
