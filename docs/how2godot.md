@@ -2,7 +2,7 @@
 
 hi! welcome to godot. there are one thousand tutorials out there if you want to really learn it deeply; this doc is not really gonna attempt to teach you it but it'll summarize the very basic workflow needed to contribute simple stuff to this game.
 
-the [tutorial vid](./video.md) I'm putting up later (not available yet) should also be useful
+the [tutorial vid](https://youtu.be/zHSClw8jJzw) might also be useful
 
 ## godot in 15 seconds
 

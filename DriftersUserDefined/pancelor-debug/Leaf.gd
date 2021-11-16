@@ -14,6 +14,9 @@ func evolve():
 	if vibe.get_fire() > 1:
 		world.log("a wandering leaf bursts into flames")
 		intend_transmute("res://DriftersUserDefined/pancelor-debug/Flames.tscn")
+	elif vibe.get_wind() > 6:
+		world.log("many leaves join forces")
+		intend_transmute("res://DriftersUserDefined/pancelor-demo/Whirlwind.tscn")
 	elif randf()*50<1:
 		# settle
 		tweak()

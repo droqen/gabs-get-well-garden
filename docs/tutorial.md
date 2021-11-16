@@ -2,7 +2,7 @@
 
 ## how to add a simple drifter
 
-(the stuff described here is also shown in the [video](./video.md))
+(the stuff described here is also shown in the [tutorial video](https://youtu.be/zHSClw8jJzw))
 
 1. if this is your first drifter, make a new folder in `DriftersUserDefined/` with a good name. maybe just your username? e.g. `DriftersUserDefined/pancelor`
 2. add a new scene, e.g. `CoolFrog.tscn`
@@ -20,7 +20,7 @@
         func tweak():
           intend_clone(DirsOrthogonal[randi()%4])
         ```
-      (you may need to reindent the code)
+        (you may need to reindent the code)
     4. attach a `Sprite` node to your root node and "quick load" a 10x10 png that you've saved in your folder
         * if you want an animated sprite, attach a `NavdiBitsySprite` instead
     5. if your drifter is conceptually a "floor tile", set the scene's Z index to -1. (see `River.tscn` for an example) This will make it draw underneath other drifters

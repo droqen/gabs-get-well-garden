@@ -23,4 +23,4 @@ hi! you're probably reading this because you want to make some tiles ("drifters"
 * [api](./docs/api.md)
 * [how to use git/github](./docs/how2git.md)
 * [how to use godot](./docs/how2godot.md)
-* [tutorial/tour video](./docs/video.md) (coming soon!)
+* [tutorial/tour video](https://youtu.be/zHSClw8jJzw)

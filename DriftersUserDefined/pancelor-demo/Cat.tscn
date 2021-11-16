@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://DriftersUserDefined/pancelor-demo/Cat.gd" type="Script" id=1]
+[ext_resource path="res://DriftersUserDefined/pancelor-demo/catsheet.png" type="Texture" id=2]
+[ext_resource path="res://navdi2/Node Scripts/NavdiBitsySprite.gd" type="Script" id=3]
+
+[node name="Cat" type="Node2D"]
+script = ExtResource( 1 )
+guts = 30
+major_element = 6
+minor_element = 5
+evolve_skip_odds = 200
+
+[node name="SleepSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( -2, -5 )
+texture = ExtResource( 2 )
+hframes = 4
+script = ExtResource( 3 )
+_frame_period = 60.0
+
+[node name="WakeSprite" type="Sprite" parent="."]
+position = Vector2( 0, -5 )
+texture = ExtResource( 2 )
+hframes = 4
+frame = 3
+script = ExtResource( 3 )
+_frames = [ 2, 3 ]
