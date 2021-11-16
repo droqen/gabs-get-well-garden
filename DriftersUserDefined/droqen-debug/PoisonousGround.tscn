@@ -17,7 +17,7 @@ immovable = true
 [node name="NavdiSheetSprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 hframes = 8
-frame = 2
+frame = 1
 script = ExtResource( 2 )
 _frames = [ 1, 1, 2, 2, 1, 2 ]
 _editor_sheet = ExtResource( 4 )

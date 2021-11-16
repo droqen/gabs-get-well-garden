@@ -1,6 +1,6 @@
 extends Drifter
 
-var repeat_dir = false
+var repeat_dir:bool
 var dir:Vector2
 
 func _physics_process(_delta):
@@ -21,7 +21,7 @@ func evolve():
 		# settle
 		tweak()
 	else:
-		if repeat_dir:
+		if not repeat_dir:
 			dir = vibiest_dir(DirsAdjacent,{"Wind":1,"Earth":-1})
 		repeat_dir = not repeat_dir
 

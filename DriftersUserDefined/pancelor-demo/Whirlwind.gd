@@ -1,6 +1,8 @@
 extends Drifter
 
 onready var ttl:float = rand_range(15, 50+1) # number of evolves until death
+var repeat_dir:bool
+var mydir:Vector2
 
 func _physics_process(_delta):
 	._physics_process(_delta) # call method on base class 
@@ -20,7 +22,10 @@ func tweak():
 		world.log("the whirlwind subsides")
 		intend_die()
 	else:
-		var mydir = vibiest_dir(DirsAdjacent,{"Guts":-0.05})
+		if not repeat_dir:
+			mydir = vibiest_dir(DirsAdjacent,{"Wind":0.1, "Guts":-0.05})
+		repeat_dir = not repeat_dir
+
 		intend_move(mydir)
 		for dir in DirsAdjacent:
 			var pos = cell+dir

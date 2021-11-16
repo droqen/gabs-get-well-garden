@@ -34,7 +34,7 @@ func _ready():
 
 	# debug:
 	for packed_drifter in spawnables:
-		_add_drifter( packed_drifter.resource_path, Vector2(int(rand_range(-6,6+1)), int(rand_range(-4,4+1))) )
+		_add_drifter( packed_drifter.resource_path, Vector2(int(rand_range(-7,7+1)), int(rand_range(-6,6+1))) )
 
 func _on_clicked_cell(cell : Vector2, button : int):
 	if button == BUTTON_LEFT:

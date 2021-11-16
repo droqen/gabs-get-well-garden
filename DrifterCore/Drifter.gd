@@ -22,7 +22,7 @@ func _enter_tree():
 	if not dead: get_world().register(self)
 func _exit_tree():
 	get_world().unregister(self)
-func _set_cell_error(newcell:Vector2):
+func _set_cell_error(_newcell:Vector2):
 	assert(false, "don't set cell directly; call intend_move(dir) or intend_move_to(newcell) instead")
 func _rawset_cell(newcell:Vector2):
 	cell = newcell

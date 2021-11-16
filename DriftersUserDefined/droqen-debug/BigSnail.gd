@@ -1,6 +1,6 @@
 extends Drifter
 
-onready var ttl = rand_range(5,10+1)
+onready var ttl = rand_range(6,12+1)
 
 func _ready():
 	scale = Vector2(1,0)
@@ -25,9 +25,9 @@ func tweak():
 		world.log("a snail moves on")
 		intend_transmute("res://DriftersUserDefined/droqen-debug/PoisonousGround.tscn")
 	else:
-		# move, leaving posion behind
-		
-		var dir = DirsOrthogonal[randi()%4]
+		# move, leaving posion behind.
+		# avoid coal, to spread poison as far as possible
+		var dir = vibiest_dir(DirsOrthogonal,{"Coal":-1})
 		scale = Vector2(1.2, 0.8)
 		if dir.x: $Sprite.flip_h = dir.x<0
 
