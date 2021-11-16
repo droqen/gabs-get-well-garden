@@ -24,5 +24,5 @@ func tweak():
 	intend_spawn("res://DriftersUserDefined/pancelor-debug/Leaf.tscn", DirsOrthogonal[randi()%4])
 	leaves_left -= 1
 	if leaves_left <= 0:
-		world.log("a tree has lost all its leaves")
+		world.log("a wisened old tree begins to fade")
 		intend_transmute("res://DriftersUserDefined/pancelor-debug/DeadTree.tscn")

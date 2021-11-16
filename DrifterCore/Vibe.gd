@@ -54,8 +54,6 @@ func to_string():
 # useful for drifter authors:
 #############
 
-func get_element(typeid:int) -> int:
-	return elements[typeid]
 func get_guts() -> int:
 	return elements[Element.Guts]
 func get_fire() -> int:
@@ -74,6 +72,9 @@ func get_gem() -> int:
   return elements[Element.Gem]
 func get_coal() -> int:
   return elements[Element.Coal]
+
+func get_element(typeid:int) -> int:
+	return elements[typeid]
 
 func weight_by(weights) -> float:
 	if weights is Dictionary:

@@ -14,7 +14,7 @@ func evolve():
 
 # die
 func tweak():
-	if randf()*100<1:
+	if randf()*60<1:
 		world.log("an unlucky spark starts a fire")
 		intend_transmute("res://DriftersUserDefined/pancelor-debug/Flames.tscn")
 	else:

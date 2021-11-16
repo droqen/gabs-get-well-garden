@@ -23,4 +23,9 @@ func tweak():
 		var dir = -bad_dir
 		if dir.x: $WakeSprite.flip_h = dir.x>0
 		scale = Vector2(1.2,0.8)
+		world.log("meow~")
 		intend_move(dir)
+	if randf()*600<1:
+		world.log("meow!")
+		intend_clone(DirsOrthogonal[randi()%4])
+		

@@ -8,8 +8,10 @@ what sort of things do you have access to, as a drifter? (this documentation may
         * `DirsAdjacent` - a constant list of `Vector2`s for the 8 adjacent directions
         * `cell:Vector2` - where is the drifter on the grid
         * `world:World` - the garden world
-        * `guts:int` (0-100) - how [gutsy](./tutorial.md#guts) is the drifter
         * `dead:bool` - is the drifter dead
+        * [script variables](./tutorial.md) e.g. `guts`, `major_element`, `evolve_skip_odds`, `immovable`
+        * `target_scale:Vector2` - the scale factor to apply to the drifter (will slowly approach)
+        * `target_rotation_degrees:Vector2` - the rotation (0-360) to apply to the drifter (will slowly approach)
     * methods:
         * note that you don't directly do anything, you just register intents with the game system, which will resolve everyone's intents after everyone has a chance to `evolve`
         * `drifter.intend_die()` - die
@@ -44,6 +46,7 @@ what sort of things do you have access to, as a drifter? (this documentation may
         * `vibe.get_gem() -> int`
         * `vibe.get_coal() -> int`
         * `vibe.get_element(typeid:Element) -> int` - use one of the above instead, probably
+        * `vibe.weight_by(other:Vibe or Dictionary) -> float` - basically a vector dot product. mulitply the vibe's elements by the other vibe's elements pairwise, and sum all those products together into a single score.
 
 ## vibe_at
 
@@ -104,6 +107,6 @@ given the same example as above (with `@`, `A` and `B`), the algorithm works lik
 
 ## max_vibe_nearby_dir
 
-this is exactly the same as `vibiest_dir` (aka `max_vibe_nearby_dir`), except it evaluates `var vibe = world.vibe_nearby(dir)` instead of `var vibe = world.vibe_at(dir)`
+this is exactly the same as `vibiest_dir` (aka `max_vibe_nearby_dir`), except it evaluates `var vibe = world.vibe_nearby(dir)` instead of `var vibe = world.vibe_at(dir)` for each `dir`.
 
 basically, this function looks for the direction where the drifter will enjoy their surroundings most, (by taking into account the surroundings tiles of the tile in that direction) rather than just looking at a single tile's vibe in each direction.

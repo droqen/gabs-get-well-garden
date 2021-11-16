@@ -8,8 +8,8 @@ func _physics_process(_delta):
 	._physics_process(_delta) # call method on base class 
 	anim += _delta*2*PI
 	if randf()*40<1:
-		scale.x *= 0.65
-		scale.y *= 1.35
+		scale.x *= rand_range(0.5,0.65)
+		scale.y *= rand_range(1.35,1.5)
 	rotation_degrees = sin(anim)*10
 
 func evolve():
@@ -33,5 +33,4 @@ func tweak():
 		world.log("new life from flames")
 		intend_transmute("res://DriftersUserDefined/pancelor-debug/Sapling.tscn")
 	else:
-		world.log("the flames extinguish")
 		intend_die()

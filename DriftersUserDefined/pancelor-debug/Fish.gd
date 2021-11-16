@@ -24,10 +24,12 @@ func evolve():
 	
 func tweak():
 	ttl -= 1
+	var mate_score = world.vibe_nearby(cell).weight_by(mating_weights)
+#	print("mate_score ",mate_score)
 	if ttl <= 0:
 		world.log("a fish takes its rest")
 		intend_transmute("res://DriftersUserDefined/pancelor-debug/River.tscn")
-	elif world.vibe_nearby(cell).weight_by(mating_weights)>20 and randf()*4<1:
+	elif mate_score>=14 and mate_score<=20 and randf()*4<1:
 		intend_spawn("res://DriftersUserDefined/pancelor-debug/Fish.tscn", vibiest_dir(DirsOrthogonal,{"Guts":-0.1}))
 		world.log("a fish is born")
 	else:

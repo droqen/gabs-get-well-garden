@@ -9,7 +9,7 @@ script = ExtResource( 1 )
 guts = 30
 major_element = 6
 minor_element = 5
-evolve_skip_odds = 200
+evolve_skip_odds = 60
 
 [node name="SleepSprite" type="Sprite" parent="."]
 visible = false
@@ -23,6 +23,6 @@ _frame_period = 60.0
 position = Vector2( 0, -5 )
 texture = ExtResource( 2 )
 hframes = 4
-frame = 3
+frame = 2
 script = ExtResource( 3 )
 _frames = [ 2, 3 ]
