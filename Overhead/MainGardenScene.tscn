@@ -9,7 +9,7 @@
 [ext_resource path="res://DriftersUserDefined/pancelor-debug/Tree.tscn" type="PackedScene" id=7]
 [ext_resource path="res://DriftersUserDefined/pancelor-debug/Flames.tscn" type="PackedScene" id=8]
 [ext_resource path="res://World/grass.png" type="Texture" id=9]
-[ext_resource path="res://DriftersUserDefined/mokesmoe/Wire.tscn" type="PackedScene" id=10]
+[ext_resource path="res://DriftersUserDefined/mokesmoe/WirePlacer.tscn" type="PackedScene" id=10]
 [ext_resource path="res://DriftersUserDefined/jack/tetrahedron.tscn" type="PackedScene" id=11]
 
 [node name="MainGardenScene" type="Node2D"]
