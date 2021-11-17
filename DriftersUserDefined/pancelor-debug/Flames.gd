@@ -21,9 +21,7 @@ func evolve():
 	else:
 		var dir = DirsOrthogonal[randi()%4]
 		var vibe = world.vibe_at(cell+dir)
-		if vibe.get_fire() > 2:
-			ttl += 0.5
-		elif vibe.weight_by({"Water":-3, "Sand":2, "Grass":1}) > 0 or randf()*10<1:
+		if randf()*20<1 or vibe.weight_by({"Water":-3, "Sand":2, "Grass":1}) > 0:
 			world.log("the flames grow higher")
 			intend_kill(dir)
 			intend_spawn("res://DriftersUserDefined/pancelor-debug/Flames.tscn",dir)

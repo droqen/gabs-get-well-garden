@@ -31,5 +31,8 @@ func evolve():
 		intend_move(dir)
 
 func tweak():
-	world.log("a leaf settles down")
-	intend_transmute("res://DriftersUserDefined/pancelor-debug/Sapling.tscn")
+	if randf()*3<1:
+		world.log("a leaf settles down")
+		intend_transmute("res://DriftersUserDefined/pancelor-debug/Sapling.tscn")
+	else:
+		intend_die()

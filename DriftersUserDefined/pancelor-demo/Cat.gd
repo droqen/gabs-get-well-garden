@@ -1,6 +1,6 @@
 extends Drifter
 
-var energy = 4
+var energy = 0
 
 func _physics_process(_delta):
 	._physics_process(_delta)

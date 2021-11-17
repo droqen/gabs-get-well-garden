@@ -3,7 +3,7 @@ extends Drifter
 var leaves_left:float
 
 func _ready():
-	leaves_left = rand_range(2,5+1)
+	leaves_left = rand_range(3,7+1)
 	scale = Vector2(1,0)
 	target_scale = Vector2(1,rand_range(0.8,1.3))
 
