@@ -1,16 +1,17 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://navdi2/Node Scripts/NavdiSettings.gd" type="Script" id=1]
 [ext_resource path="res://World/GardenWorld.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Overhead/MainGardenScene.gd" type="Script" id=3]
 [ext_resource path="res://DriftersUserDefined/pancelor-demo/Cat.tscn" type="PackedScene" id=4]
 [ext_resource path="res://DriftersUserDefined/droqen-debug/BigSnail.tscn" type="PackedScene" id=5]
-[ext_resource path="res://DriftersUserDefined/pancelor-debug/Fish.tscn" type="PackedScene" id=6]
+[ext_resource path="res://DriftersUserDefined/mergrazzini/DragonSnail.tscn" type="PackedScene" id=6]
 [ext_resource path="res://DriftersUserDefined/pancelor-debug/Tree.tscn" type="PackedScene" id=7]
-[ext_resource path="res://DriftersUserDefined/pancelor-debug/Flames.tscn" type="PackedScene" id=8]
+[ext_resource path="res://DriftersUserDefined/pancelor-debug/Fish.tscn" type="PackedScene" id=8]
 [ext_resource path="res://World/grass.png" type="Texture" id=9]
 [ext_resource path="res://DriftersUserDefined/mokesmoe/WirePlacer.tscn" type="PackedScene" id=10]
 [ext_resource path="res://DriftersUserDefined/jack/tetrahedron.tscn" type="PackedScene" id=11]
+[ext_resource path="res://DriftersUserDefined/mergrazzini/Dragon.tscn" type="PackedScene" id=12]
 
 [node name="MainGardenScene" type="Node2D"]
 script = ExtResource( 3 )
@@ -38,4 +39,4 @@ zoom = Vector2( 0.33, 0.33 )
 
 [node name="GardenWorld" parent="." instance=ExtResource( 2 )]
 z_index = 100
-spawnables = [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 4 ) ]
+spawnables = [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 6 ) ]

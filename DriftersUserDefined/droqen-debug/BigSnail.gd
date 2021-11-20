@@ -21,7 +21,7 @@ func evolve():
 
 func tweak():
 	ttl -= 1
-	if ttl <= 0:
+	if ttl < 0:
 		world.log("a snail moves on")
 		intend_transmute("res://DriftersUserDefined/droqen-debug/PoisonousGround.tscn")
 	else:

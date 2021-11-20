@@ -15,8 +15,8 @@ func evolve():
 # die
 func tweak():
 	if randf()*60<1:
-		world.log("an unlucky spark starts a fire")
-		intend_transmute("res://DriftersUserDefined/pancelor-debug/Flames.tscn")
+		world.log("the gnarled roots reveal an egg")
+		intend_transmute("res://DriftersUserDefined/mergrazzini/Egg.tscn")
 	else:
 		target_rotation_degrees = 90
 		intend_die()

@@ -18,7 +18,7 @@ func evolve():
 
 func tweak():
 	ttl -= 1
-	if ttl <= 0:
+	if ttl < 0:
 		world.log("the whirlwind subsides")
 		intend_die()
 	else:

@@ -14,7 +14,7 @@ func _physics_process(_delta):
 
 func evolve():
 	ttl -= 1
-	if ttl <= 0:
+	if ttl < 0:
 		tweak()
 	elif world.vibe_nearby(cell).get_water() > 3:
 		tweak()

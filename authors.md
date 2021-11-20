@@ -8,3 +8,4 @@ I'm imagining this game will probably get posted on itch eventually; add yoursel
 * [Ash K](https://ash-k.dev/)
 * [Jack Kutilek](https://jackkutilek.com/)
 * [mokesmoe](https://mokesmoe.itch.io/)
+* [Mer Grazzini](https://mergrazzini.itch.io/)

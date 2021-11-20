@@ -73,7 +73,9 @@ func get_gem() -> int:
 func get_coal() -> int:
   return elements[Element.Coal]
 
-func get_element(typeid:int) -> int:
+func get_element(typeid) -> int:
+	if typeid is String:
+		typeid = Element.get(typeid)
 	return elements[typeid]
 
 func weight_by(weights) -> float:

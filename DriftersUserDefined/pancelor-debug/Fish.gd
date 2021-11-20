@@ -26,7 +26,7 @@ func tweak():
 	ttl -= 1
 	var mate_score = world.vibe_nearby(cell).weight_by(mating_weights)
 #	print("mate_score ",mate_score)
-	if ttl <= 0:
+	if ttl < 0:
 		world.log("a fish takes its rest")
 		intend_transmute("res://DriftersUserDefined/pancelor-debug/River.tscn")
 	elif mate_score>=14 and mate_score<=20 and randf()*4<1:
