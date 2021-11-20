@@ -6,7 +6,7 @@ func evolve():
 	tweak()
 	
 func tweak():
-	if randf()<0.75:
+	if randf()<0.85:
 		intend_die()
 	else:
 		world.log("a noxious snail emerges")
