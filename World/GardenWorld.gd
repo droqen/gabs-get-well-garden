@@ -42,16 +42,20 @@ func _on_clicked_cell(cell : Vector2, button : int):
 		_clicked_cell = cell
 	elif button == BUTTON_RIGHT:
 		# debug: print out vibe
+		var vibe = vibe_at(cell)
 		print("")
-		print("vibe_at",cell,"=\n\t",vibe_at(cell).to_string())
-		print("vibe_nearby",cell,"=\n\t",vibe_nearby(cell).to_string())
-
+		print("vibe_at",cell,"=\n\t",vibe.to_string(),"\n\tmax=",vibe.max_element(),", min=",vibe.min_element())
+		vibe = vibe_nearby(cell)
+		print("vibe_nearby",cell,"=\n\t",vibe.to_string(),"\n\tmax=",vibe.max_element(),", min=",vibe.min_element())
+		
 func reinitialize_drifters(drifters : Array):
 	for drifter in drifters:
 		_initialize_drifter(drifter)
 
 func _add_drifter(drifter_path : String, cell : Vector2):
-	var drifter:Drifter = load(drifter_path).instance()
+	var scene = load(drifter_path)
+	assert(scene,"bad drifter path: "+drifter_path)
+	var drifter:Drifter = scene.instance()
 	assert(drifter.major_element != 0, "major element can't be 0 (guts)")
 	assert(drifter.minor_element != 0, "minor element can't be 0 (guts)")
 	drifter._my_own_path = drifter_path

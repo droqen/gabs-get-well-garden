@@ -1,5 +1,7 @@
 extends Drifter
 
+onready var TREE = validated_drifter_path("res://DriftersUserDefined/pancelor-debug/Tree.tscn")
+
 # every so often
 func evolve():
 	tweak()
@@ -7,4 +9,4 @@ func evolve():
 # when the player clicks
 func tweak():
 	world.log("new life grows")
-	intend_transmute("res://DriftersUserDefined/pancelor-debug/Tree.tscn")
+	intend_transmute(TREE)

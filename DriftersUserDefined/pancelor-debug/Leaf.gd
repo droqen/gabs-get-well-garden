@@ -3,6 +3,10 @@ extends Drifter
 var repeat_dir:bool
 var dir:Vector2
 
+onready var FLAMES = validated_drifter_path("res://DriftersUserDefined/pancelor-debug/Flames.tscn")
+onready var WHIRLWIND = validated_drifter_path("res://DriftersUserDefined/pancelor-demo/Whirlwind.tscn")
+onready var SAPLING = validated_drifter_path("res://DriftersUserDefined/pancelor-debug/Sapling.tscn")
+
 func _physics_process(_delta):
 	._physics_process(_delta) # call method on base class
 	if randf()*50<1:
@@ -13,10 +17,10 @@ func evolve():
 	var vibe:Vibe = world.vibe_nearby(cell)
 	if vibe.get_fire() > 1:
 		world.log("a wandering leaf bursts into flames")
-		intend_transmute("res://DriftersUserDefined/pancelor-debug/Flames.tscn")
+		intend_transmute(FLAMES)
 	elif vibe.get_wind() > 6:
 		world.log("many leaves join forces")
-		intend_transmute("res://DriftersUserDefined/pancelor-demo/Whirlwind.tscn")
+		intend_transmute(WHIRLWIND)
 	elif randf()*50<1:
 		# settle
 		tweak()
@@ -33,6 +37,6 @@ func evolve():
 func tweak():
 	if randf()*3<1:
 		world.log("a leaf settles down")
-		intend_transmute("res://DriftersUserDefined/pancelor-debug/Sapling.tscn")
+		intend_transmute(SAPLING)
 	else:
 		intend_die()

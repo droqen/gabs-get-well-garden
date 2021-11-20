@@ -11,6 +11,7 @@ onready var mating_weights = Vibe.new({
 	"Gem":-1,
 	"Coal":-5,
 })
+onready var RIVER = validated_drifter_path("res://DriftersUserDefined/pancelor-debug/River.tscn")
 
 func _physics_process(_delta):
 	._physics_process(_delta) # call method on base class
@@ -28,9 +29,9 @@ func tweak():
 #	print("mate_score ",mate_score)
 	if ttl < 0:
 		world.log("a fish takes its rest")
-		intend_transmute("res://DriftersUserDefined/pancelor-debug/River.tscn")
+		intend_transmute(RIVER)
 	elif mate_score>=14 and mate_score<=20 and randf()*4<1:
-		intend_spawn("res://DriftersUserDefined/pancelor-debug/Fish.tscn", vibiest_dir(DirsOrthogonal,{"Guts":-0.1}))
+		intend_clone(vibiest_dir(DirsOrthogonal,{"Guts":-0.1}))
 		world.log("a fish is born")
 	else:
 		var weights = {"Guts":-1}
@@ -42,4 +43,4 @@ func tweak():
 		scale = Vector2(1.2, 0.8)
 		if dir.x: $Sprite.flip_h = dir.x<0
 		rotation_degrees = rand_range(-20,20)
-		intend_move_and_leave(dir,"res://DriftersUserDefined/pancelor-debug/River.tscn")
+		intend_move_and_leave(dir,RIVER)

@@ -86,4 +86,18 @@ func weight_by(weights) -> float:
 	for id in range(len(elements)):
 		result += elements[id] * weights.elements[id]
 	return result
-		
+
+func max_element() -> String:
+	return _max_helper(1)
+func min_element() -> String:
+	return _max_helper(-1)
+func _max_helper(m:int) -> String:
+	var maxid = 1
+	var maxscore = m*self.elements[1]
+	for id in range(2,len(elements)):
+		var score = m*self.elements[id]
+		if score>maxscore:
+			maxid = id
+			maxscore = score
+	var names = Element.keys()
+	return names[maxid]

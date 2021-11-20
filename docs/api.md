@@ -46,6 +46,8 @@ what sort of things do you have access to, as a drifter? (this documentation may
         * `vibe.get_gem() -> int`
         * `vibe.get_coal() -> int`
         * `vibe.get_element(typeid:Element) -> int` - use one of the above instead, probably
+        * `vibe.max_element() -> String` - the most present element
+        * `vibe.min_element() -> String` - the least present element. note that this will probably be many elements with 0 vibe, and it just chooses the first one every time (usually "Fire")
         * `vibe.weight_by(other:Vibe or Dictionary) -> float` - basically a vector dot product. mulitply the vibe's elements by the other vibe's elements pairwise, and sum all those products together into a single score.
 
 ## vibe_at

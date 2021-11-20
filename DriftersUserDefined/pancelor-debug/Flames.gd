@@ -4,6 +4,8 @@ onready var ttl:float = rand_range(5, 10+1) # number of evolves until death
 var anim:float = 0.0
 onready var flicker:float = rand_range(1.5,3)
 
+onready var SAPLING = validated_drifter_path("res://DriftersUserDefined/pancelor-debug/Sapling.tscn")
+	
 func _physics_process(_delta):
 	._physics_process(_delta) # call method on base class 
 	anim += _delta*2*PI
@@ -24,11 +26,11 @@ func evolve():
 		if randf()*20<1 or vibe.weight_by({"Water":-3, "Sand":2, "Grass":1}) > 0:
 			world.log("the flames grow higher")
 			intend_kill(dir)
-			intend_spawn("res://DriftersUserDefined/pancelor-debug/Flames.tscn",dir)
+			intend_clone(dir)
 
 func tweak():
-	if randf()*30<1:
+	if randf()*20<1:
 		world.log("new life from flames")
-		intend_transmute("res://DriftersUserDefined/pancelor-debug/Sapling.tscn")
+		intend_transmute(SAPLING)
 	else:
 		intend_die()

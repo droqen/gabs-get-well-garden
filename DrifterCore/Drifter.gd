@@ -98,6 +98,12 @@ func max_vibe_at_dir(dirs:Array, weights) -> Vector2:
 func max_vibe_nearby_dir(dirs:Array, weights) -> Vector2:
 	return world.max_vibe_nearby_dir(cell,dirs,weights,1.0)
 
+# call this during _ready
+func validated_drifter_path(respath:String) -> String:
+	var scene = load(respath)
+	assert(scene,"bad drifter path: "+respath)
+	return respath
+
 #
 # not recomended, but they're available if you like:
 # let's keep interactions mostly local!

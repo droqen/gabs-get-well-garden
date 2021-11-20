@@ -2,6 +2,8 @@ extends Drifter
 
 var shakes_left = rand_range(3,5+1)
 
+onready var DRAGON = validated_drifter_path("res://DriftersUserDefined/mergrazzini/Dragon.tscn")
+
 func _physics_process(_delta):
 	._physics_process(_delta) # call method on base class
 	if scale.is_equal_approx(target_scale):
@@ -31,7 +33,7 @@ func tweak():
 		if shakes_left < 0:
 			# hatch!
 			world.log("A new life has spawned")
-			intend_transmute("res://DriftersUserDefined/mergrazzini/Dragon.tscn")
+			intend_transmute(DRAGON)
 		else:
 			# shake
 			$NavdiSheetSprite.frames = [3,4,3,3,4,4]

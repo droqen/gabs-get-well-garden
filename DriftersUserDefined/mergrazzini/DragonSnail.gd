@@ -2,6 +2,8 @@ extends Drifter
 
 onready var ttl:int = rand_range(10,30+1)
 
+onready var RIVER = validated_drifter_path("res://DriftersUserDefined/pancelor-debug/River.tscn")
+
 func _physics_process(_delta):
 	._physics_process(_delta) # call method on base class
 	if position.is_equal_approx(target_position):
@@ -14,7 +16,7 @@ func evolve():
 	ttl -= 1
 	if ttl < 0:
 		world.log("Glupppppp")
-		intend_transmute("res://DriftersUserDefined/pancelor-debug/River.tscn")
+		intend_transmute(RIVER)
 	else:
 		var dir = DirsAdjacent[randi()%4]
 		# move towards Grass but away from Coal:
@@ -25,12 +27,12 @@ func evolve():
 		$NavdiSheetSprite.frames = [6,7]
 		$NavdiSheetSprite.frame = 6
 		intend_move(dir)
-		if randf()*6<1: intend_spawn("res://DriftersUserDefined/pancelor-debug/River.tscn", dir+Vector2(-dir.y,dir.x))
-		if randf()*6<1:	intend_spawn("res://DriftersUserDefined/pancelor-debug/River.tscn", dir+Vector2(dir.y,-dir.x))
+		if randf()*6<1: intend_spawn(RIVER, dir+Vector2(-dir.y,dir.x))
+		if randf()*6<1:	intend_spawn(RIVER, dir+Vector2(dir.y,-dir.x))
 
 # when the player clicks
 func tweak():
 	#Spawns water
 	world.log("Glup glup glup")
 	var emptydir = vibiest_dir(DirsAdjacent,{"Guts":-0.02})
-	intend_spawn("res://DriftersUserDefined/pancelor-debug/River.tscn", emptydir)
+	intend_spawn(RIVER, emptydir)
