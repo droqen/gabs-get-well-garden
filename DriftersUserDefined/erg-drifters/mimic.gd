@@ -14,6 +14,9 @@ export(Texture)var SandSprite;
 export(Texture)var GemSprite;
 export(Texture)var CoalSprite;
 export(Texture)var TrueSprite;
+
+onready var MIMIC = validated_drifter_path("res://DriftersUserDefined/erg-drifters/mimic.tscn")
+
 #they dont mimic fire visually because i want the visual of any of their mimic forms bursting into true form
 # every so often
 func _ready():
@@ -38,7 +41,7 @@ func evolve():
 						highestVibe=vibe.elements[i]
 						popularElement = i
 			minor_element=popularElement
-			print(minor_element)
+#			print(minor_element)
 			#now figure out which sprite to switch to based on that
 			match minor_element:
 				Vibe.Element.Water:
@@ -88,6 +91,6 @@ func tweak():
 	if(!trueForm):
 		evolve()
 		world.log("Strange behaviour...")
-	else:	
-		intend_transmute(validated_drifter_path("res://DriftersUserDefined/erg-drifters/mimic.tscn"))
+	else:
+		intend_transmute(MIMIC)
 		world.log("The Mimic retreats to it's shell")
