@@ -15,6 +15,7 @@ func evolve():
 		$WakeSprite.visible = false
 	if has_neighbors:
 		energy += 3
+		if $SleepSprite.visible or randf()*10<1: world.log("meow~")
 		$SleepSprite.visible = false
 		$WakeSprite.visible = true
 	
@@ -22,7 +23,6 @@ func evolve():
 		if energy > 0:
 			# move
 			energy = clamp(energy-1,0,10)
-			world.log("meow~")
 			var dir = vibiest_dir(DirsAdjacent,{"Water":-2, "Guts":-0.05})
 			if dir.x: $WakeSprite.flip_h = dir.x>0
 			scale = Vector2(1.2,0.8)
