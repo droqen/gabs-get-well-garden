@@ -1,0 +1,47 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://DriftersUserDefined/erg-drifters/mimic.gd" type="Script" id=1]
+[ext_resource path="res://DriftersUserDefined/erg-drifters/trueform.png" type="Texture" id=2]
+[ext_resource path="res://DriftersUserDefined/droqen-debug/bigsnail.png" type="Texture" id=3]
+[ext_resource path="res://DriftersUserDefined/pancelor-debug/fish.png" type="Texture" id=4]
+[ext_resource path="res://DriftersUserDefined/erg-drifters/staticDragon.png" type="Texture" id=5]
+[ext_resource path="res://DriftersUserDefined/pancelor-debug/tree.png" type="Texture" id=6]
+[ext_resource path="res://DriftersUserDefined/pancelor-demo/cat1.png" type="Texture" id=7]
+[ext_resource path="res://DriftersUserDefined/jack/tower.png" type="Texture" id=8]
+[ext_resource path="res://DriftersUserDefined/mokesmoe/WirePlacer.png" type="Texture" id=9]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+guts = 25
+major_element = 5
+minor_element = 5
+fireNeeded = 4
+camoNeeded = 4
+trueFormSkipOdds = 50
+WaterSprite = ExtResource( 4 )
+EarthSprite = ExtResource( 8 )
+GrassSprite = ExtResource( 6 )
+WindSprite = ExtResource( 5 )
+SandSprite = ExtResource( 7 )
+GemSprite = ExtResource( 3 )
+CoalSprite = ExtResource( 9 )
+TrueSprite = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+texture = ExtResource( 2 )
+emission_shape = 1
+emission_sphere_radius = 7.89
+direction = Vector2( 1, 1 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 5.67
+initial_velocity_random = 0.52
+scale_amount = 0.2
+color_ramp = SubResource( 1 )
