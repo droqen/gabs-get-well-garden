@@ -7,6 +7,7 @@
 script = ExtResource( 1 )
 major_element = 7
 minor_element = 3
+evolve_skip_odds = 800
 immovable = true
 
 [node name="Sprite" type="Sprite" parent="."]

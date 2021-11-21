@@ -6,7 +6,7 @@ extends Drifter
 
 var pumps = rand_range(4,6+1)
 
-onready var EGG = validated_drifter_path("res://DriftersUserDefined/Milkman/Egg.tscn")
+onready var DANDELION = validated_drifter_path("res://DriftersUserDefined/more/Dandelion.tscn")
 
 func _ready():
 	scale = Vector2(1,0)
@@ -22,9 +22,10 @@ func evolve():
 	if pumps < 0:
 		world.log("the fungal biome spreads its roots")
 		intend_clone(DirsAdjacent[randi()%8])
-		intend_clone(DirsAdjacent[randi()%8])
+		if randf()*3<1:
+			intend_clone(DirsAdjacent[randi()%8])
 		if randf()*200<1:
-			intend_transmute(EGG)
+			intend_transmute(DANDELION)
 		else:
 			intend_die()
 	else:
