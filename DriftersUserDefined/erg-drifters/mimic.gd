@@ -20,54 +20,58 @@ onready var MIMIC = validated_drifter_path("res://DriftersUserDefined/erg-drifte
 #they dont mimic fire visually because i want the visual of any of their mimic forms bursting into true form
 # every so often
 func _ready():
-	evolve() #should evolve on creation so it takes up a mimic form right away
+	transform() # take up a mimic form right away
+
+func transform():
+	var vibe = world.vibe_nearby(cell)
+	if(vibe.get_element(minor_element)-1<=0 || $Sprite.texture==TrueSprite): #subtracting one for our own contribution to said vibe
+		#if nothing nearby is like you its time to mimic again
+		#figure out the most popular element in the vibe
+		var popularElement=Vibe.Element.Grass
+		var highestVibe=0
+		for i in vibe.elements.size():
+			if(i!=Vibe.Element.Guts && i!=Vibe.Element.Fire):
+				var elementVibe=vibe.elements[i]
+				#exclude the mimics own element from the calculation (this is why i still am not using the built in one
+				if(i==major_element):
+					elementVibe-=3
+				if(i==minor_element):
+					elementVibe-=1
+				if elementVibe>highestVibe:
+					highestVibe=vibe.elements[i]
+					popularElement = i
+		minor_element=popularElement
+#			print(minor_element)
+		#now figure out which sprite to switch to based on that
+		match minor_element:
+			Vibe.Element.Water:
+				$Sprite.texture=WaterSprite
+			Vibe.Element.Earth:
+				$Sprite.texture=EarthSprite
+			Vibe.Element.Grass:
+				$Sprite.texture=GrassSprite
+			Vibe.Element.Wind:
+				$Sprite.texture=WindSprite
+			Vibe.Element.Sand:
+				$Sprite.texture=SandSprite
+			Vibe.Element.Gem:
+				$Sprite.texture=GemSprite
+			Vibe.Element.Coal:
+				$Sprite.texture=CoalSprite
+		#if the most popular element nearby is fire you wouldnt switch because fire is tracked seperately for evolving	
+	
+	if(vibe.get_fire()>fireNeeded):
+		trueForm=true
+		$Sprite.texture=TrueSprite
+		minor_element=Vibe.Element.Gem
+		world.log("A Mimic has emerged from it's shell.")
+		evolve_skip_odds=trueFormSkipOdds #start moving way faster in true form
+		guts=100 # stronger guts in true form
+		$CPUParticles2D.emitting=true
+
 func evolve():
 	if(!trueForm):
-		var vibe = world.vibe_nearby(cell)
-		if(vibe.get_element(minor_element)-1<=0 || $Sprite.texture==TrueSprite): #subtracting one for our own contribution to said vibe
-			#if nothing nearby is like you its time to mimic again
-			#figure out the most popular element in the vibe
-			var popularElement=Vibe.Element.Grass
-			var highestVibe=0
-			for i in vibe.elements.size():
-				if(i!=Vibe.Element.Guts && i!=Vibe.Element.Fire):
-					var elementVibe=vibe.elements[i]
-					#exclude the mimics own element from the calculation (this is why i still am not using the built in one
-					if(i==major_element):
-						elementVibe-=3
-					if(i==minor_element):
-						elementVibe-=1
-					if elementVibe>highestVibe:
-						highestVibe=vibe.elements[i]
-						popularElement = i
-			minor_element=popularElement
-#			print(minor_element)
-			#now figure out which sprite to switch to based on that
-			match minor_element:
-				Vibe.Element.Water:
-					$Sprite.texture=WaterSprite
-				Vibe.Element.Earth:
-					$Sprite.texture=EarthSprite
-				Vibe.Element.Grass:
-					$Sprite.texture=GrassSprite
-				Vibe.Element.Wind:
-					$Sprite.texture=WindSprite
-				Vibe.Element.Sand:
-					$Sprite.texture=SandSprite
-				Vibe.Element.Gem:
-					$Sprite.texture=GemSprite
-				Vibe.Element.Coal:
-					$Sprite.texture=CoalSprite
-			#if the most popular element nearby is fire you wouldnt switch because fire is tracked seperately for evolving	
-		
-		if(vibe.get_fire()>fireNeeded):
-			trueForm=true
-			$Sprite.texture=TrueSprite
-			minor_element=Vibe.Element.Gem
-			world.log("A Mimic has emerged from it's shell.")
-			evolve_skip_odds=trueFormSkipOdds #start moving way faster in true form
-			guts=100 # stronger guts in true form
-			$CPUParticles2D.emitting=true
+		transform()
 		#normally moves toward fire
 		var dir
 		dir = vibiest_dir(DirsAdjacent,{"Grass":0, "Fire":2, "Water": 0,"Coal":0,"Sand":0,"Wind":0,"Earth":0,"Guts":0})
