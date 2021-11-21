@@ -6,7 +6,7 @@ func _ready():
 var anim = 0.0
 var peeplet = "res://DriftersUserDefined/waporwave/Peeplet.tscn"
 var birthrate = .05
-var deathrate = .007
+var deathrate = .009
 onready var message = load("res://DriftersUserDefined/waporwave/Blabber.tscn")
 
 func _process(_delta):

@@ -6,7 +6,7 @@
 [node name="House" type="Node2D"]
 script = ExtResource( 1 )
 minor_element = 4
-evolve_skip_odds = 10
+evolve_skip_odds = 100
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )

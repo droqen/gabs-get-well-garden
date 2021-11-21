@@ -1,6 +1,6 @@
 extends Drifter
 func evolve():
-	if randf()<.07:
+	if randf()<.2:
 		tweak()
 func tweak():
 	var vibe:Vibe = world.vibe_nearby(cell)
