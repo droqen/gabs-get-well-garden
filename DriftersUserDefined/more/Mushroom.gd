@@ -29,8 +29,8 @@ func evolve():
 		else:
 			intend_die()
 	else:
-		# grow nearby drifters (but not gem, like mushrooms themselves)
-		var dir = vibiest_dir(DirsOrthogonal,{"Guts":0.05,"Gem":-2})
+		# grow nearby drifters
+		var dir = vibiest_dir(DirsOrthogonal,{"Guts":0.05})
 		var drifter = world._get_drifter_at_cell(cell+dir)
 		if drifter:
 			drifter.target_scale += Vector2(0.1,0.1)
