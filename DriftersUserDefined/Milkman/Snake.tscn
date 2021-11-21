@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://DriftersUserDefined/Milkman/Snake.gd" type="Script" id=1]
+[ext_resource path="res://DriftersUserDefined/Milkman/Snake.png" type="Texture" id=2]
+
+[node name="Snake" type="Node2D"]
+position = Vector2( 0.125, 0.25 )
+script = ExtResource( 1 )
+guts = 30
+major_element = 2
+minor_element = 3
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -2.625 )
+texture = ExtResource( 2 )
