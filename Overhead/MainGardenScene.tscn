@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://navdi2/Node Scripts/NavdiSettings.gd" type="Script" id=1]
 [ext_resource path="res://World/GardenWorld.tscn" type="PackedScene" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://DriftersUserDefined/more/Mushroom.tscn" type="PackedScene" id=16]
 [ext_resource path="res://DriftersUserDefined/more/Dandelion.tscn" type="PackedScene" id=17]
 [ext_resource path="res://DriftersUserDefined/pancelor-demo/Cat.tscn" type="PackedScene" id=18]
+[ext_resource path="res://DriftersUserDefined/friendnard/bluedog.tscn" type="PackedScene" id=19]
 
 [node name="MainGardenScene" type="Node2D"]
 script = ExtResource( 3 )
@@ -35,7 +36,13 @@ __meta__ = {
 
 [node name="NavdiSettings" type="Node" parent="."]
 script = ExtResource( 1 )
+apply_on_click = false
+width = 160
+height = 144
+zoom = 3
+fps = 60
 project_name = "Gabs_GetWell_Garden"
+bg_color = Color( 0, 0, 0, 1 )
 UI_stretch_mode = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -45,4 +52,4 @@ zoom = Vector2( 0.33, 0.33 )
 
 [node name="GardenWorld" parent="." instance=ExtResource( 2 )]
 z_index = 100
-spawnables = [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 18 ), ExtResource( 6 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 4 ) ]
+spawnables = [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 18 ), ExtResource( 6 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 4 ), ExtResource( 19 ) ]
