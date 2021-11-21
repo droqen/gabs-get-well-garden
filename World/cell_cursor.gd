@@ -34,7 +34,7 @@ func _physics_process(delta):
 		modulate.a = 2
 		target_scale *= 1.5
 		emit_signal("clicked_cell", cell, BUTTON_LEFT)
-	elif mbtnp(BUTTON_MIDDLE): # not used
+	elif mbtnp(BUTTON_MIDDLE):
 		emit_signal("clicked_cell", cell, BUTTON_MIDDLE)
 	elif mbtnp(BUTTON_RIGHT):
 		emit_signal("clicked_cell", cell, BUTTON_RIGHT)

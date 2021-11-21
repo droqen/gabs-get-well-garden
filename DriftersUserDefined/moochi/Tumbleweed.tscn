@@ -6,10 +6,9 @@
 
 [node name="Tumbleweed" type="Node2D"]
 script = ExtResource( 3 )
-guts = 100
 major_element = 4
 minor_element = 6
-evolve_skip_odds = 20
+evolve_skip_odds = 40
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )

@@ -59,7 +59,7 @@ for example, if the `othercell` contains a drifter with major/minor elements Fir
 
 it's a little strange that guts are returned as part of the vibe object, but that can be useful; see [vibiest_dir](#vibiest_dir)
 
-right-click in-game to see `vibe_at` the mouse cursor
+middle-click in-game to see `vibe_at` the mouse cursor
 
 ## vibe_nearby
 
@@ -83,7 +83,7 @@ this is a 2D map where `@` represents your drifter, `A` represents a drifter wit
 * `vibe.get_gem() == 1` (1 point from `A`)
 * `vibe.get_guts() == 60`
 
-right-click in-game to see `vibe_nearby` the mouse cursor
+middle-click in-game to see `vibe_nearby` the mouse cursor
 
 ## vibiest_dir
 

@@ -13,3 +13,4 @@ I'm imagining this game will probably get posted on itch eventually; add yoursel
 * [SirMilkman](https://sirmilkman.itch.io/)
 * pinchazumos
 * Linker
+* [moochi](https://bio.mut.media/)

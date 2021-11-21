@@ -37,7 +37,12 @@ func _on_clicked_cell(cell : Vector2, button : int):
 	if button == BUTTON_LEFT:
 		_clicked = true
 		_clicked_cell = cell
+		_click_kill = false
 	elif button == BUTTON_RIGHT:
+		_clicked = true
+		_clicked_cell = cell
+		_click_kill = true
+	elif button == BUTTON_MIDDLE:
 		# debug: print out vibe
 		var vibe = vibe_at(cell)
 		print("")
@@ -87,6 +92,7 @@ var _to_move:Array # [Drifter]
 var _to_move_where:Array # [Vector2]
 var _clicked:bool
 var _clicked_cell:Vector2
+var _click_kill:bool
 
 func _physics_process(_delta):
 	_to_kill.clear()
@@ -101,12 +107,15 @@ func _physics_process(_delta):
 			drifter.evolve_wait_frames = drifter.evolve_wait_after
 	if _clicked:
 		var drifter = _get_drifter_at_cell(_clicked_cell)
-		if drifter:
-			drifter.tweak()
+		if _click_kill: 
+			if drifter: intend_kill(drifter)
 		else:
-			# add a completely random thingy.
-			var path = spawnables[randi() % spawnables.size()].resource_path
-			intend_spawn_at(path, _clicked_cell)
+			if drifter:
+				drifter.tweak()
+			else:
+				# add a completely random thingy.
+				var path = spawnables[randi() % spawnables.size()].resource_path
+				intend_spawn_at(path, _clicked_cell)
 		_clicked = false
 	
 	# process _to_kill
