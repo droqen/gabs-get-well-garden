@@ -31,10 +31,7 @@ func _get_drifter_at_cell(cell : Vector2):
 func _ready():
 	randomize()
 	$cell_cursor.connect("clicked_cell", self, "_on_clicked_cell")
-
-	# debug:
-	for packed_drifter in spawnables:
-		_add_drifter( packed_drifter.resource_path, Vector2(int(rand_range(-7,7+1)), int(rand_range(-6,6+1))) )
+	$SpawnTimer.connect("timeout", self, "_on_spawn_timer")
 
 func _on_clicked_cell(cell : Vector2, button : int):
 	if button == BUTTON_LEFT:
@@ -47,7 +44,18 @@ func _on_clicked_cell(cell : Vector2, button : int):
 		print("vibe_at",cell,"=\n\t",vibe.to_string(),"\n\tmax=",vibe.max_element(),", min=",vibe.min_element())
 		vibe = vibe_nearby(cell)
 		print("vibe_nearby",cell,"=\n\t",vibe.to_string(),"\n\tmax=",vibe.max_element(),", min=",vibe.min_element())
-		
+
+var spawn_wait_delta:int = 0
+func _on_spawn_timer():
+	var packed_drifter = spawnables[randi()%len(spawnables)]
+	spawn_wait_delta += 1
+	$SpawnTimer.wait_time += spawn_wait_delta
+	var radius = spawn_wait_delta
+	print("autospawn ",spawn_wait_delta)
+	# hack: this adds the drifter immediately (not inside main loop w/ guts fighting etc)
+	_add_drifter( packed_drifter.resource_path, Vector2(int(rand_range(-radius,radius+1)), int(rand_range(-radius,radius+1))) )
+	self.log("the garden grows")
+
 func reinitialize_drifters(drifters : Array):
 	for drifter in drifters:
 		_initialize_drifter(drifter)
