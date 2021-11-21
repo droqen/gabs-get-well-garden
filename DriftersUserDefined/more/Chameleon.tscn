@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://DriftersUserDefined/more/Chameleon.gd" type="Script" id=1]
+[ext_resource path="res://navdi2/Node Scripts/NavdiBitsySprite.gd" type="Script" id=2]
+[ext_resource path="res://DriftersUserDefined/more/chameleon_sprites.png" type="Texture" id=3]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+guts = 50
+major_element = 5
+minor_element = 7
+
+[node name="NavdiBitsySprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+hframes = 6
+script = ExtResource( 2 )
+_frames = [ 0, 1, 2, 3, 4, 5 ]
