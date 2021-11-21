@@ -36,13 +36,7 @@ __meta__ = {
 
 [node name="NavdiSettings" type="Node" parent="."]
 script = ExtResource( 1 )
-apply_on_click = false
-width = 160
-height = 144
-zoom = 3
-fps = 60
 project_name = "Gabs_GetWell_Garden"
-bg_color = Color( 0, 0, 0, 1 )
 UI_stretch_mode = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
