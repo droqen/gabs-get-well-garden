@@ -9,7 +9,7 @@ func _physics_process(delta):
 	._physics_process(delta)
 	anim += delta
 	modulate.a = (sin(anim)+1)/2.0
-	if randf()*30<1:
+	if randf()*50<1:
 		scale *= Vector2(1.2,0.8)
 
 func _ready():

@@ -10,3 +10,5 @@ I'm imagining this game will probably get posted on itch eventually; add yoursel
 * [mokesmoe](https://mokesmoe.itch.io/)
 * [Mer Grazzini](https://mergrazzini.itch.io/)
 * [JohnLee Cooper](https://ergman.itch.io/)
+* [SirMilkman](https://sirmilkman.itch.io/)
+* pinchazumos

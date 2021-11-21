@@ -3,6 +3,7 @@ extends Drifter
 var shakes_left = rand_range(3,5+1)
 
 onready var DRAGON = validated_drifter_path("res://DriftersUserDefined/mergrazzini/Dragon.tscn")
+onready var SNAKE = validated_drifter_path("res://DriftersUserDefined/Milkman/Snake.tscn")
 
 func _physics_process(_delta):
 	._physics_process(_delta) # call method on base class
@@ -32,8 +33,12 @@ func tweak():
 		shakes_left -= 1
 		if shakes_left < 0:
 			# hatch!
-			world.log("A new life has spawned")
-			intend_transmute(DRAGON)
+			if randf()*20<1:
+				world.log("A strange new life has spawned")
+				intend_transmute(SNAKE)
+			else:
+				world.log("A new life has spawned")
+				intend_transmute(DRAGON)
 		else:
 			# shake
 			$NavdiSheetSprite.frames = [3,4,3,3,4,4]

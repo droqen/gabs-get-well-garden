@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://navdi2/Node Scripts/NavdiSettings.gd" type="Script" id=1]
 [ext_resource path="res://World/GardenWorld.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://DriftersUserDefined/mergrazzini/Dragon.tscn" type="PackedScene" id=12]
 [ext_resource path="res://DriftersUserDefined/erg-drifters/mimic.tscn" type="PackedScene" id=13]
 [ext_resource path="res://DriftersUserDefined/more/Chameleon.tscn" type="PackedScene" id=14]
+[ext_resource path="res://DriftersUserDefined/Milkman/Snake.tscn" type="PackedScene" id=15]
 
 [node name="MainGardenScene" type="Node2D"]
 script = ExtResource( 3 )
@@ -41,4 +42,4 @@ zoom = Vector2( 0.33, 0.33 )
 
 [node name="GardenWorld" parent="." instance=ExtResource( 2 )]
 z_index = 100
-spawnables = [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 13 ), ExtResource( 14 ) ]
+spawnables = [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ]
