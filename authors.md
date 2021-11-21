@@ -14,3 +14,5 @@ I'm imagining this game will probably get posted on itch eventually; add yoursel
 * pinchazumos
 * Linker
 * [moochi](https://bio.mut.media/)
+* Friendnard
+* Waporwave

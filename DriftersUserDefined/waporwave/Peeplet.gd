@@ -20,6 +20,9 @@ func _process(_delta):
 
 func evolve():
 	var dir = DirsOrthogonal[randi()%4]
+	if not is_instance_valid(mama):
+		mama=null
+		
 	if mama != null and randf()>.3:
 		dir = ((mama.cell-cell).normalized()).round()
 	else:
