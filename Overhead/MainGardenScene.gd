@@ -13,7 +13,7 @@ func _process(_delta):
 	mouse_position_after_camera += $Camera2D.position
 	$GardenWorld/cell_cursor.set_mouse_position(mouse_position_after_camera)
 
-	if Input.is_mouse_button_pressed(BUTTON_MIDDLE):
+	if Input.is_mouse_button_pressed(BUTTON_RIGHT):
 		var mouse_delta = last_mouse_viewport_position - mouse_position
 		mouse_delta.x *= $Camera2D.zoom.x
 		mouse_delta.y *= $Camera2D.zoom.y

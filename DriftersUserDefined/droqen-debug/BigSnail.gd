@@ -19,10 +19,13 @@ func _physics_process(_delta):
 	if evolve_wait_frames > 0: evolve_wait_frames -= 1
 
 func evolve():
-	tweak()
-
-func tweak():
 	ttl -= 1
+	dothing()
+func tweak():
+	ttl -= 3
+	dothing()
+
+func dothing():
 	if ttl < 0:
 		world.log("a snail moves on")
 		intend_transmute(POISON_GROUND)
