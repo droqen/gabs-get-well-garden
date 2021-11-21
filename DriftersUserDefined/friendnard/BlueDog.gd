@@ -9,10 +9,6 @@ onready var state = 0
 func _ready():
 	$AnimatedSprite.play('default')
 
-func _physics_process(_delta):
-	position = lerp(position, target_position, 0.05)
-	if evolve_wait_frames > 0: evolve_wait_frames -= 1
-
 func evolve():
 	tweak()
 
