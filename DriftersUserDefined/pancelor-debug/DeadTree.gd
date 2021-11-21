@@ -1,7 +1,7 @@
 extends Drifter
 
 onready var FLAMES = validated_drifter_path("res://DriftersUserDefined/pancelor-debug/Flames.tscn")
-onready var EGG = validated_drifter_path("res://DriftersUserDefined/mergrazzini/Egg.tscn")
+onready var MUSHROOM = validated_drifter_path("res://DriftersUserDefined/more/Mushroom.tscn")
 
 func _ready():
 	target_scale = Vector2(1,rand_range(0.8,1.3))
@@ -18,8 +18,8 @@ func evolve():
 # die
 func tweak():
 	if randf()*60<1:
-		world.log("the gnarled roots reveal an egg")
-		intend_transmute(EGG)
+		world.log("the gnarled roots reveal a mushroom")
+		intend_transmute(MUSHROOM)
 	else:
 		target_rotation_degrees = 90
 		intend_die()

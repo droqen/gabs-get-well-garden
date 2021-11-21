@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://DriftersUserDefined/more/Mushroom.gd" type="Script" id=1]
+[ext_resource path="res://DriftersUserDefined/more/mushroom.png" type="Texture" id=2]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+major_element = 7
+minor_element = 3
+immovable = true
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -4 )
+texture = ExtResource( 2 )

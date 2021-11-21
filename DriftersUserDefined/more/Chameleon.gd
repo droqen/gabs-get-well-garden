@@ -2,6 +2,7 @@ extends Drifter
 
 # Design by pancelor + Pinchazumos
 # Sprite by Pinchazumos
+# Code by pancelor
 
 var anim:float
 
