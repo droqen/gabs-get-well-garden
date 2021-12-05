@@ -6,6 +6,9 @@ extends Drifter
 
 var anim:float
 
+func _ready():
+	change_color(Vibe.Element.Grass)
+
 func _physics_process(delta):
 	._physics_process(delta)
 	anim += delta
@@ -13,12 +16,13 @@ func _physics_process(delta):
 	if randf()*50<1:
 		scale *= Vector2(1.2,0.8)
 
-func _ready():
-	change_color(Vibe.Element.Grass)
-	
 func evolve():
 	var vibe = world.vibe_nearby(cell)
 	var maxelem = Vibe.Element.get(vibe.max_element())
+	if major_element==maxelem and vibe.get_element(maxelem) > 8 and randf()*10<1:
+		world.log("gecko gecko")
+		intend_clone(DirsAdjacent[randi()%8])
+		return
 	if vibe.get_element(maxelem) > 2:
 		change_color(maxelem)
 	if randf()*3<1:

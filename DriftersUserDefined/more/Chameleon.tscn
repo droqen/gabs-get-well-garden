@@ -6,12 +6,13 @@
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
-guts = 50
+guts = 25
 major_element = 5
 minor_element = 7
 
 [node name="NavdiBitsySprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 hframes = 6
+frame = 2
 script = ExtResource( 2 )
 _frames = [ 0, 1, 2, 3, 4, 5 ]
