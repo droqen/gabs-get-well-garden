@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://DriftersUserDefined/more/BoomFlower.gd" type="Script" id=1]
+[ext_resource path="res://navdi2/Node Scripts/NavdiBitsySprite.gd" type="Script" id=2]
+[ext_resource path="res://DriftersUserDefined/more/boomflower_sprites.png" type="Texture" id=3]
+
+[node name="BoomFlower" type="Node2D"]
+script = ExtResource( 1 )
+major_element = 4
+minor_element = 1
+evolve_skip_odds = 1000
+immovable = true
+
+[node name="NavdiBitsySprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+hframes = 7
+frame = 1
+script = ExtResource( 2 )
+_frame_period = 60.0

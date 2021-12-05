@@ -6,6 +6,7 @@ export var life_per_leaf = 15;
 var life = 0
 
 onready var LEAF = validated_drifter_path("res://DriftersUserDefined/pancelor-debug/Leaf.tscn")
+onready var DANDELION = validated_drifter_path("res://DriftersUserDefined/more/Dandelion.tscn")
 
 var anim:float = 0.0
 
@@ -35,7 +36,10 @@ func tweak():
 			drop_leaf = true
 	
 	if drop_leaf:
-		intend_move_and_leave(wind_dir, LEAF)
+		if randf()<0.3:
+			intend_move_and_leave(wind_dir, DANDELION)
+		else:
+			intend_move_and_leave(wind_dir, LEAF)
 		world.log("a tumbleweed tumbles")
 	else:
 		intend_move(wind_dir)

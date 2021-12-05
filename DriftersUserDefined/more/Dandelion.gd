@@ -14,6 +14,7 @@ var anim = 0.0
 var ttl:float
 
 onready var FLAMES = validated_drifter_path("res://DriftersUserDefined/pancelor-debug/Flames.tscn")
+onready var BOOMFLOWER = validated_drifter_path("res://DriftersUserDefined/more/BoomFlower.tscn")
 
 func _ready():
 	scale = Vector2(1,0)
@@ -43,7 +44,11 @@ func tweak():
 		# sprout
 		var vibe = world.vibe_nearby(cell)
 		if (vibe.get_water()>3 or vibe.get_gem()>2) and randf()*3<1:
-			$Sprite.frame=2
+			if randf()<0.25:
+				# grow exploding flower instead
+				intend_transmute(BOOMFLOWER)
+			else:
+				$Sprite.frame=2
 	elif $Sprite.frame == 2:
 		# mature
 		var vibe = world.vibe_nearby(cell)
