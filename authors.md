@@ -12,7 +12,7 @@ I'm imagining this game will probably get posted on itch eventually; add yoursel
 * [JohnLee Cooper](https://ergman.itch.io/)
 * [SirMilkman](https://sirmilkman.itch.io/)
 * pinchazumos
-* Linker
+* [Linker](https://linker.itch.io/)
 * [moochi](https://bio.mut.media/)
 * Friendnard
-* Waporwave
+* [Waporwave](https://twitter.com/Waporwave_)

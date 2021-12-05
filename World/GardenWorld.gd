@@ -31,17 +31,19 @@ func _get_drifter_at_cell(cell : Vector2):
 func _ready():
 	randomize()
 	$cell_cursor.connect("clicked_cell", self, "_on_clicked_cell")
+	$cell_cursor.connect("dragged_cell", self, "_on_dragged_cell")
 	$SpawnTimer.connect("timeout", self, "_on_spawn_timer")
 
+func _on_dragged_cell(cell : Vector2, button : int):
+	if button == BUTTON_RIGHT:
+		_clicked = true
+		_clicked_cell = cell
+		_click_kill = true
 func _on_clicked_cell(cell : Vector2, button : int):
 	if button == BUTTON_LEFT:
 		_clicked = true
 		_clicked_cell = cell
 		_click_kill = false
-	elif button == BUTTON_RIGHT:
-		_clicked = true
-		_clicked_cell = cell
-		_click_kill = true
 	elif button == BUTTON_MIDDLE:
 		# debug: print out vibe
 		var vibe = vibe_at(cell)
@@ -54,7 +56,8 @@ var spawn_wait_delta:int = 0
 func _on_spawn_timer():
 	var packed_drifter = spawnables[randi()%len(spawnables)]
 	spawn_wait_delta += 1
-	$SpawnTimer.wait_time += spawn_wait_delta
+	if $SpawnTimer.wait_time < 60:
+		$SpawnTimer.wait_time += spawn_wait_delta
 	var radius = spawn_wait_delta
 	print("autospawn ",spawn_wait_delta)
 	# hack: this adds the drifter immediately (not inside main loop w/ guts fighting etc)

@@ -1,6 +1,7 @@
 extends Node2D
 
 signal clicked_cell(cell,button)
+signal dragged_cell(cell,button)
 
 var breath: float
 var target_position: Vector2
@@ -17,6 +18,17 @@ func mbtnp(button : int) -> bool:
 			return true
 	else:
 		_btn_was_down[button] = false
+	return false
+
+# a bit hacky: BUTTON_RIGHT is hard-coded
+var _lastcell
+func mbtn_cell() -> bool:
+	if Input.is_mouse_button_pressed(BUTTON_RIGHT):
+		if cell!=_lastcell:
+			_lastcell = cell
+			return true
+	else:
+		_lastcell=null
 	return false
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,9 +48,11 @@ func _physics_process(delta):
 		emit_signal("clicked_cell", cell, BUTTON_LEFT)
 	elif mbtnp(BUTTON_MIDDLE):
 		emit_signal("clicked_cell", cell, BUTTON_MIDDLE)
-	elif mbtnp(BUTTON_RIGHT):
-		emit_signal("clicked_cell", cell, BUTTON_RIGHT)
-		
+#	elif mbtnp(BUTTON_RIGHT):
+#		emit_signal("clicked_cell", cell, BUTTON_RIGHT)
+
+	if mbtn_cell():
+		emit_signal("dragged_cell", cell, BUTTON_RIGHT)
 	breath += lerp(-9.22, 4.22, 2-modulate.a) * delta
 		
 
