@@ -4,7 +4,7 @@ extends Drifter
 # Sprite by pancelor
 # Code by pancelor
 
-var pumps = rand_range(4,6+1)
+var pumps = rand_range(5,8+1)
 
 onready var DANDELION = validated_drifter_path("res://DriftersUserDefined/more/Dandelion.tscn")
 

@@ -5,7 +5,7 @@ func _ready():
 
 var anim = 0.0
 var peeplet = "res://DriftersUserDefined/waporwave/Peeplet.tscn"
-var birthrate = .008
+var birthrate = .009
 var deathrate = .001
 onready var message = load("res://DriftersUserDefined/waporwave/Blabber.tscn")
 
@@ -37,9 +37,8 @@ func evolve():
 	
 	if unto != _my_own_path and unto != peeplet:
 		intend_move(dir)
-		if randf()<.2:
-			intend_spawn("res://DriftersUserDefined/waporwave/Path.tscn",Vector2.ZERO)
-			intend_spawn("res://DriftersUserDefined/waporwave/Path.tscn",DirsOrthogonal[randi()%4])
+		intend_spawn("res://DriftersUserDefined/waporwave/Path.tscn",Vector2.ZERO)
+		intend_spawn("res://DriftersUserDefined/waporwave/Path.tscn",DirsOrthogonal[randi()%4])
 		if randf()<.1:
 			var blabites = ["mi tawa","mi pali e nasin","mi tawa lon nasin"]
 			blabber(blabites[randi() % blabites.size()])

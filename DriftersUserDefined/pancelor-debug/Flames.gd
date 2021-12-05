@@ -5,7 +5,8 @@ var anim:float = 0.0
 onready var flicker:float = rand_range(1.5,3)
 
 onready var SAPLING = validated_drifter_path("res://DriftersUserDefined/pancelor-debug/Sapling.tscn")
-	
+onready var EGG = validated_drifter_path("res://DriftersUserDefined/mergrazzini/Egg.tscn")
+
 func _physics_process(_delta):
 	._physics_process(_delta) # call method on base class 
 	anim += _delta*2*PI
@@ -31,6 +32,9 @@ func evolve():
 func tweak():
 	if randf()*20<1:
 		world.log("new life from flames")
-		intend_transmute(SAPLING)
+		if randf()<.5:
+			intend_transmute(SAPLING)
+		else:
+			intend_transmute(EGG)
 	else:
 		intend_die()

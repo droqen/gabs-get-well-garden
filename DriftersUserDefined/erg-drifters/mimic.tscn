@@ -7,7 +7,7 @@
 [ext_resource path="res://DriftersUserDefined/erg-drifters/staticDragon.png" type="Texture" id=5]
 [ext_resource path="res://DriftersUserDefined/pancelor-debug/tree.png" type="Texture" id=6]
 [ext_resource path="res://DriftersUserDefined/pancelor-demo/cat1.png" type="Texture" id=7]
-[ext_resource path="res://DriftersUserDefined/jack/tower.png" type="Texture" id=8]
+[ext_resource path="res://DriftersUserDefined/waporwave/house.png" type="Texture" id=8]
 [ext_resource path="res://DriftersUserDefined/mokesmoe/WirePlacer.png" type="Texture" id=9]
 
 [sub_resource type="Gradient" id=1]

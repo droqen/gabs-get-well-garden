@@ -22,14 +22,14 @@ func evolve():
 	var dir = DirsOrthogonal[randi()%4]
 	if not is_instance_valid(mama):
 		mama=null
-		
+
 	if mama != null and randf()>.3:
 		dir = ((mama.cell-cell).normalized()).round()
 	else:
 		for direction in DirsOrthogonal:
 			var tile = world._get_drifter_at_cell(cell+direction)
 			var tile_type = null
-			if tile == null: tile_type = "" 
+			if tile == null: tile_type = ""
 			else: tile_type = tile.get_filename()
 			if tile_type == peeple:
 				mama = tile
@@ -42,22 +42,22 @@ func evolve():
 				intend_transmute("res://DriftersUserDefined/waporwave/Peeple_Remains.tscn")
 		else:
 			abandonment = 30
-		
-	
+
+
 	var unto = world._get_drifter_at_cell(cell+dir)
-	if unto == null: unto = "" 
+	if unto == null: unto = ""
 	else: unto = unto.get_filename()
-	
+
 	if unto != _my_own_path and unto != peeple:
 		intend_spawn("res://DriftersUserDefined/waporwave/Path.tscn",Vector2.ZERO)
 		intend_move(dir)
-	
+
 	if randf()<growuprate:
 		intend_transmute(peeple)
-		
+
 	if randf()<.1:
 		blabber("wa")
-	
+
 	var vibe:Vibe = world.vibe_nearby(cell)
 	if vibe.get_element(Vibe.Element.Fire) >= 6:
 		world.log("a peeple passes") #overheating
