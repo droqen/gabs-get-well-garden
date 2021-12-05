@@ -97,6 +97,7 @@ var _clicked:bool
 var _clicked_cell:Vector2
 var _click_kill:bool
 
+var updateindex=0 # remember which drifter index we'll update next
 func _physics_process(_delta):
 	_to_kill.clear()
 	_to_spawn.clear()
@@ -104,8 +105,19 @@ func _physics_process(_delta):
 	_to_move.clear()
 	_to_move_where.clear()
 	
-	for drifter in $DRIFTERS.get_children():
-		if drifter.evolve_wait_frames <= 0 and randf()*drifter.evolve_skip_odds<1:
+	var starttime = OS.get_ticks_usec()
+	var kids = $DRIFTERS.get_children()
+	var nkids = len(kids)
+	for di in range(0,nkids):
+		updateindex+=1
+		if updateindex>=nkids:
+			updateindex=0
+		var drifter = kids[updateindex]
+		if OS.get_ticks_usec()-starttime > 15000:
+			# 16000 is roughly the total available
+			# other stuff doesn't take too long (except spawning is sometimes a huge spike)
+			break
+		elif drifter.evolve_wait_frames <= 0 and randf()*drifter.evolve_skip_odds<1:
 			drifter.evolve()
 			drifter.evolve_wait_frames = drifter.evolve_wait_after
 	if _clicked:
@@ -120,16 +132,19 @@ func _physics_process(_delta):
 				var path = spawnables[randi() % spawnables.size()].resource_path
 				intend_spawn_at(path, _clicked_cell)
 		_clicked = false
+#	var evolvetime=OS.get_ticks_usec()-starttime
 	
 	# process _to_kill
 	for drifter in _to_kill:
 		_free_after_20_frames(drifter)
+#	var killtime=OS.get_ticks_usec()-starttime
 	
 	# process _to_spawn
 	assert(len(_to_spawn)==len(_to_spawn_where),"_to_spawn desync")
 	for i in range(len(_to_spawn)):
 		_add_drifter(_to_spawn[i],_to_spawn_where[i])
-		
+#	var spawntime=OS.get_ticks_usec()-starttime
+	
 	# process _to_move
 	assert(len(_to_move)==len(_to_move_where), "_to_move desync")
 	for i in range(len(_to_move)):
@@ -137,7 +152,8 @@ func _physics_process(_delta):
 		var cell = _to_move_where[i]
 		reregister(drifter,cell)
 		drifter.target_position = $TileMap.map_to_world(drifter.cell)
-
+#	var movetime=OS.get_ticks_usec()-starttime
+	
 	for key in drifter_dictionary:
 		var overlapping_drifters = drifter_dictionary[key]
 		if len(overlapping_drifters) > 1:
@@ -164,7 +180,9 @@ func _physics_process(_delta):
 			for drifter in overlapping_drifters:
 				if drifter != gutsiest_drifter:
 					_free_after_20_frames(drifter)
-
+#	var resolvetime=OS.get_ticks_usec()-starttime
+#	prints("timing:\n evolve",evolvetime,"\n kill",killtime,"\n spawn",spawntime,"\n move",movetime,"\n resolve",resolvetime)
+	
 # 20 frames ish; the exact number doesn't matter
 func _free_after_20_frames(drifter):
 	if not drifter.dead:
