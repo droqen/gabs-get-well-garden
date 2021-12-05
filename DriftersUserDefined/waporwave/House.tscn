@@ -4,6 +4,7 @@
 [ext_resource path="res://DriftersUserDefined/waporwave/house.png" type="Texture" id=2]
 
 [node name="House" type="Node2D"]
+z_index = -1
 script = ExtResource( 1 )
 minor_element = 4
 evolve_skip_odds = 100

@@ -25,7 +25,7 @@ func evolve():
 	if vibe.get_element(Vibe.Element.Grass) >= 2:
 		intend_spawn("res://DriftersUserDefined/waporwave/Zomby.tscn",vibiest_dir(DirsAdjacent,{"Grass":1}))
 	
-	if randf()<.05:
+	if randf()<.08:
 		world.log("a zomby returns to the earth") #nofoodidk
 		intend_transmute("res://DriftersUserDefined/waporwave/Tombstone.tscn")
 	

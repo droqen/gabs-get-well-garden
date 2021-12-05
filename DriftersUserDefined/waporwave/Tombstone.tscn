@@ -4,6 +4,7 @@
 [ext_resource path="res://DriftersUserDefined/waporwave/Tombstone.gd" type="Script" id=2]
 
 [node name="Tombstone" type="Node2D"]
+z_index = -1
 script = ExtResource( 2 )
 guts = 60
 minor_element = 8

@@ -6,7 +6,7 @@ func evolve():
 			intend_transmute("res://DriftersUserDefined/waporwave/Path.tscn")
 			world.log("A peeple house crumbles in disrepair")
 func tweak():
-	if randf()<.25:
+	if randf()<.2:
 		intend_transmute("res://DriftersUserDefined/waporwave/Peeple.tscn")
 	else:
 		intend_transmute("res://DriftersUserDefined/waporwave/Path.tscn")
