@@ -1,8 +1,8 @@
 extends Drifter
 
 var anim = 0.0
-var age = 0
-var eggs = 2
+var ttl = rand_range(20,40+1)
+var eggs = rand_range(1,2+1)
 
 onready var EGG = validated_drifter_path("res://DriftersUserDefined/Milkman/Egg.tscn")
 
@@ -21,15 +21,21 @@ func evolve():
 	tweak()
 
 func tweak():
+	var should_lay = false
+	ttl-=1
+	if ttl<0:
+		eggs -= 1
+		if eggs < 0:
+			intend_die()
+			return
+		else:
+			should_lay = true
+			world.log("The snake lays an egg")
+			ttl = rand_range(20,40+1)
 	var dir = DirsOrthogonal[randi()%4]
 	scale = Vector2(1.2, 0.8)
 	if dir.x: $Sprite.flip_h = dir.x < 0
-
-	intend_move(dir)
-	if eggs > 0:
-		age += 1
-		if age >10:
-			eggs -= 1
-			intend_spawn(EGG, Vector2(0,0))
-			world.log("The snake lays an egg")
-			age = 0
+	if should_lay:
+		intend_move_and_leave(dir,EGG)
+	else:
+		intend_move(dir)
