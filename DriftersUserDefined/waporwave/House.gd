@@ -1,6 +1,8 @@
 extends Drifter
 func evolve():
 	if randf()<.2:
+		intend_transmute("res://DriftersUserDefined/waporwave/Path.tscn")
+	elif randf()<.2:
 		var vibe:Vibe = world.vibe_nearby(cell)
 		if vibe.get_element(Vibe.Element.Earth) < 3:
 			intend_transmute("res://DriftersUserDefined/waporwave/Path.tscn")
@@ -9,4 +11,4 @@ func tweak():
 	if randf()<.25:
 		intend_transmute("res://DriftersUserDefined/waporwave/Peeple.tscn")
 	else:
-		intend_transmute("res://DriftersUserDefined/waporwave/Path.tscn") # why doesn't this work?
+		intend_die()
