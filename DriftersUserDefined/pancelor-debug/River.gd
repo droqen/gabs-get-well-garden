@@ -9,9 +9,9 @@ func evolve():
 
 # when the player clicks
 func tweak():
-	if randf()*20<1:
+	if randf()*40<1:
 		intend_transmute(FISH)
 	if randf()*100<1:
 		intend_transmute(DRAGONSNAIL)
-	elif randf()*16<1:
+	elif randf()*20<1:
 		intend_die()
