@@ -5,5 +5,5 @@ func evolve():
 		else: tweak()
 func tweak():
 	var vibe:Vibe = world.vibe_nearby(cell)
-	if vibe.get_element(Vibe.Element.Earth) >= 6:
+	if vibe.get_element(Vibe.Element.Earth) >= 7:
 		intend_transmute("res://DriftersUserDefined/waporwave/House.tscn")
