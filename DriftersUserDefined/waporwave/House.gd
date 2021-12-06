@@ -1,6 +1,6 @@
 extends Drifter
 func evolve():
-	if randf()<.2:
+	if randf()<.05:
 		intend_transmute("res://DriftersUserDefined/waporwave/Path.tscn")
 	elif randf()<.2:
 		var vibe:Vibe = world.vibe_nearby(cell)
