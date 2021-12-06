@@ -22,7 +22,7 @@ func evolve():
 	
 	var vibe:Vibe = world.vibe_nearby(cell)
 	
-	if vibe.get_element(Vibe.Element.Grass) >= 2:
+	if vibe.get_element(Vibe.Element.Grass) >= 4 and randf()<0.4:
 		intend_spawn("res://DriftersUserDefined/waporwave/Zomby.tscn",vibiest_dir(DirsAdjacent,{"Grass":1}))
 	
 	if randf()<.08:
@@ -32,10 +32,8 @@ func evolve():
 	#unnatural deaths
 	if vibe.get_element(Vibe.Element.Fire) >= 4:
 		world.log("a zomby returns to the earth") #overheating
-		intend_transmute("res://DriftersUserDefined/waporwave/Tombstone.tscn")
 	if vibe.get_element(Vibe.Element.Gem) >= 4:
 		world.log("a zomby returns to the earth") #magic?
-		intend_transmute("res://DriftersUserDefined/waporwave/Tombstone.tscn")
 	
 func tweak():
 	intend_spawn("res://DriftersUserDefined/waporwave/Zomby.tscn",vibiest_dir(DirsAdjacent,{"Grass":1}))
