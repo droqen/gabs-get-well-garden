@@ -186,6 +186,7 @@ func _physics_process(_delta):
 # 20 frames ish; the exact number doesn't matter
 func _free_after_20_frames(drifter):
 	if not drifter.dead:
+		unregister(drifter)
 		drifter.dead = true
 		yield(get_tree(),"idle_frame")
 		assert(drifter.get_parent() == $DRIFTERS,"bad drifter parent/.dead state")

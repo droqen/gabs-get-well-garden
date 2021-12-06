@@ -35,7 +35,7 @@ func tweak():
 		world.log("a fish is born")
 	else:
 		var weights = {"Guts":-1}
-		if randf()*2<1:
+		if randf()*3<1:
 			# move towards rivers occasionally
 			weights = {"Water":3, "Wind":2, "Guts":-0.01}
 
