@@ -4,7 +4,9 @@ a game for gab, made by the paradise community
 
 ## how to play
 
-watch stuff happen, interact minimally by clicking on things. arrow keys / middle click to pan around the world
+play online at https://pancelor.itch.io/get-well-garden
+
+watch stuff happen, interact minimally by clicking on things. arrow keys / middle click to pan around the world. right click to remove
 
 ## elevator pitch
 
